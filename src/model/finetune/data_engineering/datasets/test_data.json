@@ -1,0 +1,37 @@
+[
+  {
+    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
+    "video_path": "raw_videos/57093.mp4",
+    "gloss": "team"
+  },
+  {
+    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
+    "video_path": "raw_videos/57096.mp4",
+    "gloss": "team"
+  },
+  {
+    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
+    "video_path": "raw_videos/57096.mp4",
+    "gloss": "team"
+  },
+  {
+    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
+    "video_path": "raw_videos/57096.mp4",
+    "gloss": "team"
+  },
+  {
+    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
+    "video_path": "raw_videos/57096.mp4",
+    "gloss": "team"
+  },
+  {
+    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
+    "video_path": "raw_videos/69504.mp4",
+    "gloss": "thing"
+  },
+  {
+    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
+    "video_path": "raw_videos/57925.mp4",
+    "gloss": "thing"
+  }
+]

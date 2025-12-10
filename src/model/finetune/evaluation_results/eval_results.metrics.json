@@ -1,0 +1,23 @@
+{
+  "num_samples": 3,
+  "exact_match": {
+    "mean": 0,
+    "median": 0
+  },
+  "levenshtein_ratio": {
+    "mean": 0.0,
+    "median": 0.0
+  },
+  "token_f1": {
+    "mean": 0.0,
+    "median": 0.0
+  },
+  "bleu": {
+    "mean": 0.0,
+    "median": 0.0
+  },
+  "rouge_l_f1": {
+    "mean": 0.0,
+    "median": 0.0
+  }
+}

@@ -1,0 +1,957 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "yaml",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yaml",
+        "description": "yaml",
+        "detail": "yaml",
+        "documentation": {}
+    },
+    {
+        "label": "decord",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "decord",
+        "description": "decord",
+        "detail": "decord",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "Pool",
+        "importPath": "multiprocessing.dummy",
+        "description": "multiprocessing.dummy",
+        "isExtraImport": true,
+        "detail": "multiprocessing.dummy",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "DataCleaner",
+        "importPath": "filter_data",
+        "description": "filter_data",
+        "isExtraImport": true,
+        "detail": "filter_data",
+        "documentation": {}
+    },
+    {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "statistics",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "statistics",
+        "description": "statistics",
+        "detail": "statistics",
+        "documentation": {}
+    },
+    {
+        "label": "difflib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "difflib",
+        "description": "difflib",
+        "detail": "difflib",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "accuracy_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "classification_report",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "confusion_matrix",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "AutoModelForImageTextToText",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "BitsAndBytesConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "BitsAndBytesConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoModelForImageTextToText",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "TrainingArguments",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoModelForImageTextToText",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "BitsAndBytesConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "EarlyStoppingCallback",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoModelForImageTextToText",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "BitsAndBytesConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "PeftModel",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "PeftModel",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "LoraConfig",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "get_peft_model",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_model_for_kbit_training",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "PeftModel",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "DatasetLoader",
+        "importPath": "dataset",
+        "description": "dataset",
+        "isExtraImport": true,
+        "detail": "dataset",
+        "documentation": {}
+    },
+    {
+        "label": "DatasetLoader",
+        "importPath": "dataset",
+        "description": "dataset",
+        "isExtraImport": true,
+        "detail": "dataset",
+        "documentation": {}
+    },
+    {
+        "label": "DatasetLoader",
+        "importPath": "dataset",
+        "description": "dataset",
+        "isExtraImport": true,
+        "detail": "dataset",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "HF_TOKEN",
+        "importPath": "train",
+        "description": "train",
+        "isExtraImport": true,
+        "detail": "train",
+        "documentation": {}
+    },
+    {
+        "label": "Dataset",
+        "importPath": "datasets",
+        "description": "datasets",
+        "isExtraImport": true,
+        "detail": "datasets",
+        "documentation": {}
+    },
+    {
+        "label": "torch_directml",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch_directml",
+        "description": "torch_directml",
+        "detail": "torch_directml",
+        "documentation": {}
+    },
+    {
+        "label": "gc",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "gc",
+        "description": "gc",
+        "detail": "gc",
+        "documentation": {}
+    },
+    {
+        "label": "transforms",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "DataCleaner",
+        "kind": 6,
+        "importPath": "src.model.finetune.data_engineering.filter_data",
+        "description": "src.model.finetune.data_engineering.filter_data",
+        "peekOfCode": "class DataCleaner():\n    def __init__(self, verbose=True):\n        \"\"\"\n        Initialize the DataCleaner to process WLASL dataset for sign language recognition.\n        This class filters the WLASL dataset based on a 320-word glossary, checks for\n        downloaded videos, and generates a training dataset in the required format.\n        Args:\n            verbose (bool, optional): Enable verbose logging during processing. Defaults to True.\n        Attributes:\n            verbose (bool): Logging flag",
+        "detail": "src.model.finetune.data_engineering.filter_data",
+        "documentation": {}
+    },
+    {
+        "label": "GLOSSARY",
+        "kind": 5,
+        "importPath": "src.model.finetune.data_engineering.filter_data",
+        "description": "src.model.finetune.data_engineering.filter_data",
+        "peekOfCode": "GLOSSARY = [# Pronouns (15)\n    \"I\", \"YOU\", \"HE\", \"SHE\", \"THEY\", \"WE\", \"ME\", \"YOU-PLURAL\", \"THEM\",\n    \"THIS\", \"THAT\", \"MINE\", \"YOURS\", \"THEIRS\", \"SELF\",\n    # Basic Verbs (40)\n    \"BE\", \"HAVE\", \"DO\", \"GO\", \"COME\", \"MAKE\", \"LOOK\", \"SEE\", \"WATCH\", \"GIVE\",\n    \"TAKE\", \"TELL\", \"ASK\", \"USE\", \"NEED\", \"WANT\", \"KNOW\", \"THINK\", \"FEEL\",\n    \"LIKE\", \"LOVE\", \"HATE\", \"EAT\", \"DRINK\", \"SLEEP\", \"WORK\", \"PLAY\", \"HELP\",\n    \"MOVE\", \"STOP\", \"START\", \"OPEN\", \"CLOSE\", \"PUT\", \"BRING\", \"CALL\", \"WAIT\",\n    \"CHANGE\", \"FIND\",\n    # Modal Verbs (10)",
+        "detail": "src.model.finetune.data_engineering.filter_data",
+        "documentation": {}
+    },
+    {
+        "label": "validate_dataset",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.validate_videos",
+        "description": "src.model.finetune.data_engineering.validate_videos",
+        "peekOfCode": "def validate_dataset(input_json=\"datasets/wlasl_cleaned.json\", output_json=\"datasets/wlasl_validated.json\"):\n    \"\"\"\n    Validate all videos in the dataset and create a cleaned version.\n    Args:\n        input_json: Path to the input dataset JSON\n        output_json: Path to save the validated dataset\n    \"\"\"\n    print(f\"🔍 Loading dataset from: {input_json}\")\n    with open(input_json, 'r') as f:\n        data = json.load(f)",
+        "detail": "src.model.finetune.data_engineering.validate_videos",
+        "documentation": {}
+    },
+    {
+        "label": "request_video",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def request_video(url, referer=''):\n    user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'\n    headers = {'User-Agent': user_agent,\n               }\n    if referer:\n        headers['Referer'] = referer\n    request = urllib.request.Request(url, None, headers)  # The assembled request\n    logging.info('Requesting {}'.format(url))\n    response = urllib.request.urlopen(request)\n    data = response.read()  # The data you need",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "save_video",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def save_video(data, saveto):\n    with open(saveto, 'wb+') as f:\n        f.write(data)\n    # please be nice to the host - take pauses and avoid spamming\n    time.sleep(random.uniform(0.5, 1.5))\ndef download_youtube(url, dirname, video_id):\n    raise NotImplementedError(\"Urllib cannot deal with YouTube links.\")\ndef download_aslpro(url, dirname, video_id):\n    saveto = os.path.join(dirname, '{}.swf'.format(video_id))\n    if os.path.exists(saveto):",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "download_youtube",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def download_youtube(url, dirname, video_id):\n    raise NotImplementedError(\"Urllib cannot deal with YouTube links.\")\ndef download_aslpro(url, dirname, video_id):\n    saveto = os.path.join(dirname, '{}.swf'.format(video_id))\n    if os.path.exists(saveto):\n        logging.info('{} exists at {}'.format(video_id, saveto))\n        return \n    data = request_video(url, referer='http://www.aslpro.com/cgi-bin/aslpro/aslpro.cgi')\n    save_video(data, saveto)\ndef download_others(url, dirname, video_id):",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "download_aslpro",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def download_aslpro(url, dirname, video_id):\n    saveto = os.path.join(dirname, '{}.swf'.format(video_id))\n    if os.path.exists(saveto):\n        logging.info('{} exists at {}'.format(video_id, saveto))\n        return \n    data = request_video(url, referer='http://www.aslpro.com/cgi-bin/aslpro/aslpro.cgi')\n    save_video(data, saveto)\ndef download_others(url, dirname, video_id):\n    saveto = os.path.join(dirname, '{}.mp4'.format(video_id))\n    if os.path.exists(saveto):",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "download_others",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def download_others(url, dirname, video_id):\n    saveto = os.path.join(dirname, '{}.mp4'.format(video_id))\n    if os.path.exists(saveto):\n        logging.info('{} exists at {}'.format(video_id, saveto))\n        return \n    data = request_video(url)\n    save_video(data, saveto)\ndef select_download_method(url):\n    if 'aslpro' in url:\n        return download_aslpro",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "select_download_method",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def select_download_method(url):\n    if 'aslpro' in url:\n        return download_aslpro\n    elif 'youtube' in url or 'youtu.be' in url:\n        return download_youtube\n    else:\n        return download_others\ndef download_nonyt_videos(indexfile, saveto='raw_videos'):\n    if not os.path.exists(saveto):\n        os.mkdir(saveto)",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "download_nonyt_videos",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def download_nonyt_videos(indexfile, saveto='raw_videos'):\n    if not os.path.exists(saveto):\n        os.mkdir(saveto)\n    for entry in content:\n        gloss = entry['gloss']\n        instances = entry['instances']\n        for inst in instances:\n            video_url = inst['url']\n            video_id = inst['video_id']\n            # Check if video already exists (skip early to avoid unnecessary processing)",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "check_youtube_dl_version",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def check_youtube_dl_version():\n    ver = os.popen(f'{youtube_downloader} --version').read()\n    assert ver, f\"{youtube_downloader} cannot be found in PATH. Please verify your installation.\"\ndef download_yt_videos(indexfile, saveto='raw_videos'):\n    if not os.path.exists(saveto):\n        os.mkdir(saveto)\n    for entry in content:\n        gloss = entry['gloss']\n        instances = entry['instances']\n        for inst in instances:",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "download_yt_videos",
+        "kind": 2,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "def download_yt_videos(indexfile, saveto='raw_videos'):\n    if not os.path.exists(saveto):\n        os.mkdir(saveto)\n    for entry in content:\n        gloss = entry['gloss']\n        instances = entry['instances']\n        for inst in instances:\n            video_url = inst['url']\n            video_id = inst['video_id']\n            if 'youtube' not in video_url and 'youtu.be' not in video_url:",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "youtube_downloader",
+        "kind": 5,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "youtube_downloader = \"yt-dlp\"\ncontent = DataCleaner().get_clean_data()\ndef request_video(url, referer=''):\n    user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'\n    headers = {'User-Agent': user_agent,\n               }\n    if referer:\n        headers['Referer'] = referer\n    request = urllib.request.Request(url, None, headers)  # The assembled request\n    logging.info('Requesting {}'.format(url))",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "content",
+        "kind": 5,
+        "importPath": "src.model.finetune.data_engineering.video_downloader",
+        "description": "src.model.finetune.data_engineering.video_downloader",
+        "peekOfCode": "content = DataCleaner().get_clean_data()\ndef request_video(url, referer=''):\n    user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'\n    headers = {'User-Agent': user_agent,\n               }\n    if referer:\n        headers['Referer'] = referer\n    request = urllib.request.Request(url, None, headers)  # The assembled request\n    logging.info('Requesting {}'.format(url))\n    response = urllib.request.urlopen(request)",
+        "detail": "src.model.finetune.data_engineering.video_downloader",
+        "documentation": {}
+    },
+    {
+        "label": "DatasetLoader",
+        "kind": 6,
+        "importPath": "src.model.finetune.dataset",
+        "description": "src.model.finetune.dataset",
+        "peekOfCode": "class DatasetLoader():\n    \"\"\"\n    Dataset loader for sign language video data with stratified splitting by gloss.\n    This class loads processed WLASL dataset from JSON, performs stratified train/test split\n    to ensure each sign language word (gloss) is proportionally represented in both sets,\n    and prepares data for model training.\n    \"\"\"\n    def __init__(self, verbose=True, dataset_file=\"wlasl_cleaned.json\"):\n        \"\"\"\n        Initialize the DatasetLoader with sign language video dataset.",
+        "detail": "src.model.finetune.dataset",
+        "documentation": {}
+    },
+    {
+        "label": "dataset_path",
+        "kind": 5,
+        "importPath": "src.model.finetune.dataset",
+        "description": "src.model.finetune.dataset",
+        "peekOfCode": "dataset_path = params[\"dataset_path\"]\nclass DatasetLoader():\n    \"\"\"\n    Dataset loader for sign language video data with stratified splitting by gloss.\n    This class loads processed WLASL dataset from JSON, performs stratified train/test split\n    to ensure each sign language word (gloss) is proportionally represented in both sets,\n    and prepares data for model training.\n    \"\"\"\n    def __init__(self, verbose=True, dataset_file=\"wlasl_cleaned.json\"):\n        \"\"\"",
+        "detail": "src.model.finetune.dataset",
+        "documentation": {}
+    },
+    {
+        "label": "VLMEvaluator",
+        "kind": 6,
+        "importPath": "src.model.finetune.eval",
+        "description": "src.model.finetune.eval",
+        "peekOfCode": "class VLMEvaluator:\n    def __init__(self, adapter_path=None):\n        \"\"\"\n        Initialize the evaluator.\n        Args:\n            adapter_path (str, optional): Path to the PEFT adapter/checkpoint. If None,\n                uses latest found checkpoint or `vlm_finetuned_final`.\n        Side effects:\n            Loads the model processor and LoRA adapter via `load_model`.\n        \"\"\"",
+        "detail": "src.model.finetune.eval",
+        "documentation": {}
+    },
+    {
+        "label": "get_latest_checkpoint",
+        "kind": 2,
+        "importPath": "src.model.finetune.eval",
+        "description": "src.model.finetune.eval",
+        "peekOfCode": "def get_latest_checkpoint(base_dir=\"./vlm_finetuned\"):\n    \"\"\"\n    Return the path to the latest numeric checkpoint directory under `base_dir`.\n    Args:\n        base_dir (str): Directory containing checkpoint-* folders.\n    Returns:\n        str|None: Path to the latest checkpoint or None if none exist.\n    \"\"\"\n    if not os.path.exists(base_dir):\n        return None",
+        "detail": "src.model.finetune.eval",
+        "documentation": {}
+    },
+    {
+        "label": "sample_frames",
+        "kind": 2,
+        "importPath": "src.model.finetune.eval",
+        "description": "src.model.finetune.eval",
+        "peekOfCode": "def sample_frames(video_path: str, num_frames: int = NUM_FRAMES):\n    \"\"\"\n    Sample frames from a video using Decord.\n    \"\"\"\n    print(\"\\nSampling frames from video:\", video_path)\n    if video_path is None or not Path(video_path).exists():\n        raise ValueError(f\"Invalid video path: {video_path}\")\n    vr = decord.VideoReader(video_path)\n    total = len(vr)\n    indices = torch.linspace(0, total - 1, num_frames).long()",
+        "detail": "src.model.finetune.eval",
+        "documentation": {}
+    },
+    {
+        "label": "HF_TOKEN",
+        "kind": 5,
+        "importPath": "src.model.finetune.eval",
+        "description": "src.model.finetune.eval",
+        "peekOfCode": "HF_TOKEN = os.getenv('HF_TOKEN')\nNUM_FRAMES = 8\nMODEL_ID = params[\"model\"]\n# Default to the final model or a specific checkpoint\ndef get_latest_checkpoint(base_dir=\"./vlm_finetuned\"):\n    \"\"\"\n    Return the path to the latest numeric checkpoint directory under `base_dir`.\n    Args:\n        base_dir (str): Directory containing checkpoint-* folders.\n    Returns:",
+        "detail": "src.model.finetune.eval",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_FRAMES",
+        "kind": 5,
+        "importPath": "src.model.finetune.eval",
+        "description": "src.model.finetune.eval",
+        "peekOfCode": "NUM_FRAMES = 8\nMODEL_ID = params[\"model\"]\n# Default to the final model or a specific checkpoint\ndef get_latest_checkpoint(base_dir=\"./vlm_finetuned\"):\n    \"\"\"\n    Return the path to the latest numeric checkpoint directory under `base_dir`.\n    Args:\n        base_dir (str): Directory containing checkpoint-* folders.\n    Returns:\n        str|None: Path to the latest checkpoint or None if none exist.",
+        "detail": "src.model.finetune.eval",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_ID",
+        "kind": 5,
+        "importPath": "src.model.finetune.eval",
+        "description": "src.model.finetune.eval",
+        "peekOfCode": "MODEL_ID = params[\"model\"]\n# Default to the final model or a specific checkpoint\ndef get_latest_checkpoint(base_dir=\"./vlm_finetuned\"):\n    \"\"\"\n    Return the path to the latest numeric checkpoint directory under `base_dir`.\n    Args:\n        base_dir (str): Directory containing checkpoint-* folders.\n    Returns:\n        str|None: Path to the latest checkpoint or None if none exist.\n    \"\"\"",
+        "detail": "src.model.finetune.eval",
+        "documentation": {}
+    },
+    {
+        "label": "ADAPTER_PATH",
+        "kind": 5,
+        "importPath": "src.model.finetune.eval",
+        "description": "src.model.finetune.eval",
+        "peekOfCode": "ADAPTER_PATH = get_latest_checkpoint() or \"./vlm_finetuned_final\"\n# ==================== METRIC HELPERS ====================\ndef _normalize_text(s: str) -> str:\n    \"\"\"Normalize text for comparison: lowercase, strip, collapse whitespace.\"\"\"\n    if s is None:\n        return \"\"\n    return \" \".join(s.lower().strip().split())\ndef _exact_match(a: str, b: str) -> int:\n    \"\"\"Return 1 if normalized texts match exactly, 0 otherwise.\"\"\"\n    return int(_normalize_text(a) == _normalize_text(b))",
+        "detail": "src.model.finetune.eval",
+        "documentation": {}
+    },
+    {
+        "label": "RAW_DIR",
+        "kind": 5,
+        "importPath": "src.model.finetune.preprocess_videos",
+        "description": "src.model.finetune.preprocess_videos",
+        "peekOfCode": "RAW_DIR = \"data_engineering/raw_videos\"\nSAVE_DIR = \"preprocessed_frames\" # Updated to match train.py expectation\nNUM_FRAMES = 8 # Increased to 8\n# Ensure save directory exists\nos.makedirs(SAVE_DIR, exist_ok=True)\n# Loop through all videos in RAW_DIR\nvideo_files = [f for f in os.listdir(RAW_DIR) if f.endswith(\".mp4\")]\nfor file_name in tqdm(video_files, desc=\"Processing Videos\"):\n    video_path = os.path.join(RAW_DIR, file_name)\n    save_path = os.path.join(SAVE_DIR, file_name.replace(\".mp4\", \".pt\"))",
+        "detail": "src.model.finetune.preprocess_videos",
+        "documentation": {}
+    },
+    {
+        "label": "SAVE_DIR",
+        "kind": 5,
+        "importPath": "src.model.finetune.preprocess_videos",
+        "description": "src.model.finetune.preprocess_videos",
+        "peekOfCode": "SAVE_DIR = \"preprocessed_frames\" # Updated to match train.py expectation\nNUM_FRAMES = 8 # Increased to 8\n# Ensure save directory exists\nos.makedirs(SAVE_DIR, exist_ok=True)\n# Loop through all videos in RAW_DIR\nvideo_files = [f for f in os.listdir(RAW_DIR) if f.endswith(\".mp4\")]\nfor file_name in tqdm(video_files, desc=\"Processing Videos\"):\n    video_path = os.path.join(RAW_DIR, file_name)\n    save_path = os.path.join(SAVE_DIR, file_name.replace(\".mp4\", \".pt\"))\n    try:",
+        "detail": "src.model.finetune.preprocess_videos",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_FRAMES",
+        "kind": 5,
+        "importPath": "src.model.finetune.preprocess_videos",
+        "description": "src.model.finetune.preprocess_videos",
+        "peekOfCode": "NUM_FRAMES = 8 # Increased to 8\n# Ensure save directory exists\nos.makedirs(SAVE_DIR, exist_ok=True)\n# Loop through all videos in RAW_DIR\nvideo_files = [f for f in os.listdir(RAW_DIR) if f.endswith(\".mp4\")]\nfor file_name in tqdm(video_files, desc=\"Processing Videos\"):\n    video_path = os.path.join(RAW_DIR, file_name)\n    save_path = os.path.join(SAVE_DIR, file_name.replace(\".mp4\", \".pt\"))\n    try:\n        # Use OpenCV to read video (same logic as sample_frames)",
+        "detail": "src.model.finetune.preprocess_videos",
+        "documentation": {}
+    },
+    {
+        "label": "video_files",
+        "kind": 5,
+        "importPath": "src.model.finetune.preprocess_videos",
+        "description": "src.model.finetune.preprocess_videos",
+        "peekOfCode": "video_files = [f for f in os.listdir(RAW_DIR) if f.endswith(\".mp4\")]\nfor file_name in tqdm(video_files, desc=\"Processing Videos\"):\n    video_path = os.path.join(RAW_DIR, file_name)\n    save_path = os.path.join(SAVE_DIR, file_name.replace(\".mp4\", \".pt\"))\n    try:\n        # Use OpenCV to read video (same logic as sample_frames)\n        cap = cv2.VideoCapture(video_path)\n        if not cap.isOpened():\n            print(f\"⚠️  Could not open video: {file_name}\")\n            continue",
+        "detail": "src.model.finetune.preprocess_videos",
+        "documentation": {}
+    },
+    {
+        "label": "VLMEvaluator",
+        "kind": 6,
+        "importPath": "src.model.finetune.test_eval",
+        "description": "src.model.finetune.test_eval",
+        "peekOfCode": "class VLMEvaluator:\n    def __init__(self, checkpoint_path: str = None, output_file: str = \"eval_results.json\", verbose: bool = True):\n        self.verbose = verbose\n        self.output_file = output_file\n        self.checkpoint_path = checkpoint_path\n        self.device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n        model_loader = self.load_model()\n        self.model = model_loader[\"model\"]\n        self.processor = model_loader[\"processor\"]\n        self.processor.video_processor.size = {\"height\": 448, \"width\": 448}",
+        "detail": "src.model.finetune.test_eval",
+        "documentation": {}
+    },
+    {
+        "label": "sample_frames",
+        "kind": 2,
+        "importPath": "src.model.finetune.test_eval",
+        "description": "src.model.finetune.test_eval",
+        "peekOfCode": "def sample_frames(video_path: str, num_frames: int = NUM_FRAMES):\n    \"\"\"\n    Sample frames from a video using Decord.\n    \"\"\"\n    if video_path is None or not Path(video_path).exists():\n        raise ValueError(f\"Invalid video path: {video_path}\")\n    vr = decord.VideoReader(video_path)\n    total = len(vr)\n    indices = torch.linspace(0, total - 1, num_frames).long()\n    frames = vr.get_batch(indices).asnumpy()",
+        "detail": "src.model.finetune.test_eval",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_FRAMES",
+        "kind": 5,
+        "importPath": "src.model.finetune.test_eval",
+        "description": "src.model.finetune.test_eval",
+        "peekOfCode": "NUM_FRAMES = 8\ndef sample_frames(video_path: str, num_frames: int = NUM_FRAMES):\n    \"\"\"\n    Sample frames from a video using Decord.\n    \"\"\"\n    if video_path is None or not Path(video_path).exists():\n        raise ValueError(f\"Invalid video path: {video_path}\")\n    vr = decord.VideoReader(video_path)\n    total = len(vr)\n    indices = torch.linspace(0, total - 1, num_frames).long()",
+        "detail": "src.model.finetune.test_eval",
+        "documentation": {}
+    },
+    {
+        "label": "VLMFineTuneTrainer",
+        "kind": 6,
+        "importPath": "src.model.finetune.train",
+        "description": "src.model.finetune.train",
+        "peekOfCode": "class VLMFineTuneTrainer():\n    def __init__(self, verbose=True):\n        \"\"\"\n        Initialize the VLM fine-tune trainer.\n        Args:\n            verbose (bool, optional): Enable verbose logging. Defaults to True.\n        Attributes:\n            model_name (str): HF model identifier from params\n            model: Loaded base model\n            processor: HF processor for model inputs",
+        "detail": "src.model.finetune.train",
+        "documentation": {}
+    },
+    {
+        "label": "HF_TOKEN",
+        "kind": 5,
+        "importPath": "src.model.finetune.train",
+        "description": "src.model.finetune.train",
+        "peekOfCode": "HF_TOKEN = os.getenv('HF_TOKEN')\nNUM_FRAMES = 8 # Increased from 4 to 8\nPREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\ntraining_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass VLMFineTuneTrainer():\n    def __init__(self, verbose=True):\n        \"\"\"",
+        "detail": "src.model.finetune.train",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_FRAMES",
+        "kind": 5,
+        "importPath": "src.model.finetune.train",
+        "description": "src.model.finetune.train",
+        "peekOfCode": "NUM_FRAMES = 8 # Increased from 4 to 8\nPREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\ntraining_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass VLMFineTuneTrainer():\n    def __init__(self, verbose=True):\n        \"\"\"\n        Initialize the VLM fine-tune trainer.",
+        "detail": "src.model.finetune.train",
+        "documentation": {}
+    },
+    {
+        "label": "PREPROCESSED_DIR",
+        "kind": 5,
+        "importPath": "src.model.finetune.train",
+        "description": "src.model.finetune.train",
+        "peekOfCode": "PREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\ntraining_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass VLMFineTuneTrainer():\n    def __init__(self, verbose=True):\n        \"\"\"\n        Initialize the VLM fine-tune trainer.\n        Args:",
+        "detail": "src.model.finetune.train",
+        "documentation": {}
+    },
+    {
+        "label": "training_args",
+        "kind": 5,
+        "importPath": "src.model.finetune.train",
+        "description": "src.model.finetune.train",
+        "peekOfCode": "training_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass VLMFineTuneTrainer():\n    def __init__(self, verbose=True):\n        \"\"\"\n        Initialize the VLM fine-tune trainer.\n        Args:\n            verbose (bool, optional): Enable verbose logging. Defaults to True.\n        Attributes:\n            model_name (str): HF model identifier from params",
+        "detail": "src.model.finetune.train",
+        "documentation": {}
+    },
+    {
+        "label": "lora_config",
+        "kind": 5,
+        "importPath": "src.model.finetune.train",
+        "description": "src.model.finetune.train",
+        "peekOfCode": "lora_config = params.get(\"lora_config\", {})\nclass VLMFineTuneTrainer():\n    def __init__(self, verbose=True):\n        \"\"\"\n        Initialize the VLM fine-tune trainer.\n        Args:\n            verbose (bool, optional): Enable verbose logging. Defaults to True.\n        Attributes:\n            model_name (str): HF model identifier from params\n            model: Loaded base model",
+        "detail": "src.model.finetune.train",
+        "documentation": {}
+    },
+    {
+        "label": "VLMModelLoader",
+        "kind": 6,
+        "importPath": "src.model.model_loader",
+        "description": "src.model.model_loader",
+        "peekOfCode": "class VLMModelLoader():\n    def __init__(self):\n        print(\"\\n\\n📍 Initializing VLMModelLoader...\")\n        self.model_name = CONFIG[\"model\"]\n        self.model=None\n        self.processor=None\n        self.prompt = CONFIG[\"prompt\"]\n        # --- NEW HARDWARE DETECTION LOGIC ---\n        if torch.cuda.is_available():\n            self.device_type = \"cuda\"",
+        "detail": "src.model.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "CONFIG",
+        "kind": 5,
+        "importPath": "src.model.model_loader",
+        "description": "src.model.model_loader",
+        "peekOfCode": "CONFIG = None\nCHECKPOINT_NUM = \"370\"\n# The 'with' statement is the best way to handle opening/closing files\nwith open('params/vlm.yml', 'r') as file:\n    # Use yaml.safe_load() to parse the file\n    # This converts the YAML into a Python dictionary (or list)\n    try:\n        CONFIG = yaml.safe_load(file)\n    except yaml.YAMLError as e:\n        print(f\"Error parsing YAML file: {e}\")",
+        "detail": "src.model.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "CHECKPOINT_NUM",
+        "kind": 5,
+        "importPath": "src.model.model_loader",
+        "description": "src.model.model_loader",
+        "peekOfCode": "CHECKPOINT_NUM = \"370\"\n# The 'with' statement is the best way to handle opening/closing files\nwith open('params/vlm.yml', 'r') as file:\n    # Use yaml.safe_load() to parse the file\n    # This converts the YAML into a Python dictionary (or list)\n    try:\n        CONFIG = yaml.safe_load(file)\n    except yaml.YAMLError as e:\n        print(f\"Error parsing YAML file: {e}\")\n# print(CONFIG[\"model\"])",
+        "detail": "src.model.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "HF_TOKEN",
+        "kind": 5,
+        "importPath": "src.model.model_loader",
+        "description": "src.model.model_loader",
+        "peekOfCode": "HF_TOKEN = os.getenv('HF_TOKEN')\nclass VLMModelLoader():\n    def __init__(self):\n        print(\"\\n\\n📍 Initializing VLMModelLoader...\")\n        self.model_name = CONFIG[\"model\"]\n        self.model=None\n        self.processor=None\n        self.prompt = CONFIG[\"prompt\"]\n        # --- NEW HARDWARE DETECTION LOGIC ---\n        if torch.cuda.is_available():",
+        "detail": "src.model.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "instance",
+        "kind": 5,
+        "importPath": "data_test",
+        "description": "data_test",
+        "peekOfCode": "instance = [\n    {\n        \"bbox\": [0, 0, 360, 240],\n        \"fps\": 25,\n        \"frame_end\": 2285,\n        \"frame_start\": 2249,\n        \"instance_id\": 0,\n        \"signer_id\": 9,\n        \"source\": \"asl5200\",\n        \"split\": \"test\",",
+        "detail": "data_test",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    print(\"Hello from backend!\")\nif __name__ == \"__main__\":\n    main()",
+        "detail": "main",
+        "documentation": {}
+    }
+]

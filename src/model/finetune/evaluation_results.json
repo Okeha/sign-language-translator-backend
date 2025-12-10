@@ -1,0 +1,103 @@
+{
+  "metrics": {
+    "accuracy_top1": 0.0,
+    "accuracy_top5": 0.0
+  },
+  "text_metrics_aggregated": {
+    "num_samples": 3,
+    "exact_match": {
+      "mean": 0,
+      "median": 0
+    },
+    "levenshtein_ratio": {
+      "mean": 0.03333333333333333,
+      "median": 0.0
+    },
+    "token_f1": {
+      "mean": 0.0,
+      "median": 0.0
+    },
+    "bleu": {
+      "mean": 0.0,
+      "median": 0.0
+    },
+    "rouge_l_f1": {
+      "mean": 0.0,
+      "median": 0.0
+    }
+  },
+  "details": [
+    {
+      "video_path": "./data_engineering/raw_videos/45762.mp4",
+      "ground_truth": "quiet",
+      "prediction_top1": "the video features a person signing the word \"signing\".",
+      "prediction_top5": [
+        "the video features a person signing the word \"signing\".",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "correct_top1": false,
+      "correct_top5": false,
+      "metrics": {
+        "video_path": "./data_engineering/raw_videos/45762.mp4",
+        "exact_match": 0,
+        "levenshtein_ratio": 0.1,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l_precision": 0.0,
+        "rouge_l_recall": 0.0,
+        "rouge_l_f1": 0.0
+      }
+    },
+    {
+      "video_path": "./data_engineering/raw_videos/45479.mp4",
+      "ground_truth": "push",
+      "prediction_top1": "the video features a person standing against an orange background, wearing a black top. the individual is seen making various hand gestures, which are then translated into a sign language gloss.\n\nthe sequence of hand gestures performed by the person includes:\n1. **open palms facing forward**: this gesture is commonly used to indicate \"stop\" or \"halt.\"\n2. **closed palms facing forward**: this gesture is often used to indicate \"no\" or \"negative.\"\n\nbased on the sequence of hand gestures, the word being signed in the video is likely related to \"stop\" or \"halt.\"",
+      "prediction_top5": [
+        "the video features a person standing against an orange background, wearing a black top. the individual is seen making various hand gestures, which are then translated into a sign language gloss.\n\nthe sequence of hand gestures performed by the person includes:\n1. **open palms facing forward**: this gesture is commonly used to indicate \"stop\" or \"halt.\"\n2. **closed palms facing forward**: this gesture is often used to indicate \"no\" or \"negative.\"\n\nbased on the sequence of hand gestures, the word being signed in the video is likely related to \"stop\" or \"halt.\"",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "correct_top1": false,
+      "correct_top5": false,
+      "metrics": {
+        "video_path": "./data_engineering/raw_videos/45479.mp4",
+        "exact_match": 0,
+        "levenshtein_ratio": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l_precision": 0.0,
+        "rouge_l_recall": 0.0,
+        "rouge_l_f1": 0.0
+      }
+    },
+    {
+      "video_path": "./data_engineering/raw_videos/69489.mp4",
+      "ground_truth": "store",
+      "prediction_top1": "the video features a person wearing a navy blue shirt and a wristwatch, performing a series of hand gestures. the gestures involve the hands being raised and moved in various positions. the sequence of hand movements includes:\n\n1. **opening the hands**: the person raises both hands and spreads their fingers apart.\n2. **closing the hands**: the person brings the hands together, almost as if they are closing their fists.\n3. **repeating the process**: the person repeats the opening and closing of the hands.\n\nthese hand movements are part of a specific sign language gesture that represents the word \"sign.\"",
+      "prediction_top5": [
+        "the video features a person wearing a navy blue shirt and a wristwatch, performing a series of hand gestures. the gestures involve the hands being raised and moved in various positions. the sequence of hand movements includes:\n\n1. **opening the hands**: the person raises both hands and spreads their fingers apart.\n2. **closing the hands**: the person brings the hands together, almost as if they are closing their fists.\n3. **repeating the process**: the person repeats the opening and closing of the hands.\n\nthese hand movements are part of a specific sign language gesture that represents the word \"sign.\"",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "correct_top1": false,
+      "correct_top5": false,
+      "metrics": {
+        "video_path": "./data_engineering/raw_videos/69489.mp4",
+        "exact_match": 0,
+        "levenshtein_ratio": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l_precision": 0.0,
+        "rouge_l_recall": 0.0,
+        "rouge_l_f1": 0.0
+      }
+    }
+  ]
+}

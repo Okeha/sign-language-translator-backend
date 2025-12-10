@@ -4,9 +4,7 @@ __pycache__/
 
 ./__pycache__/
 
-<<<<<<< HEAD
-./preprocessed_frames/
+# ./preprocessed_frames/
 preprocessed_frames/
-=======
-./preprocessed_frames/
->>>>>>> 6824869 (chore: resampled/processed images to tensors)
+
+raw_videos/

@@ -4,9 +4,5 @@ __pycache__/
 
 ./__pycache__/
 
-# ./preprocessed_frames/
-preprocessed_frames/
+# preprocessed_frames/
 
-raw_videos/
-
-data_engineering/raw_videos/

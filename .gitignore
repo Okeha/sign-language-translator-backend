@@ -8,3 +8,5 @@ __pycache__/
 preprocessed_frames/
 
 raw_videos/
+
+data_engineering/raw_videos/

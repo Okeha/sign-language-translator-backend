@@ -1,6 +1,6 @@
 {
   "best_global_step": 30,
-  "best_metric": 4.7123260498046875,
+  "best_metric": 4.790773391723633,
   "best_model_checkpoint": "./vlm_finetuned/checkpoint-30",
   "epoch": 1.0,
   "eval_steps": 500,
@@ -11,17 +11,17 @@
   "log_history": [
     {
       "epoch": 1.0,
-      "grad_norm": 233.8061065673828,
+      "grad_norm": 244.53280639648438,
       "learning_rate": 1.45e-05,
-      "loss": 152.2153,
+      "loss": 152.1905,
       "step": 30
     },
     {
       "epoch": 1.0,
-      "eval_loss": 4.7123260498046875,
-      "eval_runtime": 706.766,
-      "eval_samples_per_second": 0.403,
-      "eval_steps_per_second": 0.202,
+      "eval_loss": 4.790773391723633,
+      "eval_runtime": 769.8855,
+      "eval_samples_per_second": 0.37,
+      "eval_steps_per_second": 0.186,
       "step": 30
     }
   ],
@@ -51,7 +51,7 @@
       "attributes": {}
     }
   },
-  "total_flos": 2.326084078147584e+16,
+  "total_flos": 2.326081825975296e+16,
   "train_batch_size": 2,
   "trial_name": null,
   "trial_params": null

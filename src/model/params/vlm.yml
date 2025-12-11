@@ -22,8 +22,19 @@ training_arguments:
   warmup_steps: 100
   label_smoothing_factor: 0.1
   num_train_epochs: 15
+  num_classes: 250
 
 lora_config:
   r: 16
   lora_alpha: 32
   dropout: 0.1
+
+classifier_training_arguments:
+  save_dir: ./classifier_checkpoints
+  batch_size: 2
+  learning_rate: 0.0001
+  warmup_steps: 50
+  num_train_epochs: 10
+  label_smoothing_factor: 0.1
+  weight_decay: 0.01
+  num_frames: 8

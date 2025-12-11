@@ -574,7 +574,7 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=None, help="Limit number of samples")
-    checkpoint = "./vlm_finetuned/checkpoint-30"
+    checkpoint = "./vlm_finetuned/checkpoint-60"
 
     evaluator = VLMEvaluator(adapter_path=checkpoint)
     evaluator.evaluate(limit=3)

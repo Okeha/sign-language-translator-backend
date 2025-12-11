@@ -277,7 +277,7 @@ class FineTuneModelLoader:
             )
 
             self.processor = AutoProcessor.from_pretrained(self.model_name,trust_remote_code=True, token=HF_TOKEN)
-
+            self.processor.video_video_processor.size = {"height": 448, "width": 448}
             if self.device_type == "dml":
                 if self.verbose:
                     print("--- Loading for AMD (DirectML) in float16 ---")

@@ -228,7 +228,7 @@ def sample_frames(video_path: str, num_frames: int = NUM_FRAMES):
     indices = torch.linspace(0, total - 1, num_frames).long()
     frames = vr.get_batch(indices).asnumpy()
 
-    frames = torch.tensor(frames).permute(0, 3, 1, 2)  # Convert to (num_frames, C, H, W)
+    # frames = torch.tensor(frames).permute(0, 3, 1, 2)  # Convert to (num_frames, C, H, W)
     return frames
 
 class VLMEvaluator:
@@ -398,17 +398,24 @@ class VLMEvaluator:
             output = self.model.generate(
                 **inputs,
                 max_new_tokens=256,
+                min_new_tokens=1,
                 do_sample=False,
-                repetition_penalty=1.0,
+                repetition_penalty=1.2,
                 pad_token_id=self.processor.tokenizer.pad_token_id,
                 eos_token_id=self.processor.tokenizer.eos_token_id,
             )
+
+            # 🕵️ DEBUG: Print Raw Tokens
+            generated_ids = output[0, inputs['input_ids'].shape[-1]:]
+            print(f"🔢 RAW GENERATED TOKENS: {generated_ids.tolist()}")
+
 
             # Decode only the generated part (skip input tokens)
             decoded_output = self.processor.decode(
                 output[0, inputs['input_ids'].shape[-1]:], 
                 skip_special_tokens=True
             )
+            
 
             result = decoded_output.strip()
             elapsed_time = time.time() - start_time
@@ -574,7 +581,7 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=None, help="Limit number of samples")
-    checkpoint = "./vlm_finetuned/checkpoint-60"
+    checkpoint = "./vlm_finetuned/checkpoint-210"
 
     evaluator = VLMEvaluator(adapter_path=checkpoint)
     evaluator.evaluate(limit=3)

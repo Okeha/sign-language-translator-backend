@@ -691,6 +691,14 @@
         "documentation": {}
     },
     {
+        "label": "SummaryWriter",
+        "importPath": "torch.utils.tensorboard",
+        "description": "torch.utils.tensorboard",
+        "isExtraImport": true,
+        "detail": "torch.utils.tensorboard",
+        "documentation": {}
+    },
+    {
         "label": "DataCleaner",
         "kind": 6,
         "importPath": "src.model.finetune.data_engineering.filter_data",
@@ -1082,7 +1090,7 @@
         "kind": 6,
         "importPath": "src.model.finetune.train_classifier",
         "description": "src.model.finetune.train_classifier",
-        "peekOfCode": "class ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):\n        self.verbose = verbose\n        self.device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n        model_loader = FineTuneModelLoader(verbose=True, lora_checkpoint_path=\"./vlm_finetuned/checkpoint-30\")\n        self.model = model_loader.classifier_model\n        self.processor = model_loader.processor",
+        "peekOfCode": "class ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):\n        self.verbose = verbose\n        self._clear_memory()\n        self.device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n        model_loader = FineTuneModelLoader(verbose=True, lora_checkpoint_path=\"./vlm_finetuned/checkpoint-30\")\n        self.model = model_loader.classifier_model",
         "detail": "src.model.finetune.train_classifier",
         "documentation": {}
     },
@@ -1109,7 +1117,7 @@
         "kind": 5,
         "importPath": "src.model.finetune.train_classifier",
         "description": "src.model.finetune.train_classifier",
-        "peekOfCode": "PREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\nclass ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):\n        self.verbose = verbose\n        self.device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")",
+        "peekOfCode": "PREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\nclass ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):\n        self.verbose = verbose\n        self._clear_memory()",
         "detail": "src.model.finetune.train_classifier",
         "documentation": {}
     },

@@ -1,6 +1,6 @@
 model:
-  # OpenGVLab/InternVL3_5-2B-hf
-  OpenGVLab/InternVL3-2B-hf
+  OpenGVLab/InternVL3_5-2B-hf
+  # OpenGVLab/InternVL3-2B-hf
   # OpenGVLab/InternVL3_5-1B-hf
 
 prompt:
@@ -14,15 +14,15 @@ dataset_path:
   ../finetune/data_engineering/datasets/wlasl_validated.json # Validated (corrupted videos removed)
 
 training_arguments:
-  per_device_train_batch_size: 2
-  per_device_eval_batch_size: 2
-  gradient_accumulation_steps: 16
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
   dataloader_num_workers: 2
   learning_rate: 0.00005
   warmup_steps: 100
   label_smoothing_factor: 0.1
-  num_train_epochs: 15
-  num_classes: 250
+  num_train_epochs: 25
+  num_classes: 282
 
 lora_config:
   r: 16
@@ -34,7 +34,8 @@ classifier_training_arguments:
   batch_size: 2
   learning_rate: 0.0001
   warmup_steps: 50
-  num_train_epochs: 10
+  num_train_epochs: 25
   label_smoothing_factor: 0.1
   weight_decay: 0.01
   num_frames: 8
+  num_classes: 282

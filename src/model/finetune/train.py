@@ -165,7 +165,10 @@ class VLMFineTuneTrainer():
             )
 
             self.processor = AutoProcessor.from_pretrained(self.model_name,trust_remote_code=True, token=HF_TOKEN)
+             # 🚨 ADD THIS LINE HERE:
+            self.processor.tokenizer.padding_side = "right"
 
+            
             if self.device_type == "dml":
                 if self.verbose:
                     print("--- Loading for AMD (DirectML) in float16 ---")
@@ -457,6 +460,32 @@ class VLMFineTuneTrainer():
         for k in ["pixel_values", "video_pixel_values"]:
             if k in model_inputs:
                 model_inputs[k] = model_inputs[k].to(dtype=torch.float16)
+
+        # # =========================================================
+        # # 🕵️ DEBUG: INSPECT LABELS (Add this block)
+        # # =========================================================
+        # if self.verbose and random.random() < 0.1: # Print for 10% of batches
+        #     print(f"\n{'='*40}")
+        #     print("🕵️  SANITY CHECK: DECODING BATCH")
+        #     print(f"{'='*40}")
+            
+        #     # Grab the first sample in the batch
+        #     debug_input_ids = model_inputs["input_ids"][0]
+        #     debug_labels = model_inputs["labels"][0].clone()
+            
+        #     # 1. Decode the FULL Input (What the model sees)
+        #     decoded_input = self.processor.tokenizer.decode(debug_input_ids, skip_special_tokens=False)
+            
+        #     # 2. Decode the LABEL (What the model learns)
+        #     # Replace -100 with pad token so we can decode it
+        #     debug_labels[debug_labels == -100] = self.processor.tokenizer.pad_token_id
+        #     decoded_label = self.processor.tokenizer.decode(debug_labels, skip_special_tokens=False)
+            
+        #     print(f"👀 INPUT (Truncated):\n{decoded_input[:300]}...")
+        #     print(f"\n🎯 LABEL (What is being learned):\n{decoded_label}")
+        #     print(f"{'='*40}\n")
+        # # =========================================================
+
 
         return model_inputs
     

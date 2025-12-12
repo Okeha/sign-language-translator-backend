@@ -11,6 +11,8 @@ import numpy as np
 from torch.utils.data import DataLoader
 import decord
 from model_loader import FineTuneModelLoader
+import gc
+from torch.utils.tensorboard import SummaryWriter
 
 HF_TOKEN = os.getenv('HF_TOKEN')
 NUM_FRAMES = 8 # Increased from 4 to 8
@@ -25,13 +27,20 @@ class ClassifierTrainer:
        verbose,
     ):
         self.verbose = verbose
+        self._clear_memory()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model_loader = FineTuneModelLoader(verbose=True, lora_checkpoint_path="./vlm_finetuned/checkpoint-30")
 
         self.model = model_loader.classifier_model
+
+        self.model.to(self.device)
         self.processor = model_loader.processor
-        
-        
+
+        #logger
+        self.log_dir = Path("./classifier_tb_logs")
+        self.log_dir.mkdir(exist_ok=True)
+
+        self.writer = SummaryWriter(log_dir=self.log_dir)
 
         # load dataset
         dataset_loader = DatasetLoader(verbose=self.verbose)
@@ -85,6 +94,22 @@ class ClassifierTrainer:
         self.best_val_acc=0.0
        
         pass
+    
+
+    def _clear_memory(self):
+        """
+        Clear memory.
+        """
+        print("\n\n 🧹 Clearing Memory ... \n\n")
+        # Force garbage collection
+        gc.collect()
+
+        # Clear CUDA cache if available
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
+            
+        print("\n\n 🧹 Memory Cleared. \n\n")
 
     def sample_frames(self,video_path):
         """
@@ -118,7 +143,10 @@ class ClassifierTrainer:
 
         for item in batch_data:
             #1. Load video frames
-            video_path = item["video_path"]
+            video_path = "./data_engineering/"+ item["video_path"]
+
+           
+
             frames = self.sample_frames(video_path)  # (T, H, W, C)
             videos.append(frames)
 
@@ -128,10 +156,11 @@ class ClassifierTrainer:
                 labels.append(label_id)
 
             else:
+                videos.pop()
                 continue
 
 
-            texts.append("Describe the sign language gesture shown in the video.")
+            texts.append(f"<video>\n{item['prompt']}")
 
         if not videos:
             return None
@@ -187,7 +216,7 @@ class ClassifierTrainer:
                 attention_mask=attention_mask
             )
 
-            loss =- self.criterion(logits, labels)
+            loss = self.criterion(logits, labels)
             loss.backward()
 
             torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
@@ -257,7 +286,6 @@ class ClassifierTrainer:
                 if labels[i] in top5_preds[i]:
                     top5_correct += 1
 
-            total += labels.size(0)
 
             progress_bar.set_postfix({
                 'loss': f"{loss.item():.4f}",
@@ -303,6 +331,13 @@ class ClassifierTrainer:
             self.val_losses.append(val_loss)
             self.val_accuracies.append(val_top1)
 
+            self.writer.add_scalar("Train/Loss", train_loss, epoch)
+            self.writer.add_scalar("Train/Acc", train_acc, epoch)
+            self.writer.add_scalar("Val/Loss", val_loss, epoch)
+            self.writer.add_scalar("Val/Top1_Acc", val_top1, epoch)
+            self.writer.add_scalar("Val/Top5_Acc", val_top5, epoch)
+            self.writer.add_scalar("LR", self.optimizer.param_groups[0]['lr'], epoch)
+
             # 5. Print Summary
             print(f"\n📊 Epoch {epoch + 1} Summary:")
             print(f"   Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f}")
@@ -327,6 +362,8 @@ class ClassifierTrainer:
         print(f"Best Validation Accuracy: {self.best_val_acc:.4f}")
         print(f"{'='*60}\n")
 
+
+        self.writer.close()
         pass
 
 

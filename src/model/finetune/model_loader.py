@@ -149,6 +149,8 @@ class SignLanguageClassifier(nn.Module):
 
         pooled_output = self.pool_features(last_hidden_state)
 
+        pooled_output = pooled_output.to(dtype=torch.float32)
+
         logits = self.classifier(pooled_output)  # (batch, num_classes)
 
         return logits
@@ -277,7 +279,8 @@ class FineTuneModelLoader:
             )
 
             self.processor = AutoProcessor.from_pretrained(self.model_name,trust_remote_code=True, token=HF_TOKEN)
-            self.processor.video_video_processor.size = {"height": 448, "width": 448}
+            self.processor.video_processor.size = {"height": 448, "width": 448}
+
             if self.device_type == "dml":
                 if self.verbose:
                     print("--- Loading for AMD (DirectML) in float16 ---")
@@ -401,7 +404,7 @@ class FineTuneModelLoader:
 
             if self.verbose:
                 print("\n" + "="*70)
-                print("📊 STEP 7: Model Statistics")
+                print("📊 Model Meta Data")
                 print("="*70)
                 
                 # Count classifier parameters
@@ -447,5 +450,5 @@ class FineTuneModelLoader:
 
 
 if __name__ == "__main__":
-    loader = FineTuneModelLoader(verbose=True, lora_checkpoint_path="./vlm_finetuned/checkpoint-30")
+    loader = FineTuneModelLoader(verbose=True, lora_checkpoint_path="./vlm_finetuned_final")
     

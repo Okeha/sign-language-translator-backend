@@ -14,7 +14,7 @@ from train_video_mae import VideoMAEDataset
 
 with open("../../params/vlm.yml", "r") as f:
     params = yaml.safe_load(f)
-    
+
 
 MODEL_CKPT = params["video_mae_params"]["pretrained_model_name"]
 
@@ -108,7 +108,7 @@ class VideoMAEEvaluator:
         all_probs = np.concatenate(all_probs)
 
         # Extract video paths (assuming shuffle=False and dataset order is preserved)
-        video_paths = ["./data_engineering/" + item["video_path"] for item in self.test_dataset.data_list]
+        video_paths = ["./../data_engineering/" + item["video_path"] for item in self.test_dataset.data_list]
 
         self._compute_metrics(all_labels, all_preds, all_probs, video_paths)
 

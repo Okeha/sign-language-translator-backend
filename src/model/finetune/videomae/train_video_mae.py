@@ -5,6 +5,7 @@ import torch
 import os
 from transformers import VideoMAEImageProcessor, VideoMAEForVideoClassification, Trainer, TrainingArguments, default_data_collator
 from dataset import DatasetLoader
+import cv2
 # from torchvision.transforms import Compose, Lambda, Normalize, Resize, CenterCrop
 # from pytorchvideo.transforms import ApplyTransformToKey, UniformTemporalSubsample
 import decord
@@ -21,6 +22,7 @@ with open("../../params/vlm.yml", "r") as f:
 MODEL_CKPT = params["video_mae_params"]["pretrained_model_name"]
 NUM_FRAMES = params["video_mae_params"]["num_frames"]
 NUM_CLASSES = 282
+REPEAT_FACTOR = params["video_mae_params"]["repeat_factor"]
 # BATCH_SIZE = params["video_mae_params"]["per_device_train_batch_size"]
 
 
@@ -28,7 +30,7 @@ class VideoMAEDataset(torch.utils.data.Dataset):
     def __init__(self, data_list, transform=None):
 
         self.loader = DatasetLoader(verbose=True)
-        self.repeat_factor = 5
+        self.repeat_factor = REPEAT_FACTOR
         self.is_train=False
 
 
@@ -85,7 +87,7 @@ class VideoMAEDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         item  = self.data_list[idx]
 
-        video_path = "./data_engineering/" + item["video_path"]
+        video_path = "./../data_engineering/" + item["video_path"]
 
         if not os.path.exists(video_path):
             raise FileNotFoundError(f"Video file not found: {video_path}")
@@ -116,21 +118,58 @@ class VideoMAEDataset(torch.utils.data.Dataset):
             # ============================================================
             # 🅱️ SPATIAL AUGMENTATION (Flip & Crop)
             # ============================================================
-            if self.is_train:
-                # 1. Random Horizontal Flip (p=0.5)
-                if random.random() < 0.5:
-                    video = np.flip(video, axis=2) # Flip Width
+            # 1. Random Horizontal Flip (50%)
+            if random.random() < 0.5:
+                video = np.flip(video, axis=2).copy() # Flip Width
 
-                # 2. Random Crop (Zoom In)
-                if random.random() < 0.7:
-                    h, w, _ = video[0].shape
-                    scale = random.uniform(0.75, 1.0) # Zoom up to 25%
-                    new_h, new_w = int(h * scale), int(w * scale)
-                    
-                    top = random.randint(0, h - new_h)
-                    left = random.randint(0, w - new_w)
-                    
-                    video = video[:, top:top+new_h, left:left+new_w, :]
+            # 2. Random Brightness/Contrast (70%)
+            if random.random() < 0.7:
+                alpha = random.uniform(0.8, 1.2)  # Contrast
+                beta = random.uniform(-20, 20)    # Brightness
+                # Clip to valid range [0, 255] and cast back to uint8
+                video = np.clip(alpha * video + beta, 0, 255).astype(np.uint8)
+
+            # 3. Random Crop + Resize (80%)
+            if random.random() < 0.8:
+                h, w = video.shape[1:3] # (T, H, W, C)
+                crop_scale = random.uniform(0.7, 1.0)  # Zoom 0-30%
+                new_h, new_w = int(h * crop_scale), int(w * crop_scale)
+                
+                top = random.randint(0, h - new_h)
+                left = random.randint(0, w - new_w)
+                
+                cropped = video[:, top:top+new_h, left:left+new_w, :]
+                
+                # Resize back to original size to keep tensor shape consistent
+                # cv2.resize expects (width, height)
+                resized = np.array([cv2.resize(frame, (w, h)) for frame in cropped])
+                video = resized
+
+            # 4. Random Rotation (30%)
+            if random.random() < 0.3:
+                angle = random.uniform(-10, 10) # +/- 10 degrees
+                h, w = video.shape[1:3]
+                # Calculate rotation matrix
+                M = cv2.getRotationMatrix2D((w/2, h/2), angle, 1.0)
+                # Apply to every frame
+                video = np.array([cv2.warpAffine(frame, M, (w, h)) for frame in video])
+
+            # 5. Random Temporal Speed (50%)
+            # Note: Since we already sampled NUM_FRAMES earlier, this step effectively 
+            # drops some frames and duplicates others to maintain the count, simulating speed changes.
+            if random.random() < 0.5:
+                speed = random.uniform(0.8, 1.2) # 80% to 120% speed
+                n_frames = len(video)
+                # Create new indices based on speed
+                new_indices = np.linspace(0, n_frames-1, int(n_frames * speed))
+                # Resample to get back to exactly NUM_FRAMES
+                final_indices = np.linspace(0, len(new_indices)-1, NUM_FRAMES).astype(int)
+                
+                # Map back to the speed-adjusted indices
+                selected_indices = new_indices[final_indices].astype(int)
+                selected_indices = np.clip(selected_indices, 0, n_frames - 1)
+                
+                video = video[selected_indices]
 
             inputs = self.processor(list(video), return_tensors="pt")
 
@@ -222,7 +261,7 @@ class VideoMAEFineTuner:
         # 2. Unfreeze the last 4 layers of the encoder (VideoMAE Base has 12 layers)
         # This allows the model to learn high-level sign language features
         # while keeping low-level motion features stable.
-        layers_to_unfreeze = 4
+        layers_to_unfreeze = 8
         encoder_layers = self.model.videomae.encoder.layer
         
         for i in range(len(encoder_layers) - layers_to_unfreeze, len(encoder_layers)):
@@ -236,6 +275,11 @@ class VideoMAEFineTuner:
             
         print(f"❄️  FROZEN Early Layers. Unfrozen last {layers_to_unfreeze} layers + Classifier.")
         pass
+
+    def get_glosses(self):
+        self.all_glosses = sorted(list(set(item['gloss'] for item in self.loader.dataset)))
+        print(self.all_glosses)
+
     
     @staticmethod
     def compute_metrics(eval_pred):
@@ -258,11 +302,12 @@ class VideoMAEFineTuner:
             weight_decay=self.weight_decay,
             warmup_steps=self.warmup_steps,
             logging_dir="./video_mae_finetuned_tb_logs",
-            logging_steps=100,
+            logging_steps=200,
             remove_unused_columns=False,
-            dataloader_num_workers=2,
-            metric_for_best_model="accuracy",
+            dataloader_num_workers=5,
+            metric_for_best_model="top5_accuracy",
             load_best_model_at_end=True,
+            label_smoothing_factor=0.1, 
             fp16=True
         )
 
@@ -287,3 +332,4 @@ class VideoMAEFineTuner:
 if __name__ == "__main__":
     finetuner = VideoMAEFineTuner()
     finetuner.train()
+    # finetuner.get_glosses()

@@ -1,6 +1,6 @@
 model:
-  # OpenGVLab/InternVL3_5-2B-hf
-  OpenGVLab/InternVL3-2B-hf
+  OpenGVLab/InternVL3_5-2B-hf
+  # OpenGVLab/InternVL3-2B-hf
   # OpenGVLab/InternVL3_5-1B-hf
 
 prompt:
@@ -9,21 +9,45 @@ prompt:
   # For example if the sign is "hello",  respond with "hello". Your response must be limited to just one word without any additional explanation or context.
 
 dataset_path:
-  # ../finetune/data_engineering/datasets/test_data.json
-  # ../finetune/data_engineering/datasets/wlasl_cleaned.json  # Original (contains corrupted videos)
-  ../finetune/data_engineering/datasets/wlasl_validated.json # Validated (corrupted videos removed)
+  # ../../finetune/data_engineering/datasets/test_data.json
+  # ../../finetune/data_engineering/datasets/wlasl_cleaned.json  # Original (contains corrupted videos)
+  ../../finetune/data_engineering/datasets/wlasl_validated.json # Validated (corrupted videos removed)
 
 training_arguments:
-  per_device_train_batch_size: 2
-  per_device_eval_batch_size: 2
-  gradient_accumulation_steps: 16
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
   dataloader_num_workers: 2
   learning_rate: 0.00005
   warmup_steps: 100
   label_smoothing_factor: 0.1
-  num_train_epochs: 15
+  num_train_epochs: 25
+  num_classes: 282
 
 lora_config:
   r: 16
   lora_alpha: 32
   dropout: 0.1
+
+classifier_training_arguments:
+  save_dir: ./classifier_checkpoints
+  batch_size: 2
+  learning_rate: 0.0001
+  warmup_steps: 50
+  num_train_epochs: 25
+  label_smoothing_factor: 0.1
+  weight_decay: 0.01
+  num_frames: 8
+  num_classes: 282
+
+video_mae_params:
+  pretrained_model_name: "MCG-NJU/videomae-base"
+  num_frames: 16
+  training_arguments:
+    per_device_train_batch_size: 8
+    per_device_eval_batch_size: 8
+    num_train_epochs: 25
+    learning_rate: 0.00001
+    weight_decay: 0.05
+    warmup_steps: 50
+    output_dir: "./video_mae_finetuned_final"

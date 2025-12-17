@@ -285,8 +285,17 @@ class VideoMAEFineTuner:
     def compute_metrics(eval_pred):
         """Static method to calculate accuracy during training"""
         predictions = np.argmax(eval_pred.predictions, axis=1)
-        return {"accuracy": (predictions == eval_pred.label_ids).mean()}
+        
+        # Calculate Top-5 Accuracy
+        # argsort returns indices of sorted values (ascending), so we take last 5
+        top5_preds = np.argsort(eval_pred.predictions, axis=1)[:, -5:]
+        # Check if the true label is in the top 5 predictions for each sample
+        top5_acc = np.mean([label in top5 for label, top5 in zip(eval_pred.label_ids, top5_preds)])
 
+        return {
+            "accuracy": (predictions == eval_pred.label_ids).mean(),
+            "top5_accuracy": top5_acc  # 🔥 Added this key
+        }
 
     def train(self):
 

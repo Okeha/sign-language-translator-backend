@@ -12,16 +12,10 @@ Real-time sign language recognition using VideoMAE fine-tuned on WLASL dataset.
 
 ## Installation
 
-### Using pip
-
-```bash
-pip install -r requirements.txt
-```
-
 ### Using uv (recommended)
 
 ```bash
-uv add streamlit opencv-python
+uv sync --active
 ```
 
 ## Usage

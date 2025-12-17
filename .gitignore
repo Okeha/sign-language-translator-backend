@@ -4,9 +4,18 @@ __pycache__/
 
 ./__pycache__/
 
-<<<<<<< HEAD
-./preprocessed_frames/
 preprocessed_frames/
-=======
-./preprocessed_frames/
->>>>>>> 6824869 (chore: resampled/processed images to tensors)
+
+vlm_finetuned_final/
+video_mae_finetuned/
+vlm_finetuned/
+video_mae_finetuned_final/
+
+
+*.bin
+*.pth
+*.ckpt
+*.safetensors
+/results
+/checkpoints
+/datasets

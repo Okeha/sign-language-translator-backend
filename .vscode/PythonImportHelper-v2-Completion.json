@@ -57,6 +57,22 @@
         "documentation": {}
     },
     {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -81,6 +97,14 @@
         "importPath": "decord",
         "description": "decord",
         "detail": "decord",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
         "documentation": {}
     },
     {
@@ -177,6 +201,15 @@
         "documentation": {}
     },
     {
+        "label": "collections",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "collections",
+        "description": "collections",
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
         "label": "defaultdict",
         "importPath": "collections",
         "description": "collections",
@@ -260,6 +293,15 @@
         "documentation": {}
     },
     {
+        "label": "sklearn.metrics",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
         "label": "accuracy_score",
         "importPath": "sklearn.metrics",
         "description": "sklearn.metrics",
@@ -293,6 +335,30 @@
     },
     {
         "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "BitsAndBytesConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoModelForImageTextToText",
         "importPath": "transformers",
         "description": "transformers",
         "isExtraImport": true,
@@ -380,6 +446,38 @@
         "documentation": {}
     },
     {
+        "label": "VideoMAEImageProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "VideoMAEForVideoClassification",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "TrainingArguments",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
         "label": "AutoModelForImageTextToText",
         "importPath": "transformers",
         "description": "transformers",
@@ -405,6 +503,22 @@
     },
     {
         "label": "PeftModel",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "PeftModel",
+        "importPath": "peft",
+        "description": "peft",
+        "isExtraImport": true,
+        "detail": "peft",
+        "documentation": {}
+    },
+    {
+        "label": "PeftConfig",
         "importPath": "peft",
         "description": "peft",
         "isExtraImport": true,
@@ -476,10 +590,27 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
+        "label": "DatasetLoader",
+        "importPath": "dataset",
+        "description": "dataset",
+        "isExtraImport": true,
+        "detail": "dataset",
+        "documentation": {}
+    },
+    {
+        "label": "DatasetLoader",
+        "importPath": "dataset",
+        "description": "dataset",
+        "isExtraImport": true,
+        "detail": "dataset",
+        "documentation": {}
+    },
+    {
+        "label": "dotenv",
+        "kind": 6,
+        "isExtraImport": true,
         "importPath": "dotenv",
         "description": "dotenv",
-        "isExtraImport": true,
         "detail": "dotenv",
         "documentation": {}
     },
@@ -497,6 +628,32 @@
         "description": "dotenv",
         "isExtraImport": true,
         "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "torch_directml",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch_directml",
+        "description": "torch_directml",
+        "detail": "torch_directml",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
         "documentation": {}
     },
     {
@@ -543,15 +700,6 @@
         "documentation": {}
     },
     {
-        "label": "torch_directml",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "torch_directml",
-        "description": "torch_directml",
-        "detail": "torch_directml",
-        "documentation": {}
-    },
-    {
         "label": "gc",
         "kind": 6,
         "isExtraImport": true,
@@ -574,6 +722,94 @@
         "description": "torch.utils.data",
         "isExtraImport": true,
         "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "CosineAnnealingWarmRestarts",
+        "importPath": "torch.optim.lr_scheduler",
+        "description": "torch.optim.lr_scheduler",
+        "isExtraImport": true,
+        "detail": "torch.optim.lr_scheduler",
+        "documentation": {}
+    },
+    {
+        "label": "FineTuneModelLoader",
+        "importPath": "model_loader",
+        "description": "model_loader",
+        "isExtraImport": true,
+        "detail": "model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "SummaryWriter",
+        "importPath": "torch.utils.tensorboard",
+        "description": "torch.utils.tensorboard",
+        "isExtraImport": true,
+        "detail": "torch.utils.tensorboard",
+        "documentation": {}
+    },
+    {
+        "label": "Compose",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Lambda",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Normalize",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Resize",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "CenterCrop",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "ApplyTransformToKey",
+        "importPath": "pytorchvideo.transforms",
+        "description": "pytorchvideo.transforms",
+        "isExtraImport": true,
+        "detail": "pytorchvideo.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "UniformTemporalSubsample",
+        "importPath": "pytorchvideo.transforms",
+        "description": "pytorchvideo.transforms",
+        "isExtraImport": true,
+        "detail": "pytorchvideo.transforms",
         "documentation": {}
     },
     {
@@ -784,6 +1020,69 @@
         "documentation": {}
     },
     {
+        "label": "SignLanguageClassifier",
+        "kind": 6,
+        "importPath": "src.model.finetune.model_loader",
+        "description": "src.model.finetune.model_loader",
+        "peekOfCode": "class SignLanguageClassifier(nn.Module):\n    \"\"\"\n    Classification head on top of InternVL2 + LoRA.\n    Architecture breakdown:\n        1. InternVL2 base model (frozen)\n        2. LoRA adapters (frozen) \n        3. Pooling layer (to convert sequence → single vector)\n        4. Classification MLP (trainable)\n    \"\"\"\n    def __init__(self, verbose, vlm_model, num_classes, hidden_dim, pooling=\"mean\", dropout=0.1):",
+        "detail": "src.model.finetune.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "FineTuneModelLoader",
+        "kind": 6,
+        "importPath": "src.model.finetune.model_loader",
+        "description": "src.model.finetune.model_loader",
+        "peekOfCode": "class FineTuneModelLoader:\n    def __init__(self, verbose, lora_checkpoint_path):\n        self.verbose = verbose\n        self.lora_checkpoint_path = lora_checkpoint_path\n        self.device = None\n        self.device_type = None\n        self.model_name = params[\"model\"] # Set your model name here\n        self.processor = None\n        self.model = None\n        self.num_classes = params[\"training_arguments\"][\"num_classes\"]",
+        "detail": "src.model.finetune.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "HF_TOKEN",
+        "kind": 5,
+        "importPath": "src.model.finetune.model_loader",
+        "description": "src.model.finetune.model_loader",
+        "peekOfCode": "HF_TOKEN = os.getenv('HF_TOKEN')\nNUM_FRAMES = 8 # Increased from 4 to 8\nPREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\ntraining_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass SignLanguageClassifier(nn.Module):\n    \"\"\"\n    Classification head on top of InternVL2 + LoRA.",
+        "detail": "src.model.finetune.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_FRAMES",
+        "kind": 5,
+        "importPath": "src.model.finetune.model_loader",
+        "description": "src.model.finetune.model_loader",
+        "peekOfCode": "NUM_FRAMES = 8 # Increased from 4 to 8\nPREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\ntraining_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass SignLanguageClassifier(nn.Module):\n    \"\"\"\n    Classification head on top of InternVL2 + LoRA.\n    Architecture breakdown:",
+        "detail": "src.model.finetune.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "PREPROCESSED_DIR",
+        "kind": 5,
+        "importPath": "src.model.finetune.model_loader",
+        "description": "src.model.finetune.model_loader",
+        "peekOfCode": "PREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\ntraining_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass SignLanguageClassifier(nn.Module):\n    \"\"\"\n    Classification head on top of InternVL2 + LoRA.\n    Architecture breakdown:\n        1. InternVL2 base model (frozen)",
+        "detail": "src.model.finetune.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "training_args",
+        "kind": 5,
+        "importPath": "src.model.finetune.model_loader",
+        "description": "src.model.finetune.model_loader",
+        "peekOfCode": "training_args = params.get(\"training_arguments\", {})\nlora_config = params.get(\"lora_config\", {})\nclass SignLanguageClassifier(nn.Module):\n    \"\"\"\n    Classification head on top of InternVL2 + LoRA.\n    Architecture breakdown:\n        1. InternVL2 base model (frozen)\n        2. LoRA adapters (frozen) \n        3. Pooling layer (to convert sequence → single vector)\n        4. Classification MLP (trainable)",
+        "detail": "src.model.finetune.model_loader",
+        "documentation": {}
+    },
+    {
+        "label": "lora_config",
+        "kind": 5,
+        "importPath": "src.model.finetune.model_loader",
+        "description": "src.model.finetune.model_loader",
+        "peekOfCode": "lora_config = params.get(\"lora_config\", {})\nclass SignLanguageClassifier(nn.Module):\n    \"\"\"\n    Classification head on top of InternVL2 + LoRA.\n    Architecture breakdown:\n        1. InternVL2 base model (frozen)\n        2. LoRA adapters (frozen) \n        3. Pooling layer (to convert sequence → single vector)\n        4. Classification MLP (trainable)\n    \"\"\"",
+        "detail": "src.model.finetune.model_loader",
+        "documentation": {}
+    },
+    {
         "label": "RAW_DIR",
         "kind": 5,
         "importPath": "src.model.finetune.preprocess_videos",
@@ -898,6 +1197,87 @@
         "description": "src.model.finetune.train",
         "peekOfCode": "lora_config = params.get(\"lora_config\", {})\nclass VLMFineTuneTrainer():\n    def __init__(self, verbose=True):\n        \"\"\"\n        Initialize the VLM fine-tune trainer.\n        Args:\n            verbose (bool, optional): Enable verbose logging. Defaults to True.\n        Attributes:\n            model_name (str): HF model identifier from params\n            model: Loaded base model",
         "detail": "src.model.finetune.train",
+        "documentation": {}
+    },
+    {
+        "label": "ClassifierTrainer",
+        "kind": 6,
+        "importPath": "src.model.finetune.train_classifier",
+        "description": "src.model.finetune.train_classifier",
+        "peekOfCode": "class ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):\n        self.verbose = verbose\n        self._clear_memory()\n        self.device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n        model_loader = FineTuneModelLoader(verbose=True, lora_checkpoint_path=\"./vlm_finetuned_final\")\n        self.model = model_loader.classifier_model",
+        "detail": "src.model.finetune.train_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "HF_TOKEN",
+        "kind": 5,
+        "importPath": "src.model.finetune.train_classifier",
+        "description": "src.model.finetune.train_classifier",
+        "peekOfCode": "HF_TOKEN = os.getenv('HF_TOKEN')\nNUM_FRAMES = 8 # Increased from 4 to 8\nPREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\nclass ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):",
+        "detail": "src.model.finetune.train_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_FRAMES",
+        "kind": 5,
+        "importPath": "src.model.finetune.train_classifier",
+        "description": "src.model.finetune.train_classifier",
+        "peekOfCode": "NUM_FRAMES = 8 # Increased from 4 to 8\nPREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\nclass ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):\n        self.verbose = verbose",
+        "detail": "src.model.finetune.train_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "PREPROCESSED_DIR",
+        "kind": 5,
+        "importPath": "src.model.finetune.train_classifier",
+        "description": "src.model.finetune.train_classifier",
+        "peekOfCode": "PREPROCESSED_DIR = \"preprocessed_frames\"\nwith open(\"../params/vlm.yml\", \"r\") as f:\n    params = yaml.safe_load(f)\nclass ClassifierTrainer:\n    def __init__(\n       self,\n       verbose,\n    ):\n        self.verbose = verbose\n        self._clear_memory()",
+        "detail": "src.model.finetune.train_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "VideoMAEDataset",
+        "kind": 6,
+        "importPath": "src.model.finetune.train_video_mae",
+        "description": "src.model.finetune.train_video_mae",
+        "peekOfCode": "class VideoMAEDataset(torch.utils.data.Dataset):\n    def __init__(self, data_list, transform=None):\n        self.loader = DatasetLoader(verbose=True)\n        self.train_list = self.loader.train_data\n        self.val_list = self.loader.val_data\n        self.test_list = self.loader.test_data\n        # We need to know all possible glosses to assign IDs\n        self.all_glosses = sorted(list(set(item['gloss'] for item in self.loader.dataset)))\n        self.label2id = {label: i for i, label in enumerate(self.all_glosses)}\n        self.id2label = {i: label for i, label in enumerate(self.all_glosses)}",
+        "detail": "src.model.finetune.train_video_mae",
+        "documentation": {}
+    },
+    {
+        "label": "VideoMAEFineTuner",
+        "kind": 6,
+        "importPath": "src.model.finetune.train_video_mae",
+        "description": "src.model.finetune.train_video_mae",
+        "peekOfCode": "class VideoMAEFineTuner:\n    def __init__(self, verbose):\n        self.verbose = verbose\n        if self.verbose:\n            print(\"🔄 Initializing VideoMAE Fine-Tuner...\")\n        self.image_processor = VideoMAEImageProcessor.from_pretrained(MODEL_CKPT)\n        self.mean = self.image_processor.image_mean\n        self.std = self.image_processor.image_std\n        self.train_dataset = None\n        self.val_dataset = None",
+        "detail": "src.model.finetune.train_video_mae",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_CKPT",
+        "kind": 5,
+        "importPath": "src.model.finetune.train_video_mae",
+        "description": "src.model.finetune.train_video_mae",
+        "peekOfCode": "MODEL_CKPT = params[\"video_mae_params\"][\"pretrained_model_name\"]\nNUM_FRAMES = params[\"video_mae_params\"][\"num_frames\"]\nNUM_CLASSES = 282\n# BATCH_SIZE = params[\"video_mae_params\"][\"per_device_train_batch_size\"]\nclass VideoMAEDataset(torch.utils.data.Dataset):\n    def __init__(self, data_list, transform=None):\n        self.loader = DatasetLoader(verbose=True)\n        self.train_list = self.loader.train_data\n        self.val_list = self.loader.val_data\n        self.test_list = self.loader.test_data",
+        "detail": "src.model.finetune.train_video_mae",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_FRAMES",
+        "kind": 5,
+        "importPath": "src.model.finetune.train_video_mae",
+        "description": "src.model.finetune.train_video_mae",
+        "peekOfCode": "NUM_FRAMES = params[\"video_mae_params\"][\"num_frames\"]\nNUM_CLASSES = 282\n# BATCH_SIZE = params[\"video_mae_params\"][\"per_device_train_batch_size\"]\nclass VideoMAEDataset(torch.utils.data.Dataset):\n    def __init__(self, data_list, transform=None):\n        self.loader = DatasetLoader(verbose=True)\n        self.train_list = self.loader.train_data\n        self.val_list = self.loader.val_data\n        self.test_list = self.loader.test_data\n        # We need to know all possible glosses to assign IDs",
+        "detail": "src.model.finetune.train_video_mae",
+        "documentation": {}
+    },
+    {
+        "label": "NUM_CLASSES",
+        "kind": 5,
+        "importPath": "src.model.finetune.train_video_mae",
+        "description": "src.model.finetune.train_video_mae",
+        "peekOfCode": "NUM_CLASSES = 282\n# BATCH_SIZE = params[\"video_mae_params\"][\"per_device_train_batch_size\"]\nclass VideoMAEDataset(torch.utils.data.Dataset):\n    def __init__(self, data_list, transform=None):\n        self.loader = DatasetLoader(verbose=True)\n        self.train_list = self.loader.train_data\n        self.val_list = self.loader.val_data\n        self.test_list = self.loader.test_data\n        # We need to know all possible glosses to assign IDs\n        self.all_glosses = sorted(list(set(item['gloss'] for item in self.loader.dataset)))",
+        "detail": "src.model.finetune.train_video_mae",
         "documentation": {}
     },
     {

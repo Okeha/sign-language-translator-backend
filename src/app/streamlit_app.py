@@ -162,7 +162,13 @@ def load_model(model_path):
     """Load the fine-tuned VideoMAE model"""
     try:
         model = VideoMAEForVideoClassification.from_pretrained(model_path)
-        processor = VideoMAEImageProcessor.from_pretrained(model_path)
+        print(model)
+        # 🔥 FIX: Try loading processor from checkpoint, fallback to base model if missing
+        try:
+            processor = VideoMAEImageProcessor.from_pretrained(model_path)
+        except Exception:
+            st.warning("⚠️ preprocessor_config.json not found in checkpoint. Loading from base model 'MCG-NJU/videomae-base'.")
+            processor = VideoMAEImageProcessor.from_pretrained("MCG-NJU/videomae-base")
         model.eval()
         
         # Move to GPU if available
@@ -178,13 +184,13 @@ def process_video_frames(frames, processor, num_frames=16):
     """Process video frames for model input"""
     # Sample frames uniformly
     total_frames = len(frames)
-    if total_frames < num_frames:
-        # Duplicate frames if not enough
-        indices = np.linspace(0, total_frames - 1, num_frames).astype(int)
-    else:
-        indices = np.linspace(0, total_frames - 1, num_frames).astype(int)
     
+    # Simplified: np.linspace handles both upsampling and downsampling automatically
+    indices = np.linspace(0, total_frames - 1, num_frames).astype(int)
     sampled_frames = [frames[i] for i in indices]
+    
+    # 🔥 CRITICAL: Ensure frames are uint8 in range [0, 255]
+    sampled_frames = [np.clip(frame, 0, 255).astype(np.uint8) for frame in sampled_frames]
     
     # Process frames
     inputs = processor(sampled_frames, return_tensors="pt")
@@ -194,8 +200,20 @@ def predict_sign(frames, model, processor, device):
     """Make prediction from video frames"""
     start_time = time.time()
     
+    # 🔥 DEBUG: Log input characteristics
+    print(f"\n[DEBUG] ========== PREDICTION START ==========")
+    print(f"[DEBUG] Input frames count: {len(frames)}")
+    print(f"[DEBUG] First frame shape: {frames[0].shape}")
+    print(f"[DEBUG] First frame dtype: {frames[0].dtype}")
+    print(f"[DEBUG] First frame value range: [{frames[0].min()}, {frames[0].max()}]")
+    
     # Process frames
     inputs = process_video_frames(frames, processor)
+    
+    # 🔥 DEBUG: Log processed tensor
+    print(f"[DEBUG] Processed tensor shape: {inputs['pixel_values'].shape}")
+    print(f"[DEBUG] Tensor value range: [{inputs['pixel_values'].min().item():.3f}, {inputs['pixel_values'].max().item():.3f}]")
+    
     inputs = {k: v.to(device) for k, v in inputs.items()}
     
     # Inference
@@ -218,6 +236,12 @@ def predict_sign(frames, model, processor, device):
     id2label = model.config.id2label
     predicted_gloss = id2label[predicted_idx]
     top5_glosses = [(id2label[idx], prob) for idx, prob in zip(top5_indices, top5_probs)]
+    
+    # 🔥 DEBUG: Log predictions
+    print(f"[DEBUG] Top-1 Prediction: {predicted_gloss} ({top5_probs[0]*100:.1f}%)")
+    print(f"[DEBUG] Top-5 Predictions: {[(g, f'{p*100:.1f}%') for g, p in top5_glosses]}")
+    print(f"[DEBUG] Latency: {latency*1000:.0f}ms")
+    print(f"[DEBUG] ========== PREDICTION END ==========\n")
     
     return predicted_gloss, top5_glosses, latency
 
@@ -253,7 +277,7 @@ def main():
         # Model path
         model_path = st.text_input(
             "Model Path",
-            value="../model/finetune/videomae/video_mae_finetuned_final",
+            value="../model/finetune/videomae/video_mae_finetuned/checkpoint-77176/",
             help="Path to the fine-tuned VideoMAE model"
         )
         

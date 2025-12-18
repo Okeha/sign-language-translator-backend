@@ -19,7 +19,7 @@ with open("../../params/vlm.yml", "r") as f:
 MODEL_CKPT = params["video_mae_params"]["pretrained_model_name"]
 
 class VideoMAEEvaluator:
-    def __init__(self, model_path="./video_mae_finetuned_final", batch_size=4):
+    def __init__(self, model_path="./video_mae_finetuned/checkpoint-77176", batch_size=4):
         """
         Args:
             model_path (str): Path to the saved model directory.
@@ -172,5 +172,5 @@ class VideoMAEEvaluator:
 if __name__ == "__main__":
     # Ensure you point to the folder where trainer.save_model() saved the files
     # Usually "./video_mae_finetuned" or a specific checkpoint folder
-    evaluator = VideoMAEEvaluator(model_path="./video_mae_finetuned_final", batch_size=8)
+    evaluator = VideoMAEEvaluator(model_path="./video_mae_finetuned/checkpoint-77176", batch_size=8)
     evaluator.evaluate()

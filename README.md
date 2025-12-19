@@ -127,6 +127,7 @@ sign-language-detector-backend/
 **Current Status (as of Dec 18, 2025):**
 
 **VideoMAE Training (Primary Pipeline):**
+
 - ✅ Successfully trained VideoMAE-base on WLASL dataset
 - ✅ Dataset: 282 classes, ~1,603 validated videos
 - ✅ Model: MCG-NJU/videomae-base fine-tuned with classification head
@@ -158,6 +159,7 @@ sign-language-detector-backend/
   - Suspected causes: FPS variability, double-encoding artifacts, normalization issues
 
 **Streamlit Application:**
+
 - ✅ Real-time sign language detection with WebRTC camera access
 - ✅ Bypasses WSL2 camera limitations with browser-based capture
 - ✅ Features:
@@ -173,6 +175,7 @@ sign-language-detector-backend/
   - Investigating WebRTC FPS variability vs. fixed 30fps evaluation
 
 **InternVL3.5 Training (Legacy):**
+
 - ✅ VLM-based approach with PEFT/LoRA
 - ✅ Not actively used (VideoMAE performs better for classification)
 
@@ -651,12 +654,14 @@ src\app\run_windows.bat
 **Features:**
 
 1. **Live Camera Mode** (WebRTC)
+
    - Real-time video capture at variable FPS
    - Frame buffer: 60 frames max
    - Inference trigger: Every 60 frames (~2 seconds)
    - Shows live prediction display during recording
 
 2. **Upload Video Mode**
+
    - Upload pre-recorded .mp4 files
    - Processes entire video (samples 16 frames uniformly)
    - Shows video playback with predictions
@@ -728,6 +733,7 @@ streamlit run streamlit_app.py
 ```
 
 **Features:**
+
 - Real-time camera capture with WebRTC (bypasses WSL2 limitations)
 - Continuous inference every 2 seconds during recording
 - Top-5 predictions with confidence scores
@@ -808,8 +814,8 @@ Modify `src/model/params/vlm.yml` to customize both VideoMAE and InternVL settin
 # VideoMAE Configuration (Primary)
 video_mae_params:
   pretrained_model_name: "MCG-NJU/videomae-base"
-  num_frames: 16  # Frames sampled per video
-  repeat_factor: 10  # Target samples per class
+  num_frames: 16 # Frames sampled per video
+  repeat_factor: 10 # Target samples per class
   training_arguments:
     output_dir: "./video_mae_finetuned"
     per_device_train_batch_size: 2
@@ -928,17 +934,20 @@ training_args = TrainingArguments(
 - **Hardware**: NVIDIA RTX 2000 Ada (8GB VRAM)
 
 **Training Performance:**
+
 - **Checkpoint Loading**: ~3-5 seconds
 - **Per Epoch Time**: ~20-25 minutes (with augmentation)
 - **Total Training**: ~8-12 hours (stopped at epoch 29/40)
 - **Best Checkpoint**: Epoch 22 (checkpoint-77176)
 
 **Model Performance:**
+
 - **Top-1 Accuracy**: 12.4% on test set
 - **Top-5 Accuracy**: 27.8% on test set
 - **Note**: 28% Top-5 on 282 classes is reasonable for demo
 
 **Memory Usage:**
+
 ```
 VideoMAE Base Model:    ~3GB
 Classification Head:    ~0.5GB
@@ -958,6 +967,7 @@ Peak During Eval:       ~7.8GB
 - **Frame Buffer**: 60 frames max, triggers prediction every 2 seconds
 
 **Known Issues:**
+
 - "tv" overprediction (mode collapse from low-motion bias)
 - Prediction inconsistencies between evaluation and live app
 - WebRTC FPS variability causes temporal sampling differences
@@ -995,11 +1005,11 @@ Peak During Eval:       ~7GB
 
 **Expected Training Times:**
 
-| Pipeline     | Per Epoch    | Full Training    | With Early Stop |
-| ------------ | ------------ | ---------------- | --------------- |
-| VideoMAE     | ~20-25 min   | ~13-17 hours     | ~8-12 hours     |
-| InternVL3.5  | ~12-15 min   | ~2-2.5 hours     | ~1-1.5 hours    |
-| **Hardware** | RTX 2000 Ada | 8GB VRAM         | FP16/BF16       |
+| Pipeline     | Per Epoch    | Full Training | With Early Stop |
+| ------------ | ------------ | ------------- | --------------- |
+| VideoMAE     | ~20-25 min   | ~13-17 hours  | ~8-12 hours     |
+| InternVL3.5  | ~12-15 min   | ~2-2.5 hours  | ~1-1.5 hours    |
+| **Hardware** | RTX 2000 Ada | 8GB VRAM      | FP16/BF16       |
 
 ## 🔧 Hardware Requirements
 
@@ -1015,21 +1025,21 @@ Peak During Eval:       ~7GB
   - **Recommended**: RTX 2000 Ada / RTX 3060 or better (8GB+ VRAM)
   - **Features**: CUDA, TF32 (Ampere+), BF16 (Ada+)
 - **AMD GPU**: RX 6600 or better with DirectML support
-- **VRAM**: 
+- **VRAM**:
   - **Minimum**: 4GB (inference only, limited batch sizes)
   - **Recommended**: 8GB+ (training with full features)
   - **Optimal**: 12GB+ (larger batch sizes, faster training)
 
 ### Tested Configurations
 
-| Hardware                  | Training | Inference | Notes                         |
-| ------------------------- | -------- | --------- | ----------------------------- |
-| RTX 2000 Ada (8GB)        | ✅       | ✅        | Primary development hardware  |
-| RTX 3060 (12GB)           | ✅       | ✅        | Better performance            |
-| GTX 1660 Ti (6GB)         | ⚠️       | ✅        | Reduce batch size to 1        |
-| AMD RX 6600 (8GB)         | ✅       | ✅        | DirectML, float32 (slower)    |
-| CPU only (16GB RAM)       | ❌       | ⚠️        | Very slow, not recommended    |
-| WSL2 + Windows GPU        | ✅       | ✅        | Use run_windows.bat for app   |
+| Hardware            | Training | Inference | Notes                        |
+| ------------------- | -------- | --------- | ---------------------------- |
+| RTX 2000 Ada (8GB)  | ✅       | ✅        | Primary development hardware |
+| RTX 3060 (12GB)     | ✅       | ✅        | Better performance           |
+| GTX 1660 Ti (6GB)   | ⚠️       | ✅        | Reduce batch size to 1       |
+| AMD RX 6600 (8GB)   | ✅       | ✅        | DirectML, float32 (slower)   |
+| CPU only (16GB RAM) | ❌       | ⚠️        | Very slow, not recommended   |
+| WSL2 + Windows GPU  | ✅       | ✅        | Use run_windows.bat for app  |
 
 ## 🧪 Testing
 
@@ -1146,6 +1156,7 @@ flake8 src/
 ### Optimization Features
 
 **VideoMAE Pipeline (Current):**
+
 - **Aggressive augmentation**: Flip (50%), brightness (70%), crop (80%), rotation (30%), temporal speed (50%)
 - **Class balancing**: Target 10 samples per class via repetition
 - **FP16 precision**: Memory efficient training
@@ -1158,6 +1169,7 @@ flake8 src/
 - **Early stopping**: Saves compute when plateauing
 
 **InternVL3.5 Pipeline (Legacy):**
+
 - **4-bit quantization** (CUDA only): Reduces memory by ~75%
 - **BF16 + TF32** (Ada GPUs): 15-20% speedup over FP16
 - **LoRA/PEFT** (r=16): Trains only ~0.17% of parameters
@@ -1166,6 +1178,7 @@ flake8 src/
 - **Dynamic video filtering**: Skips corrupted videos automatically
 
 **Data Pipeline (Shared):**
+
 - **Video validation**: Removes corrupted videos (84.7% success rate)
 - **Skip-if-exists downloads**: Resume interrupted downloads
 - **Optional preprocessing**: Pre-extract frames for 40-60% speedup
@@ -1173,6 +1186,7 @@ flake8 src/
 - **Efficient memory cleanup**: Garbage collection and cache clearing
 
 **Streamlit Application:**
+
 - **WebRTC camera access**: Bypasses WSL2 camera limitations
 - **Real-time inference**: Continuous predictions every 2 seconds
 - **Frame buffering**: 60-frame buffer for smooth capture
@@ -1193,18 +1207,18 @@ flake8 src/
 
 ### Known Issues & Solutions
 
-| Issue                                      | Cause                                  | Solution                                                       |
-| ------------------------------------------ | -------------------------------------- | -------------------------------------------------------------- |
-| **"tv" overprediction**                    | Mode collapse, low-motion bias         | Investigate preprocessing, add temporal smoothing              |
-| **Prediction inconsistencies (eval vs app)** | WebRTC FPS variability, double-encoding | Use captured frames directly, fix normalization                |
-| **moov atom not found**                    | Corrupted video downloads              | Run `validate_videos.py` before training (CRITICAL!)           |
-| **OOM errors (training)**                  | Batch size too large                   | Reduce to batch_size=1, increase gradient_accumulation         |
-| **Training stuck at 0% with skips**        | Too many corrupted videos              | Validate dataset first with `validate_videos.py`               |
-| **Slow data loading**                      | Decord processing overhead             | Use `preprocess_videos.py` for faster loading (optional)       |
-| **Camera not working (WSL2)**              | WSL2 can't access Windows camera       | Use `run_windows.bat` to open in Windows browser               |
-| **High inference latency (>1s)**           | Large frame count or no GPU            | Reduce NUM_FRAMES from 16 to 8, ensure CUDA is available       |
-| **Training too slow (VideoMAE)**           | Augmentation overhead                  | Acceptable trade-off for better generalization                 |
-| **Low accuracy (<10% Top-1)**              | Insufficient training or bad data      | Train longer, check for corrupted videos, verify augmentation  |
+| Issue                                        | Cause                                   | Solution                                                      |
+| -------------------------------------------- | --------------------------------------- | ------------------------------------------------------------- |
+| **"tv" overprediction**                      | Mode collapse, low-motion bias          | Investigate preprocessing, add temporal smoothing             |
+| **Prediction inconsistencies (eval vs app)** | WebRTC FPS variability, double-encoding | Use captured frames directly, fix normalization               |
+| **moov atom not found**                      | Corrupted video downloads               | Run `validate_videos.py` before training (CRITICAL!)          |
+| **OOM errors (training)**                    | Batch size too large                    | Reduce to batch_size=1, increase gradient_accumulation        |
+| **Training stuck at 0% with skips**          | Too many corrupted videos               | Validate dataset first with `validate_videos.py`              |
+| **Slow data loading**                        | Decord processing overhead              | Use `preprocess_videos.py` for faster loading (optional)      |
+| **Camera not working (WSL2)**                | WSL2 can't access Windows camera        | Use `run_windows.bat` to open in Windows browser              |
+| **High inference latency (>1s)**             | Large frame count or no GPU             | Reduce NUM_FRAMES from 16 to 8, ensure CUDA is available      |
+| **Training too slow (VideoMAE)**             | Augmentation overhead                   | Acceptable trade-off for better generalization                |
+| **Low accuracy (<10% Top-1)**                | Insufficient training or bad data       | Train longer, check for corrupted videos, verify augmentation |
 
 ## 🔮 Future Enhancements
 

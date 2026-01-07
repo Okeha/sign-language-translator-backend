@@ -12,6 +12,7 @@ from src.api.sentence_generation.prompts import prompt_manager
 logger = logging.getLogger(__name__)
 
 HF_TOKEN = os.getenv('HF_TOKEN')
+logger.warning(f"HF_TOKEN: {HF_TOKEN}")
 class QwenSentenceService:
     """Singleton service for gloss-to-sentence generation using Qwen2.5-1.5B-Instruct"""
     

@@ -1,23 +1,23 @@
 # Sign Language Detector Backend 🤟
 
-A comprehensive backend system for real-time sign language detection and interpretation using state-of-the-art Vision-Language Models (VLMs) and modern web technologies.
+A comprehensive backend system for real-time sign language detection and interpretation using VideoMAE for gloss prediction and Qwen2.5 LLM for natural language generation.
 
 ## 🎯 Project Overview
 
-This project aims to bridge communication gaps by providing an intelligent system that can accurately detect and interpret sign language gestures in real-time. The system combines computer vision, natural language processing, and web technologies to create an accessible and scalable solution.
+This project bridges communication gaps by providing an intelligent system that accurately detects and interprets sign language gestures in real-time. The system combines computer vision (VideoMAE), natural language processing (Qwen2.5), and modern web technologies (FastAPI + WebSocket) to create an accessible and scalable solution.
 
 ### Key Features
 
-- **Real-time Sign Language Detection**: Process video streams and static images
-- **Vision-Language Model Integration**: Powered by InternVL3.5-2B for accurate interpretation
+- **Real-time Sign Language Detection**: WebSocket streaming with 60-frame batches every 2 seconds
+- **FastAPI + WebSocket Backend**: Production-ready API with WebSocket support for live video streaming
+- **VideoMAE Gloss Prediction**: Fine-tuned on 282 WLASL glosses with 27% Top-5 accuracy
+- **LLM Sentence Generation**: Qwen2.5-3B interprets gloss sequences into natural English sentences
+- **Semantic Path Disambiguation**: LLM analyzes top-5 predictions per chunk to find coherent meaning
 - **Multi-Hardware Support**: Optimized for NVIDIA CUDA (with TF32/BF16), AMD DirectML, and CPU
-- **Fine-tuning Pipeline**: Complete SFT training with PEFT/LoRA for efficient adaptation
-- **Custom Data Collation**: Video frame sampling with chat template formatting and proper label masking
-- **Stratified Dataset Splitting**: Gloss-aware train/test splits ensuring balanced representation
-- **Quantization Support**: 4-bit quantization for efficient inference (CUDA only)
-- **Automated Video Processing**: Frame extraction and preprocessing with Decord
-- **TensorBoard Monitoring**: Real-time training/validation loss tracking
-- **Early Stopping**: Automatic training termination when model stops improving
+- **4-bit Quantization**: Efficient inference with BitsAndBytes quantization
+- **Session Management**: Per-client gloss buffering with deduplication
+- **Fine-tuning Pipeline**: Complete training pipeline with augmentation and early stopping
+- **YAML-based Prompts**: Easily customizable LLM prompts for ASL interpretation
 
 ## 🏗️ Architecture
 
@@ -25,6 +25,21 @@ This project aims to bridge communication gaps by providing an intelligent syste
 sign-language-detector-backend/
 ├── src/
 │   ├── __init__.py                # Package marker
+│   ├── api/                       # 🚀 FastAPI Backend (NEW!)
+│   │   ├── __init__.py            # Package marker
+│   │   ├── main.py                # FastAPI app with WebSocket + REST endpoints
+│   │   ├── config.py              # Configuration with environment variables
+│   │   ├── schemas.py             # Pydantic request/response models
+│   │   ├── websocket_manager.py   # WebSocket connection management
+│   │   ├── session_store.py       # Per-session gloss buffering
+│   │   ├── videomae/              # VideoMAE inference module
+│   │   │   ├── __init__.py        # Package marker
+│   │   │   └── model_service.py   # VideoMAE singleton service
+│   │   └── sentence_generation/   # LLM sentence generation module
+│   │       ├── __init__.py        # Package marker
+│   │       ├── sentence_service.py  # Qwen2.5 singleton service
+│   │       ├── prompts.py         # YAML prompt loader and formatter
+│   │       └── prompts.yml        # ASL interpretation prompts
 │   ├── app/                       # 🎨 Streamlit Web Application
 │   │   ├── streamlit_app.py       # Main Streamlit app with WebRTC camera
 │   │   ├── requirements.txt       # App-specific dependencies
@@ -48,11 +63,11 @@ sign-language-detector-backend/
 │   │   │   │       ├── wlasl_cleaned.json     # May have corrupted videos
 │   │   │   │       └── corrupted_videos.json  # Corruption log
 │   │   │   ├── dataset.py         # Shared dataset loader
-│   │   │   ├── videomae/          # 📹 VideoMAE Training (CURRENT PIPELINE)
+│   │   │   ├── videomae/          # 📹 VideoMAE Training
 │   │   │   │   ├── train_video_mae.py         # VideoMAE fine-tuning script
 │   │   │   │   ├── video_mae_eval.py          # Evaluation script
 │   │   │   │   ├── dataset.py                 # VideoMAE dataset loader
-│   │   │   │   ├── video_mae_finetuned/       # Training checkpoints
+│   │   │   │   ├── video_mae_finetuned_final/ # Best model checkpoint
 │   │   │   │   ├── video_mae_finetuned_tb_logs/  # TensorBoard logs
 │   │   │   │   ├── evaluation_results.json    # Eval predictions
 │   │   │   │   └── evaluation_report.txt      # Metrics summary
@@ -65,7 +80,7 @@ sign-language-detector-backend/
 │   │       └── data/
 │   │           ├── images/        # Test images
 │   │           └── videos/        # Test videos
-│   └── api/                       # REST API endpoints (planned)
+├── .env                           # Environment configuration (create this!)
 ├── main.py                        # Application entry point (legacy)
 ├── pyproject.toml                 # UV package dependencies
 ├── uv.lock                        # Dependency lock file
@@ -76,10 +91,11 @@ sign-language-detector-backend/
 
 - All directories have `__init__.py` files for proper Python package imports
 - Use **relative imports** throughout the codebase
+- **Production API**: `src/api/` (FastAPI with WebSocket streaming)
 - **Primary Training Pipeline**: `src/model/finetune/videomae/` (VideoMAE for 282 WLASL classes)
-- **Legacy Pipeline**: `src/model/finetune/internvl3_5/` (VLM-based approach, not actively used)
-- **Streamlit App**: `src/app/streamlit_app.py` (real-time inference with WebRTC camera)
-- Run modules from project root: `python src/model/finetune/videomae/train_video_mae.py`
+- **LLM Integration**: `src/api/sentence_generation/` (Qwen2.5-3B for gloss-to-sentence)
+- **Streamlit App**: `src/app/streamlit_app.py` (demo/testing interface)
+- Run API: `uvicorn src.api.main:app --host 0.0.0.0 --port 8000`
 
 ## 🚀 Development Stages
 
@@ -179,7 +195,166 @@ sign-language-detector-backend/
 - ✅ VLM-based approach with PEFT/LoRA
 - ✅ Not actively used (VideoMAE performs better for classification)
 
-## 📊 Evaluation
+## � FastAPI Backend Usage
+
+### Starting the Server
+
+```bash
+# Development mode with auto-reload
+uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+
+# Production mode
+uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --workers 4
+```
+
+### Environment Configuration
+
+Create a `.env` file in the project root:
+
+```env
+# Model Configuration
+MODEL_PATH=src/model/finetune/videomae/video_mae_finetuned_final
+LLM_MODEL_NAME=Qwen/Qwen2.5-3B-Instruct
+LLM_USE_QUANTIZATION=true
+LLM_TEMPERATURE=0.7
+LLM_MAX_LENGTH=100
+
+# Server Settings
+HOST=0.0.0.0
+PORT=8000
+CORS_ORIGINS=http://localhost:3000,http://localhost:3001
+
+# Inference Settings
+CONFIDENCE_THRESHOLD=0.4
+NUM_FRAMES_TO_SAMPLE=16
+
+# Session Settings
+MAX_GLOSSES_PER_SESSION=50
+DEDUPLICATE_CONSECUTIVE=true
+SESSION_TIMEOUT_HOURS=2
+
+# Optional: HuggingFace Token for gated models
+HF_TOKEN=your_token_here
+```
+
+### API Endpoints
+
+#### WebSocket Streaming
+
+**Endpoint:** `ws://localhost:8000/ws/stream/{session_id}`
+
+**Client sends:**
+
+```json
+{
+  "session_id": "unique-session-id",
+  "frames": ["base64_frame1", "base64_frame2", ...],  // 60 frames
+  "timestamp": 1234567890
+}
+```
+
+**Server responds:**
+
+```json
+{
+  "gloss": "BOOK",
+  "confidence": 0.85,
+  "top5": [
+    ["BOOK", 0.85],
+    ["READ", 0.08],
+    ["LIBRARY", 0.03],
+    ["STORY", 0.02],
+    ["PAPER", 0.01]
+  ],
+  "timestamp": 1234567890,
+  "latency_ms": 245
+}
+```
+
+#### Gloss-to-Sentence Interpretation
+
+**Endpoint:** `POST /interpret-glosses`
+
+**Request:**
+
+```json
+{
+  "input": [
+    ["I", "WE", "CLAP", "SEE", "NOTE"],
+    ["WANT", "POOR", "CAT", "DEAL"],
+    ["FOOD", "BABY", "CARD", "WE", "YOU"]
+  ]
+}
+```
+
+**Response:**
+
+```json
+{
+  "sentence": "I want a card."
+}
+```
+
+**How it works:**
+
+- Each inner array represents top-5 predictions from one video chunk (2 seconds of signing)
+- The LLM analyzes all possible paths through the prediction lattice
+- Selects exactly ONE gloss per array that forms the most coherent meaning
+- Generates a natural, paraphrased English sentence
+
+#### Health Check
+
+**Endpoint:** `GET /health`
+
+**Response:**
+
+```json
+{
+  "status": "healthy",
+  "model_loaded": true,
+  "gpu_available": true,
+  "active_connections": 3,
+  "model_path": "src/model/finetune/videomae/video_mae_finetuned_final"
+}
+```
+
+#### API Documentation
+
+- **Swagger UI:** http://localhost:8000/docs
+- **ReDoc:** http://localhost:8000/redoc
+
+### LLM Model Options
+
+The system supports any compatible HuggingFace model. Recommended options:
+
+| Model                     | Size (4-bit) | Best For             | Config Value                         |
+| ------------------------- | ------------ | -------------------- | ------------------------------------ |
+| **Qwen2.5-3B-Instruct**   | ~1.8GB       | Balanced performance | `Qwen/Qwen2.5-3B-Instruct`           |
+| **Qwen2.5-1.5B-Instruct** | ~1GB         | Fastest inference    | `Qwen/Qwen2.5-1.5B-Instruct`         |
+| **TinyLlama-1.1B**        | ~0.6GB       | Minimum resources    | `TinyLlama/TinyLlama-1.1B-Chat-v1.0` |
+| **Mistral-7B-Instruct**   | ~3.5GB       | Highest quality      | `mistralai/Mistral-7B-Instruct-v0.3` |
+
+Update `LLM_MODEL_NAME` in `.env` to switch models.
+
+### Customizing LLM Prompts
+
+Edit `src/api/sentence_generation/prompts.yml` to customize the interpretation behavior:
+
+```yaml
+system_prompt: |
+  Your custom prompt here explaining the task...
+
+examples:
+  - input: [[...], [...]]
+    output: "Example sentence"
+
+template: |
+  {system_prompt}
+  {gloss_input}
+  English sentence:
+```
+
+## �📊 Evaluation
 
 To evaluate the trained model on the test set:
 
@@ -228,10 +403,66 @@ python eval.py
   - [ ] Add temporal smoothing (average predictions over 5-10 frames)
   - [ ] Implement confidence threshold filtering (<10% ignored)
 
-### Stage 3: Deployment & Production 📋 (Next Up)
+### Stage 3: Production API & LLM Integration ✅ (Completed)
 
-- [x] Streamlit web application with WebRTC camera
-- [x] Real-time inference pipeline
+**Completed:**
+
+- [x] **FastAPI Backend** with WebSocket support
+  - [x] WebSocket endpoint for real-time frame streaming (`/ws/stream/{session_id}`)
+  - [x] REST endpoint for gloss-to-sentence generation (`POST /interpret-glosses`)
+  - [x] Health check and monitoring endpoints
+  - [x] CORS middleware for frontend integration
+  - [x] Connection management for multiple simultaneous clients
+- [x] **VideoMAE Inference Service**
+  - [x] Singleton pattern for memory efficiency
+  - [x] Base64 frame decoding and preprocessing
+  - [x] Top-5 prediction output per video chunk
+  - [x] Preprocessor fallback handling
+- [x] **Qwen2.5-3B LLM Integration**
+  - [x] Gloss-to-sentence interpretation service
+  - [x] 4-bit quantization for VRAM efficiency (~2GB)
+  - [x] YAML-based prompt system for easy customization
+  - [x] Chat template formatting for proper instruction following
+  - [x] Semantic path disambiguation through top-5 gloss lattice
+- [x] **Session Management**
+  - [x] Per-client gloss buffering
+  - [x] Consecutive duplicate filtering
+  - [x] Session timeout handling
+- [x] **Configuration Management**
+  - [x] Environment variable support via `.env`
+  - [x] Model path configuration
+  - [x] LLM settings (model name, quantization, temperature)
+  - [x] WebSocket and CORS settings
+
+**Architecture:**
+
+```
+Frontend (Next.js) → WebSocket → FastAPI Backend
+                                     ↓
+                           VideoMAE Service (Gloss Detection)
+                                     ↓
+                           Top-5 Predictions per Chunk
+                                     ↓
+                           Qwen2.5 LLM (Sentence Generation)
+                                     ↓
+                           Natural English Output
+```
+
+### Stage 4: Frontend Integration & Testing 📋 (In Progress)
+
+**In Progress:**
+
+- [ ] Next.js frontend with WebSocket client
+- [ ] MediaRecorder API for webcam capture (60 frames/2sec)
+- [ ] Real-time gloss display during signing
+- [ ] Sentence generation button/auto-trigger
+- [ ] Session history and replay
+- [ ] WebSocket reconnection handling
+
+### Stage 5: Deployment & Production 📋 (Planned)
+
+- [ ] Streamlit web application with WebRTC camera (already exists for demos)
+- [ ] Real-time inference pipeline optimization
 - [ ] Optimize inference latency (<500ms per prediction)
 - [ ] REST API endpoints for programmatic access
 - [ ] Model serving infrastructure (TorchServe/Triton)

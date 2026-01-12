@@ -22,7 +22,7 @@ class Config:
     CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:3001").split(",")
     
     # Inference settings
-    CONFIDENCE_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", 0.4))
+    CONFIDENCE_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", 0.0))
     NUM_FRAMES_TO_SAMPLE = int(os.getenv("NUM_FRAMES_TO_SAMPLE", 16))
     
     # Connection limits
@@ -38,7 +38,7 @@ class Config:
     
     # LLM Settings for Sentence Generation
     # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-4B")
-    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen3-1.7B")
+    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-1.7B")
 
     LLM_DEVICE = os.getenv("LLM_DEVICE", "auto")  # auto, cuda, cpu
     LLM_MAX_LENGTH = int(os.getenv("LLM_MAX_LENGTH", 100))

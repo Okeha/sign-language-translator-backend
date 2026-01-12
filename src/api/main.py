@@ -16,7 +16,9 @@ from src.api.schemas import (
     HealthResponse,
     ErrorResponse,
     InterpretGlossesRequest,
-    InterpretGlossesResponse
+    InterpretGlossesResponse,
+    ChatRequest,
+    ChatResponse
 )
 from src.api.videomae.model_service import VideoMAEService
 from src.api.websocket_manager import ConnectionManager
@@ -174,6 +176,51 @@ async def interpret_glosses(request: InterpretGlossesRequest):
         raise HTTPException(
             status_code=500,
             detail=f"Sentence generation failed: {str(e)}"
+        )
+
+
+@app.post("/chat", response_model=ChatResponse)
+async def chat(request: ChatRequest):
+    """
+    General chat endpoint using the same LLM as interpret-glosses
+    
+    Accepts a user message and returns an LLM response without reasoning.
+    
+    Request body:
+    {
+        "message": "What is the capital of France?"
+    }
+    
+    Response:
+    {
+        "response": "The capital of France is Paris.",
+        "timestamp": 1736640000000
+    }
+    """
+    if not sentence_service or not sentence_service.is_loaded():
+        raise HTTPException(
+            status_code=503,
+            detail="Chat service not available. LLM model failed to load."
+        )
+    
+    try:
+        logger.info(f"Chat request: {request.message[:100]}...")
+        
+        # Generate response using Qwen chat method
+        response = sentence_service.chat(request.message)
+        
+        logger.info(f"Chat response: {response[:100]}...")
+        
+        return ChatResponse(
+            response=response,
+            timestamp=int(time.time() * 1000)
+        )
+        
+    except Exception as e:
+        logger.error(f"Failed to generate chat response: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Chat generation failed: {str(e)}"
         )
 
 

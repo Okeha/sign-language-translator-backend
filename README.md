@@ -302,6 +302,45 @@ HF_TOKEN=your_token_here
 - Selects exactly ONE gloss per array that forms the most coherent meaning
 - Generates a natural, paraphrased English sentence
 
+---
+
+#### General Chat
+
+**Endpoint:** `POST /chat`
+
+**Request:**
+
+```json
+{
+  "message": "What is the capital of France?"
+}
+```
+
+**Response:**
+
+```json
+{
+  "response": "The capital of France is Paris.",
+  "timestamp": 1736640000000
+}
+```
+
+**Features:**
+
+- Uses the same LLM as `/interpret-glosses` (Qwen2.5-3B-Instruct)
+- Returns direct responses without reasoning overhead
+- Stateless endpoint (no conversation history)
+- Configurable via `LLM_TEMPERATURE` in `.env`
+- Shorter responses (max 500 tokens) optimized for chat
+
+**Use cases:**
+
+- General question answering
+- Context-aware assistance for sign language learners
+- Integration with chatbot interfaces
+
+---
+
 #### Health Check
 
 **Endpoint:** `GET /health`
@@ -410,6 +449,7 @@ python eval.py
 - [x] **FastAPI Backend** with WebSocket support
   - [x] WebSocket endpoint for real-time frame streaming (`/ws/stream/{session_id}`)
   - [x] REST endpoint for gloss-to-sentence generation (`POST /interpret-glosses`)
+  - [x] REST endpoint for general chat (`POST /chat`)
   - [x] Health check and monitoring endpoints
   - [x] CORS middleware for frontend integration
   - [x] Connection management for multiple simultaneous clients
@@ -418,10 +458,11 @@ python eval.py
   - [x] Base64 frame decoding and preprocessing
   - [x] Top-5 prediction output per video chunk
   - [x] Preprocessor fallback handling
-- [x] **Qwen2.5-3B LLM Integration**
-  - [x] Gloss-to-sentence interpretation service
+- [x] **Qwen2.5-3B LLM Integration** with reasoning
+  - [x] General chat endpoint for conversational AI
   - [x] 4-bit quantization for VRAM efficiency (~2GB)
   - [x] YAML-based prompt system for easy customization
+  - [x] Chat template formatting with configurable reason
   - [x] Chat template formatting for proper instruction following
   - [x] Semantic path disambiguation through top-5 gloss lattice
 - [x] **Session Management**

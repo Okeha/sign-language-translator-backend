@@ -11,8 +11,9 @@ from src.api.sentence_generation.prompts import prompt_manager
 
 logger = logging.getLogger(__name__)
 
-HF_TOKEN = os.getenv('HF_TOKEN')
-logger.warning(f"HF_TOKEN: {HF_TOKEN}")
+# HF_TOKEN = os.getenv('HF_TOKEN')
+# print("\n\n HF_TOKEN:", HF_TOKEN)
+
 class QwenSentenceService:
     """Singleton service for gloss-to-sentence generation using Qwen2.5-1.5B-Instruct"""
     
@@ -33,13 +34,13 @@ class QwenSentenceService:
         
         try:
             # Check HF token
-            if not HF_TOKEN:
+            if not config.HF_TOKEN:
                 logger.warning("HF_TOKEN not set. Model loading may fail for gated models.")
             
             # Load tokenizer
             self.tokenizer = AutoTokenizer.from_pretrained(
                 config.LLM_MODEL_NAME,
-                token = HF_TOKEN,
+                token = config.HF_TOKEN,
                 trust_remote_code=True
             )
             
@@ -50,8 +51,8 @@ class QwenSentenceService:
                 "trust_remote_code": True,
             }
             
-            print("HF_TOKEN:", HF_TOKEN)
-            model_kwargs["token"] = HF_TOKEN
+            if config.HF_TOKEN:
+                model_kwargs["token"] = config.HF_TOKEN
             
             if config.LLM_USE_QUANTIZATION:
                 logger.info("Loading model with 4-bit quantization...")
@@ -110,46 +111,78 @@ class QwenSentenceService:
             
             logger.debug(f"Generated prompt for {len(glosses_sequence)} chunks")
             
-            # Apply chat template
-            prompt = self.tokenizer.apply_chat_template(
-                messages,
-                tokenize=False,
-                add_generation_prompt=True,
-                enable_thinking = True
-            )
+            # # Apply chat template
+            # prompt = self.tokenizer.apply_chat_template(
+            #     messages,
+            #     tokenize=False,
+            #     add_generation_prompt=True,
+            #     enable_thinking = True
+            # )
             
-            # Tokenize
-            inputs = self.tokenizer(
-                prompt,
-                return_tensors="pt",
-                truncation=True,
-                max_length=2048
-            )
+            # # Tokenize
+            # inputs = self.tokenizer(
+            #     prompt,
+            #     return_tensors="pt",
+            #     truncation=True,
+            #     max_length=2048
+            # )
             
-            # Move to correct device
+            # # Move to correct device
+            # device = "cuda" if torch.cuda.is_available() else "cpu"
+            # inputs = {k: v.to(device) for k, v in inputs.items()}
+            
+            # # Generate
+            # with torch.no_grad():
+            #     outputs = self.model.generate(
+            #         **inputs,
+            #         max_new_tokens=config.LLM_MAX_LENGTH,
+            #         temperature=config.LLM_TEMPERATURE,
+            #         do_sample=True if config.LLM_TEMPERATURE > 0 else False,
+            #         top_p=0.9,
+            #         pad_token_id=self.tokenizer.eos_token_id
+            #     )
+            
+            # # Decode
+            # generated_text = self.tokenizer.decode(
+            #     outputs[0][inputs['input_ids'].shape[1]:],  # Only decode new tokens
+            #     skip_special_tokens=True
+            # )
+
+
+            # Alternative: Use built-in chat generation
+
             device = "cuda" if torch.cuda.is_available() else "cpu"
-            inputs = {k: v.to(device) for k, v in inputs.items()}
-            
-            # Generate
-            with torch.no_grad():
-                outputs = self.model.generate(
-                    **inputs,
-                    max_new_tokens=config.LLM_MAX_LENGTH,
-                    temperature=config.LLM_TEMPERATURE,
-                    do_sample=True if config.LLM_TEMPERATURE > 0 else False,
-                    top_p=0.9,
-                    pad_token_id=self.tokenizer.eos_token_id
-                )
-            
-            # Decode
-            generated_text = self.tokenizer.decode(
-                outputs[0][inputs['input_ids'].shape[1]:],  # Only decode new tokens
-                skip_special_tokens=True
-            )
+            inputs = self.tokenizer.apply_chat_template(
+                messages,
+                add_generation_prompt=True,
+                enable_thinking = True, # TODO: Enable reasoning if needed
+                tokenize = True,
+                return_dict = True,
+                return_tensors = "pt",
+            ).to(device)
             
             # Clean up output (remove extra whitespace, newlines)
-            sentence = generated_text.strip()
+            outputs = self.model.generate(
+                **inputs,
+                # max_new_tokens=config.LLM_MAX_LENGTH,
+                max_new_tokens = 3000,
+                temperature=config.LLM_TEMPERATURE,
+                do_sample=True if config.LLM_TEMPERATURE > 0 else False,
+                top_p=0.9,
+                pad_token_id=self.tokenizer.eos_token_id
+            )
+
+            generated_text=self.tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
             
+            # Extract only the text after thinking tags (if present)
+            if '<think>' in generated_text and '</think>' in generated_text:
+                # Get everything after the closing think tag
+                generated_text = generated_text.split('</think>')[-1].strip()
+
+            sentence = generated_text.strip()
+            print("\n\n Generated Text:", generated_text)
+            
+            sentence = sentence.replace('"', '').replace("'", '')
             # Extract first sentence if multiple sentences generated
             if '.' in sentence:
                 sentence = sentence.split('.')[0] + '.'
@@ -164,6 +197,57 @@ class QwenSentenceService:
         
         except Exception as e:
             logger.error(f"Failed to interpret glosses: {str(e)}")
+            raise
+    
+    def chat(self, user_message: str) -> str:
+        """Generate a response to user's chat message without reasoning
+        
+        Args:
+            user_message: User's chat message
+            
+        Returns:
+            str: LLM's response
+        """
+        try:
+            device = self.model.device
+            
+            # Simple chat messages without complex system prompt
+            messages = [
+                {"role": "system", "content": "You are a helpful AI assistant. Provide clear, concise responses."},
+                {"role": "user", "content": user_message}
+            ]
+            
+            # Apply chat template without reasoning enabled
+            inputs = self.tokenizer.apply_chat_template(
+                messages,
+                add_generation_prompt=True,
+                enable_thinking=False,  # No reasoning for simple chat
+                tokenize=True,
+                return_dict=True,
+                return_tensors="pt",
+            ).to(device)
+            
+            # Generate response with temperature control
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=500,  # Shorter responses for chat
+                temperature=config.LLM_TEMPERATURE,
+                do_sample=True if config.LLM_TEMPERATURE > 0 else False,
+                top_p=0.9,
+                pad_token_id=self.tokenizer.eos_token_id
+            )
+            
+            # Decode response
+            response = self.tokenizer.decode(
+                outputs[0][inputs["input_ids"].shape[-1]:],
+                skip_special_tokens=True
+            )
+            
+            logger.info(f"Chat response generated: {response[:100]}...")
+            return response.strip()
+            
+        except Exception as e:
+            logger.error(f"Error in chat generation: {str(e)}")
             raise
     
     def is_loaded(self) -> bool:

@@ -90,6 +90,24 @@ class InterpretGlossesRequest(BaseModel):
         return v
 
 
+class ChatRequest(BaseModel):
+    """Request for general chat conversation"""
+    
+    message: str = Field(
+        ...,
+        description="User's chat message",
+        min_length=1,
+        max_length=2000
+    )
+
+
+class ChatResponse(BaseModel):
+    """Response from chat endpoint"""
+    
+    response: str = Field(..., description="LLM's response to user message")
+    timestamp: int = Field(..., description="Response timestamp in milliseconds")
+
+
 class InterpretGlossesResponse(BaseModel):
     """Response with interpreted sentence"""
     

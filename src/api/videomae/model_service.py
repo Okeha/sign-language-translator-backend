@@ -44,9 +44,9 @@ class VideoMAEService:
             except Exception as e:
                 logger.warning(
                     f"preprocessor_config.json not found in checkpoint: {str(e)}. "
-                    "Loading from base model 'MCG-NJU/videomae-base'"
+                    "Loading from base model 'MCG-NJU/videomae-large'"
                 )
-                self.processor = VideoMAEImageProcessor.from_pretrained("MCG-NJU/videomae-base")
+                self.processor = VideoMAEImageProcessor.from_pretrained("MCG-NJU/videomae-large")
             
             # Set device
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

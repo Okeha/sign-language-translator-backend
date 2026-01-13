@@ -106,7 +106,7 @@ class QwenSentenceService:
             # Format as chat messages (Phi-3.5 expects chat format)
             messages = [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": f"Analyze these glosses and generate a natural English sentence:\n\n{gloss_input}\n\nEnglish sentence:"}
+                {"role": "user", "content": f"Here are the arrays:\n\n{gloss_input}"}
             ]
             
             logger.debug(f"Generated prompt for {len(glosses_sequence)} chunks")
@@ -213,7 +213,7 @@ class QwenSentenceService:
             
             # Simple chat messages without complex system prompt
             messages = [
-                {"role": "system", "content": "You are a helpful AI assistant. Provide clear, concise responses."},
+                {"role": "system", "content": "You are a Signrr. A helpful AI assistant that provides clear, concise responses and bridges the digital gap between sign language users and AI technology. Encourage the user to start streaming signs so you can assist them better. The user may ask questions about how to use the system. Encourage them to start the camera, and click the start streaming button twice."},
                 {"role": "user", "content": user_message}
             ]
             

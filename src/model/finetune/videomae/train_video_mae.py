@@ -25,7 +25,7 @@ NUM_CLASSES = 282
 REPEAT_FACTOR = params["video_mae_params"]["repeat_factor"]
 # BATCH_SIZE = params["video_mae_params"]["per_device_train_batch_size"]
 
-
+ 
 class VideoMAEDataset(torch.utils.data.Dataset):
     def __init__(self, data_list, transform=None):
 
@@ -194,6 +194,7 @@ class VideoMAEFineTuner:
         self.train_dataset = None
         self.val_dataset = None
         self.output_dir = params["video_mae_params"]["training_arguments"]["output_dir"]
+        
 
         self.loader = DatasetLoader(verbose=True)
 
@@ -208,6 +209,7 @@ class VideoMAEFineTuner:
         self.learning_rate=params["video_mae_params"]["training_arguments"]["learning_rate"]
         self.weight_decay=params["video_mae_params"]["training_arguments"]["weight_decay"]
         self.warmup_steps=params["video_mae_params"]["training_arguments"]["warmup_steps"]
+        self.gradient_accumulation_steps=params["video_mae_params"]["training_arguments"]["gradient_accumulation_steps"]  # ADD THIS LINE
 
         # self.val_transform = Compose([
         #     UniformTemporalSubsample(NUM_FRAMES),
@@ -304,6 +306,8 @@ class VideoMAEFineTuner:
             output_dir="./video_mae_finetuned",
             per_device_train_batch_size=self.per_device_train_batch_size,
             per_device_eval_batch_size=self.per_device_eval_batch_size,
+            gradient_accumulation_steps=self.gradient_accumulation_steps,  # ADD THIS LINE
+            # max_grad_norm=1.0,
             eval_strategy="epoch",
             save_strategy="epoch",
             num_train_epochs=self.num_train_epochs,

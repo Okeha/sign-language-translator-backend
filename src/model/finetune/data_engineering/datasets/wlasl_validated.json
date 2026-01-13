@@ -3706,11 +3706,6 @@
   },
   {
     "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
-  "video_path": "raw_videos/.mp4",
-    "gloss": "day"
-  },
-  {
-    "prompt": "You are an expert sign-language recognition model. Identify the sign in the video and respond with exactly one word and nothing else.",
     "video_path": "raw_videos/14799.mp4",
     "gloss": "day"
   },

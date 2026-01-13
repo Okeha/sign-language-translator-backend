@@ -11,7 +11,7 @@ This project bridges communication gaps by providing an intelligent system that 
 - **Real-time Sign Language Detection**: WebSocket streaming with 60-frame batches every 2 seconds
 - **FastAPI + WebSocket Backend**: Production-ready API with WebSocket support for live video streaming
 - **VideoMAE Gloss Prediction**: Fine-tuned on 282 WLASL glosses with 27% Top-5 accuracy
-- **LLM Sentence Generation**: Qwen2.5-3B interprets gloss sequences into natural English sentences
+- **LLM Sentence Generation**: Qwen3-1.7B thinking interprets gloss sequences into natural English sentences
 - **Semantic Path Disambiguation**: LLM analyzes top-5 predictions per chunk to find coherent meaning
 - **Multi-Hardware Support**: Optimized for NVIDIA CUDA (with TF32/BF16), AMD DirectML, and CPU
 - **4-bit Quantization**: Efficient inference with BitsAndBytes quantization
@@ -93,7 +93,7 @@ sign-language-detector-backend/
 - Use **relative imports** throughout the codebase
 - **Production API**: `src/api/` (FastAPI with WebSocket streaming)
 - **Primary Training Pipeline**: `src/model/finetune/videomae/` (VideoMAE for 282 WLASL classes)
-- **LLM Integration**: `src/api/sentence_generation/` (Qwen2.5-3B for gloss-to-sentence)
+- **LLM Integration**: `src/api/sentence_generation/` (Qwen3-1.7B thinking for gloss-to-sentence)
 - **Streamlit App**: `src/app/streamlit_app.py` (demo/testing interface)
 - Run API: `uvicorn src.api.main:app --host 0.0.0.0 --port 8000`
 
@@ -214,7 +214,7 @@ Create a `.env` file in the project root:
 ```env
 # Model Configuration
 MODEL_PATH=src/model/finetune/videomae/video_mae_finetuned_final
-LLM_MODEL_NAME=Qwen/Qwen2.5-3B-Instruct
+LLM_MODEL_NAME=Qwen/Qwen3-1.7B
 LLM_USE_QUANTIZATION=true
 LLM_TEMPERATURE=0.7
 LLM_MAX_LENGTH=100
@@ -368,6 +368,7 @@ The system supports any compatible HuggingFace model. Recommended options:
 
 | Model                     | Size (4-bit) | Best For             | Config Value                         |
 | ------------------------- | ------------ | -------------------- | ------------------------------------ |
+| **Qwen3-1.7B**            | ~1.5GB       | Thinking/Reasoning   | `Qwen/Qwen3-1.7B`                    |
 | **Qwen2.5-3B-Instruct**   | ~1.8GB       | Balanced performance | `Qwen/Qwen2.5-3B-Instruct`           |
 | **Qwen2.5-1.5B-Instruct** | ~1GB         | Fastest inference    | `Qwen/Qwen2.5-1.5B-Instruct`         |
 | **TinyLlama-1.1B**        | ~0.6GB       | Minimum resources    | `TinyLlama/TinyLlama-1.1B-Chat-v1.0` |

@@ -1,0 +1,1412 @@
+[
+  {
+    "gloss": "about",
+    "video_path": "raw_videos/00416.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "afraid",
+    "video_path": "raw_videos/01373.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "after",
+    "video_path": "raw_videos/01418.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "afternoon",
+    "video_path": "raw_videos/01433.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "again",
+    "video_path": "raw_videos/01466.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "all",
+    "video_path": "raw_videos/69206.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "always",
+    "video_path": "raw_videos/02228.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "and",
+    "video_path": "raw_videos/02518.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "angry",
+    "video_path": "raw_videos/02569.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "answer",
+    "video_path": "raw_videos/02710.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "arrive",
+    "video_path": "raw_videos/03441.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "ask",
+    "video_path": "raw_videos/03597.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "baby",
+    "video_path": "raw_videos/69217.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "bad",
+    "video_path": "raw_videos/69219.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "ball",
+    "video_path": "raw_videos/69221.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "bank",
+    "video_path": "raw_videos/04971.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "bathroom",
+    "video_path": "raw_videos/05299.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "because",
+    "video_path": "raw_videos/05598.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "bed",
+    "video_path": "raw_videos/05629.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "before",
+    "video_path": "raw_videos/05728.mp4",
+    "total_videos_available": 13
+  },
+  {
+    "gloss": "big",
+    "video_path": "raw_videos/69231.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "black",
+    "video_path": "raw_videos/69236.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "blue",
+    "video_path": "raw_videos/69238.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "body",
+    "video_path": "raw_videos/69240.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "book",
+    "video_path": "raw_videos/69241.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "bored",
+    "video_path": "raw_videos/07196.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "boss",
+    "video_path": "raw_videos/07243.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "bottle",
+    "video_path": "raw_videos/69243.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "box",
+    "video_path": "raw_videos/69244.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "boy",
+    "video_path": "raw_videos/69245.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "brave",
+    "video_path": "raw_videos/07575.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "bring",
+    "video_path": "raw_videos/69250.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "brother",
+    "video_path": "raw_videos/69251.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "brown",
+    "video_path": "raw_videos/69252.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "building",
+    "video_path": "raw_videos/08130.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "bus",
+    "video_path": "raw_videos/08349.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "but",
+    "video_path": "raw_videos/08429.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "call",
+    "video_path": "raw_videos/08706.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "calm",
+    "video_path": "raw_videos/08745.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "camera",
+    "video_path": "raw_videos/08783.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "can",
+    "video_path": "raw_videos/69257.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "car",
+    "video_path": "raw_videos/69258.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "card",
+    "video_path": "raw_videos/09130.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "care",
+    "video_path": "raw_videos/09197.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "carry",
+    "video_path": "raw_videos/69260.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "chair",
+    "video_path": "raw_videos/09848.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "change",
+    "video_path": "raw_videos/09966.mp4",
+    "total_videos_available": 11
+  },
+  {
+    "gloss": "child",
+    "video_path": "raw_videos/10450.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "choice",
+    "video_path": "raw_videos/10589.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "church",
+    "video_path": "raw_videos/10769.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "city",
+    "video_path": "raw_videos/69269.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "clean",
+    "video_path": "raw_videos/11034.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "close",
+    "video_path": "raw_videos/11252.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "clothes",
+    "video_path": "raw_videos/11310.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "cold",
+    "video_path": "raw_videos/11622.mp4",
+    "total_videos_available": 10
+  },
+  {
+    "gloss": "color",
+    "video_path": "raw_videos/69274.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "come",
+    "video_path": "raw_videos/69275.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "computer",
+    "video_path": "raw_videos/12328.mp4",
+    "total_videos_available": 13
+  },
+  {
+    "gloss": "confused",
+    "video_path": "raw_videos/12612.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "continue",
+    "video_path": "raw_videos/12968.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "country",
+    "video_path": "raw_videos/13546.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "cup",
+    "video_path": "raw_videos/14287.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "customer",
+    "video_path": "raw_videos/14432.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "dangerous",
+    "video_path": "raw_videos/14652.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "day",
+    "video_path": "raw_videos/14799.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "different",
+    "video_path": "raw_videos/16195.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "dirty",
+    "video_path": "raw_videos/69296.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "doctor",
+    "video_path": "raw_videos/17015.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "door",
+    "video_path": "raw_videos/17327.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "drink",
+    "video_path": "raw_videos/69302.mp4",
+    "total_videos_available": 11
+  },
+  {
+    "gloss": "drop",
+    "video_path": "raw_videos/17827.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "early",
+    "video_path": "raw_videos/18167.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "easy",
+    "video_path": "raw_videos/18306.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "eat",
+    "video_path": "raw_videos/69307.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "eight",
+    "video_path": "raw_videos/69309.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "empty",
+    "video_path": "raw_videos/19049.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "enough",
+    "video_path": "raw_videos/19305.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "enter",
+    "video_path": "raw_videos/19326.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "event",
+    "video_path": "raw_videos/19760.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "excited",
+    "video_path": "raw_videos/20153.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "family",
+    "video_path": "raw_videos/69316.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "farm",
+    "video_path": "raw_videos/69317.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "fast",
+    "video_path": "raw_videos/21168.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "father",
+    "video_path": "raw_videos/69318.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "feel",
+    "video_path": "raw_videos/69319.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "few",
+    "video_path": "raw_videos/21557.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "find",
+    "video_path": "raw_videos/69323.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "fire",
+    "video_path": "raw_videos/22015.mp4",
+    "total_videos_available": 2
+  },
+  {
+    "gloss": "first",
+    "video_path": "raw_videos/22086.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "five",
+    "video_path": "raw_videos/69326.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "follow",
+    "video_path": "raw_videos/22715.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "food",
+    "video_path": "raw_videos/69330.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "for",
+    "video_path": "raw_videos/22993.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "four",
+    "video_path": "raw_videos/69333.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "friend",
+    "video_path": "raw_videos/23574.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "from",
+    "video_path": "raw_videos/69337.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "full",
+    "video_path": "raw_videos/23771.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "girl",
+    "video_path": "raw_videos/69342.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "give",
+    "video_path": "raw_videos/69343.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "go",
+    "video_path": "raw_videos/69345.mp4",
+    "total_videos_available": 13
+  },
+  {
+    "gloss": "goal",
+    "video_path": "raw_videos/24872.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "good",
+    "video_path": "raw_videos/69347.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "green",
+    "video_path": "raw_videos/69353.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "group",
+    "video_path": "raw_videos/25829.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "happy",
+    "video_path": "raw_videos/26530.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "hard",
+    "video_path": "raw_videos/69358.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "hate",
+    "video_path": "raw_videos/26706.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "have",
+    "video_path": "raw_videos/69360.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "help",
+    "video_path": "raw_videos/69364.mp4",
+    "total_videos_available": 10
+  },
+  {
+    "gloss": "high",
+    "video_path": "raw_videos/27407.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "hit",
+    "video_path": "raw_videos/27596.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "home",
+    "video_path": "raw_videos/69366.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "hope",
+    "video_path": "raw_videos/27922.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "hospital",
+    "video_path": "raw_videos/28041.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "hot",
+    "video_path": "raw_videos/69368.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "hour",
+    "video_path": "raw_videos/28140.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "house",
+    "video_path": "raw_videos/69369.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "how",
+    "video_path": "raw_videos/69370.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "hurt",
+    "video_path": "raw_videos/28441.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "i",
+    "video_path": "raw_videos/28789.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "idea",
+    "video_path": "raw_videos/28655.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "if",
+    "video_path": "raw_videos/69375.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "important",
+    "video_path": "raw_videos/69376.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "jump",
+    "video_path": "raw_videos/69380.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "key",
+    "video_path": "raw_videos/31564.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "kitchen",
+    "video_path": "raw_videos/31775.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "know",
+    "video_path": "raw_videos/31900.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "language",
+    "video_path": "raw_videos/32156.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "last",
+    "video_path": "raw_videos/32248.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "late",
+    "video_path": "raw_videos/32304.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "leave",
+    "video_path": "raw_videos/32655.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "less",
+    "video_path": "raw_videos/69386.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "library",
+    "video_path": "raw_videos/33051.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "lift",
+    "video_path": "raw_videos/69387.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "light",
+    "video_path": "raw_videos/33206.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "like",
+    "video_path": "raw_videos/69389.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "lonely",
+    "video_path": "raw_videos/33766.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "long",
+    "video_path": "raw_videos/33804.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "loud",
+    "video_path": "raw_videos/34087.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "love",
+    "video_path": "raw_videos/34123.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "make",
+    "video_path": "raw_videos/34581.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "man",
+    "video_path": "raw_videos/69395.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "many",
+    "video_path": "raw_videos/69396.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "maybe",
+    "video_path": "raw_videos/69397.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "me",
+    "video_path": "raw_videos/35544.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "medicine",
+    "video_path": "raw_videos/35454.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "mind",
+    "video_path": "raw_videos/36118.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "mine",
+    "video_path": "raw_videos/36139.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "minute",
+    "video_path": "raw_videos/36249.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "money",
+    "video_path": "raw_videos/36651.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "month",
+    "video_path": "raw_videos/36733.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "more",
+    "video_path": "raw_videos/69401.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "morning",
+    "video_path": "raw_videos/36857.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "mother",
+    "video_path": "raw_videos/69402.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "move",
+    "video_path": "raw_videos/37086.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "must",
+    "video_path": "raw_videos/37425.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "name",
+    "video_path": "raw_videos/69405.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "need",
+    "video_path": "raw_videos/37886.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "nervous",
+    "video_path": "raw_videos/38019.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "never",
+    "video_path": "raw_videos/38084.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "new",
+    "video_path": "raw_videos/69407.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "next",
+    "video_path": "raw_videos/38238.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "night",
+    "video_path": "raw_videos/38336.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "nine",
+    "video_path": "raw_videos/38373.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "none",
+    "video_path": "raw_videos/69412.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "now",
+    "video_path": "raw_videos/69413.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "number",
+    "video_path": "raw_videos/39032.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "nurse",
+    "video_path": "raw_videos/39093.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "old",
+    "video_path": "raw_videos/69419.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "one",
+    "video_path": "raw_videos/69421.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "open",
+    "video_path": "raw_videos/39951.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "or",
+    "video_path": "raw_videos/40239.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "orange",
+    "video_path": "raw_videos/69422.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "paper",
+    "video_path": "raw_videos/41030.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "people",
+    "video_path": "raw_videos/69426.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "person",
+    "video_path": "raw_videos/42227.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "phone",
+    "video_path": "raw_videos/42423.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "pink",
+    "video_path": "raw_videos/69430.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "place",
+    "video_path": "raw_videos/69432.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "plan",
+    "video_path": "raw_videos/43062.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "play",
+    "video_path": "raw_videos/69433.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "police",
+    "video_path": "raw_videos/43528.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "poor",
+    "video_path": "raw_videos/43679.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "problem",
+    "video_path": "raw_videos/44684.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "proud",
+    "video_path": "raw_videos/45090.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "pull",
+    "video_path": "raw_videos/69439.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "purple",
+    "video_path": "raw_videos/69440.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "push",
+    "video_path": "raw_videos/45479.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "put",
+    "video_path": "raw_videos/69441.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "question",
+    "video_path": "raw_videos/69442.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "quiet",
+    "video_path": "raw_videos/45762.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "reason",
+    "video_path": "raw_videos/46428.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "red",
+    "video_path": "raw_videos/69446.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "relax",
+    "video_path": "raw_videos/47059.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "restaurant",
+    "video_path": "raw_videos/47661.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "rich",
+    "video_path": "raw_videos/48029.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "right",
+    "video_path": "raw_videos/48105.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "room",
+    "video_path": "raw_videos/48509.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "run",
+    "video_path": "raw_videos/48797.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "sad",
+    "video_path": "raw_videos/69450.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "safe",
+    "video_path": "raw_videos/48995.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "same",
+    "video_path": "raw_videos/49173.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "school",
+    "video_path": "raw_videos/69455.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "second",
+    "video_path": "raw_videos/50007.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "see",
+    "video_path": "raw_videos/69460.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "seven",
+    "video_path": "raw_videos/69463.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "she",
+    "video_path": "raw_videos/69466.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "shoes",
+    "video_path": "raw_videos/51128.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "short",
+    "video_path": "raw_videos/51221.mp4",
+    "total_videos_available": 10
+  },
+  {
+    "gloss": "should",
+    "video_path": "raw_videos/51287.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "sick",
+    "video_path": "raw_videos/69470.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "sign",
+    "video_path": "raw_videos/51621.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "sister",
+    "video_path": "raw_videos/51886.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "six",
+    "video_path": "raw_videos/69474.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "sleep",
+    "video_path": "raw_videos/69479.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "slow",
+    "video_path": "raw_videos/52506.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "small",
+    "video_path": "raw_videos/52552.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "some",
+    "video_path": "raw_videos/69484.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "sometimes",
+    "video_path": "raw_videos/53240.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "soon",
+    "video_path": "raw_videos/53295.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "start",
+    "video_path": "raw_videos/54457.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "stop",
+    "video_path": "raw_videos/54925.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "store",
+    "video_path": "raw_videos/69489.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "story",
+    "video_path": "raw_videos/54995.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "street",
+    "video_path": "raw_videos/55150.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "strong",
+    "video_path": "raw_videos/69493.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "student",
+    "video_path": "raw_videos/69494.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "table",
+    "video_path": "raw_videos/56557.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "take",
+    "video_path": "raw_videos/69500.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "teacher",
+    "video_path": "raw_videos/57044.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "team",
+    "video_path": "raw_videos/57090.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "tell",
+    "video_path": "raw_videos/57278.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "ten",
+    "video_path": "raw_videos/57391.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "that",
+    "video_path": "raw_videos/57677.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "them",
+    "video_path": "raw_videos/69503.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "they",
+    "video_path": "raw_videos/57874.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "thing",
+    "video_path": "raw_videos/69504.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "think",
+    "video_path": "raw_videos/69505.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "this",
+    "video_path": "raw_videos/69507.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "three",
+    "video_path": "raw_videos/69508.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "time",
+    "video_path": "raw_videos/69511.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "tired",
+    "video_path": "raw_videos/58594.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "today",
+    "video_path": "raw_videos/69512.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "tomorrow",
+    "video_path": "raw_videos/58805.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "touch",
+    "video_path": "raw_videos/59051.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "train",
+    "video_path": "raw_videos/59310.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "true",
+    "video_path": "raw_videos/59791.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "try",
+    "video_path": "raw_videos/59848.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "turn",
+    "video_path": "raw_videos/59991.mp4",
+    "total_videos_available": 2
+  },
+  {
+    "gloss": "tv",
+    "video_path": "raw_videos/69520.mp4",
+    "total_videos_available": 1
+  },
+  {
+    "gloss": "two",
+    "video_path": "raw_videos/69521.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "use",
+    "video_path": "raw_videos/61062.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "wait",
+    "video_path": "raw_videos/62098.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "walk",
+    "video_path": "raw_videos/62159.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "want",
+    "video_path": "raw_videos/69524.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "watch",
+    "video_path": "raw_videos/62440.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "water",
+    "video_path": "raw_videos/62505.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "way",
+    "video_path": "raw_videos/62570.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "we",
+    "video_path": "raw_videos/69527.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "weak",
+    "video_path": "raw_videos/62585.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "week",
+    "video_path": "raw_videos/62746.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "what",
+    "video_path": "raw_videos/69531.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "when",
+    "video_path": "raw_videos/69532.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "where",
+    "video_path": "raw_videos/63087.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "which",
+    "video_path": "raw_videos/63104.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "white",
+    "video_path": "raw_videos/69533.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "who",
+    "video_path": "raw_videos/69534.mp4",
+    "total_videos_available": 11
+  },
+  {
+    "gloss": "why",
+    "video_path": "raw_videos/63283.mp4",
+    "total_videos_available": 9
+  },
+  {
+    "gloss": "will",
+    "video_path": "raw_videos/69536.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "window",
+    "video_path": "raw_videos/63417.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "with",
+    "video_path": "raw_videos/69539.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "without",
+    "video_path": "raw_videos/63607.mp4",
+    "total_videos_available": 5
+  },
+  {
+    "gloss": "woman",
+    "video_path": "raw_videos/63665.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "work",
+    "video_path": "raw_videos/63789.mp4",
+    "total_videos_available": 8
+  },
+  {
+    "gloss": "worker",
+    "video_path": "raw_videos/63780.mp4",
+    "total_videos_available": 3
+  },
+  {
+    "gloss": "world",
+    "video_path": "raw_videos/63836.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "worry",
+    "video_path": "raw_videos/63879.mp4",
+    "total_videos_available": 4
+  },
+  {
+    "gloss": "wrong",
+    "video_path": "raw_videos/64087.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "year",
+    "video_path": "raw_videos/64211.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "yellow",
+    "video_path": "raw_videos/69545.mp4",
+    "total_videos_available": 6
+  },
+  {
+    "gloss": "yesterday",
+    "video_path": "raw_videos/64307.mp4",
+    "total_videos_available": 7
+  },
+  {
+    "gloss": "you",
+    "video_path": "raw_videos/69547.mp4",
+    "total_videos_available": 7
+  }
+]

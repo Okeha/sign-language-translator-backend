@@ -22,44 +22,185 @@ def calculate_quaternion_from_direction(direction: np.ndarray, up_hint: Optional
     Returns:
         Dict with quaternion components {x, y, z, w}
     """
+    eps = 1e-8
+
+    # Guard: zero-length direction => identity rotation
+    dir_norm = np.linalg.norm(direction)
+    if dir_norm < eps:
+        return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+
     # Normalize direction
-    direction = direction / (np.linalg.norm(direction) + 1e-8)
-    
+    direction = direction / dir_norm
+
     # Default bone forward is +X axis in most humanoid rigs
     bone_forward = np.array([1.0, 0.0, 0.0])
-    
+
     # Calculate rotation axis (cross product)
     axis = np.cross(bone_forward, direction)
     axis_length = np.linalg.norm(axis)
-    
+
     # Handle parallel vectors (no rotation needed or 180° flip)
     if axis_length < 1e-6:
         dot = np.dot(bone_forward, direction)
         if dot > 0:  # Same direction
             return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
         else:  # Opposite direction (180° rotation)
-            # Use up_hint or default Y axis for 180° rotation
-            axis = up_hint if up_hint is not None else np.array([0.0, 1.0, 0.0])
-            return {"x": axis[0], "y": axis[1], "z": axis[2], "w": 0.0}
-    
+            # Use up_hint or pick a stable axis orthogonal to bone_forward
+            if up_hint is not None and np.linalg.norm(up_hint) > eps:
+                axis = up_hint / (np.linalg.norm(up_hint) + eps)
+            else:
+                # Choose Y axis unless it's parallel to bone_forward, then Z
+                test_axis = np.array([0.0, 1.0, 0.0])
+                if abs(np.dot(test_axis, bone_forward)) > 0.9:
+                    test_axis = np.array([0.0, 0.0, 1.0])
+                axis = test_axis / (np.linalg.norm(test_axis) + eps)
+
+            # 180° rotation quaternion (axis must be normalized)
+            quat = {"x": float(axis[0]), "y": float(axis[1]), "z": float(axis[2]), "w": 0.0}
+            return normalize_quat_dict(quat)
+
     axis = axis / axis_length
-    
+
     # Calculate rotation angle
     dot = np.clip(np.dot(bone_forward, direction), -1.0, 1.0)
     angle = np.arccos(dot)
-    
+
     # Convert axis-angle to quaternion
     half_angle = angle / 2.0
     sin_half = np.sin(half_angle)
-    
+
     quat = {
         "x": float(axis[0] * sin_half),
         "y": float(axis[1] * sin_half),
         "z": float(axis[2] * sin_half),
         "w": float(np.cos(half_angle))
     }
+
+    return normalize_quat_dict(quat)
+
+def calculate_quaternion_from_direction_rpm(
+    direction: np.ndarray, 
+    is_left_side: bool = False,
+    is_elbow: bool = False
+) -> Dict[str, float]:
+    """
+    Calculate quaternion for Ready Player Me skeleton.
+    Uses +Y as bone forward axis.
     
-    return quat
+    Args:
+        direction: Target direction vector (already in Three.js coords with Z negated)
+        is_left_side: Unused - kept for API compatibility
+        is_elbow: Unused - kept for API compatibility
+        
+    Returns:
+        Dict with quaternion components {x, y, z, w}
+    """
+    eps = 1e-8
+    
+    dir_norm = np.linalg.norm(direction)
+    if dir_norm < eps:
+        return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+    
+    direction = direction / dir_norm
+    
+    # RPM arm bones point along +Y axis
+    bone_forward = np.array([0.0, 1.0, 0.0])
+    
+    axis = np.cross(bone_forward, direction)
+    axis_length = np.linalg.norm(axis)
+    
+    if axis_length < eps:
+        dot = np.dot(bone_forward, direction)
+        if dot > 0:
+            return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+        else:
+            return {"x": 1.0, "y": 0.0, "z": 0.0, "w": 0.0}
+    
+    axis = axis / axis_length
+    
+    dot = np.clip(np.dot(bone_forward, direction), -1.0, 1.0)
+    angle = np.arccos(dot)
+    
+    half_angle = angle / 2.0
+    sin_half = np.sin(half_angle)
+    
+    x = float(axis[0] * sin_half)
+    y = float(axis[1] * sin_half)
+    z = float(axis[2] * sin_half)
+    w = float(np.cos(half_angle))
+    
+    return normalize_quat_dict({"x": x, "y": y, "z": z, "w": w})
+
+
+def normalize_quat_dict(q: Dict[str, float]) -> Dict[str, float]:
+    """
+    Normalize a quaternion represented as a dict to unit length.
+
+    Args:
+        q: Dict with keys 'x','y','z','w'
+
+    Returns:
+        Normalized quaternion dict with float components.
+    """
+    arr = np.array([q.get('x', 0.0), q.get('y', 0.0), q.get('z', 0.0), q.get('w', 1.0)], dtype=float)
+    n = np.linalg.norm(arr) + 1e-12
+    arr = arr / n
+    return {"x": float(arr[0]), "y": float(arr[1]), "z": float(arr[2]), "w": float(arr[3])}
+
+
+def quat_rotate_vector(q: Dict[str, float], v: np.ndarray) -> np.ndarray:
+    """
+    Rotate a 3D vector `v` by quaternion `q` (dict form).
+
+    Uses the formula: v' = v + 2.0 * cross(q_vec, cross(q_vec, v) + q_w * v)
+
+    Args:
+        q: Quaternion dict {x,y,z,w}
+        v: 3-vector to rotate
+
+    Returns:
+        Rotated 3-vector as numpy array
+    """
+    qx, qy, qz, qw = q['x'], q['y'], q['z'], q['w']
+    q_vec = np.array([qx, qy, qz], dtype=float)
+    t = 2.0 * np.cross(q_vec, v)
+    rotated = v + qw * t + np.cross(q_vec, t)
+    return rotated
+
+
+def quat_multiply(a: Dict[str, float], b: Dict[str, float]) -> Dict[str, float]:
+    """
+    Multiply two quaternions (Hamilton product): a * b
+
+    Args:
+        a, b: quaternion dicts {x,y,z,w}
+
+    Returns:
+        Quaternion dict representing a*b
+    """
+    ax, ay, az, aw = a['x'], a['y'], a['z'], a['w']
+    bx, by, bz, bw = b['x'], b['y'], b['z'], b['w']
+
+    x = aw * bx + ax * bw + ay * bz - az * by
+    y = aw * by - ax * bz + ay * bw + az * bx
+    z = aw * bz + ax * by - ay * bx + az * bw
+    w = aw * bw - ax * bx - ay * by - az * bz
+
+    return normalize_quat_dict({"x": float(x), "y": float(y), "z": float(z), "w": float(w)})
+
+
+def quat_inverse(q: Dict[str, float]) -> Dict[str, float]:
+    """
+    Inverse (conjugate) of a unit quaternion.
+
+    Args:
+        q: quaternion dict {x,y,z,w}
+
+    Returns:
+        Inverse quaternion dict
+    """
+    # For unit quaternions, inverse is conjugate
+    return normalize_quat_dict({"x": -q['x'], "y": -q['y'], "z": -q['z'], "w": q['w']})
 
 
 def calculate_wrist_quaternion(wrist, index_mcp, middle_mcp, pinky_mcp) -> Dict[str, float]:

@@ -20,6 +20,7 @@ from motion_utils import (
     convert_to_threejs_coords,
     exponential_decay_interpolate,
     calculate_quaternion_from_direction,
+    calculate_quaternion_from_direction_rpm,
     calculate_wrist_quaternion
 )
 
@@ -83,19 +84,21 @@ class MotionExtractor:
         pose_model = self._download_model('pose')
         pose_options = mp.tasks.vision.PoseLandmarkerOptions(
             base_options=mp.tasks.BaseOptions(model_asset_path=pose_model),
-            running_mode=mp.tasks.vision.RunningMode.IMAGE,
+            running_mode=mp.tasks.vision.RunningMode.VIDEO,
             min_pose_detection_confidence=0.5,
             min_pose_presence_confidence=0.5,
             min_tracking_confidence=0.5,
             output_segmentation_masks=False
         )
+        # Global timestamp offset (ms) to ensure monotonic timestamps across videos
+        self._global_ts_offset = 0
         self.pose_landmarker = mp.tasks.vision.PoseLandmarker.create_from_options(pose_options)
         
         # Hand Landmarker
         hand_model = self._download_model('hand')
         hand_options = mp.tasks.vision.HandLandmarkerOptions(
             base_options=mp.tasks.BaseOptions(model_asset_path=hand_model),
-            running_mode=mp.tasks.vision.RunningMode.IMAGE,
+            running_mode=mp.tasks.vision.RunningMode.VIDEO,
             num_hands=2,
             min_hand_detection_confidence=0.5,
             min_hand_presence_confidence=0.5,
@@ -107,7 +110,7 @@ class MotionExtractor:
         face_model = self._download_model('face')
         face_options = mp.tasks.vision.FaceLandmarkerOptions(
             base_options=mp.tasks.BaseOptions(model_asset_path=face_model),
-            running_mode=mp.tasks.vision.RunningMode.IMAGE,
+            running_mode=mp.tasks.vision.RunningMode.VIDEO,
             min_face_detection_confidence=0.5,
             min_face_presence_confidence=0.5,
             min_tracking_confidence=0.5,
@@ -176,7 +179,7 @@ class MotionExtractor:
         return cap, total_frames, duration, fps
     
     def resample_frames(self, cap: cv2.VideoCapture, total_frames: int, 
-                       duration: float) -> List[np.ndarray]:
+                       duration: float, orig_fps: float, global_offset_ms: int = 0) -> List[Tuple[np.ndarray, int]]:
         """
         Resample video to target FPS.
         
@@ -190,11 +193,12 @@ class MotionExtractor:
         """
         target_frame_count = int(duration * self.target_fps)
         frame_indices = np.linspace(0, total_frames - 1, target_frame_count, dtype=int)
-        
-        frames = []
+
+        frames = []  # list of (frame, timestamp_ms)
         current_idx = 0
         frame_count = 0
         
+        last_ts = -1
         for target_idx in frame_indices:
             # Seek to target frame
             while current_idx <= target_idx:
@@ -202,7 +206,14 @@ class MotionExtractor:
                 if not ret:
                     break
                 if current_idx == target_idx:
-                    frames.append(frame)
+                    # Timestamp based on original video fps (ms)
+                    timestamp_ms = int(round((target_idx / (orig_fps if orig_fps > 0 else 1.0)) * 1000))
+                    # Apply global offset and ensure strictly increasing timestamps
+                    timestamp_ms = timestamp_ms + int(global_offset_ms)
+                    if timestamp_ms <= last_ts:
+                        timestamp_ms = last_ts + 1
+                    last_ts = timestamp_ms
+                    frames.append((frame, timestamp_ms))
                     frame_count += 1
                 current_idx += 1
         
@@ -214,156 +225,46 @@ class MotionExtractor:
         return frames
     
     def extract_body_data(self, pose_landmarks) -> Optional[Dict]:
-        """Extract body joint positions and rotations from pose landmarks."""
+        """Export raw landmarks for Kalidokit processing."""
         if not pose_landmarks:
             return None
         
-        # In new API, pose_landmarks is a list, not an object with .landmark
         landmarks = pose_landmarks if isinstance(pose_landmarks, list) else pose_landmarks
         
-        # Extract joint positions (Three.js coordinates)
-        left_shoulder = convert_to_threejs_coords(landmarks[self.LEFT_SHOULDER])
-        left_elbow = convert_to_threejs_coords(landmarks[self.LEFT_ELBOW])
-        left_wrist = convert_to_threejs_coords(landmarks[self.LEFT_WRIST])
-        
-        right_shoulder = convert_to_threejs_coords(landmarks[self.RIGHT_SHOULDER])
-        right_elbow = convert_to_threejs_coords(landmarks[self.RIGHT_ELBOW])
-        right_wrist = convert_to_threejs_coords(landmarks[self.RIGHT_WRIST])
-        
-        # Calculate Euler angles
-        left_yaw, left_pitch, left_roll = calculate_euler_angles(
-            landmarks[self.LEFT_SHOULDER],
-            landmarks[self.LEFT_ELBOW],
-            landmarks[self.LEFT_WRIST]
-        )
-        
-        right_yaw, right_pitch, right_roll = calculate_euler_angles(
-            landmarks[self.RIGHT_SHOULDER],
-            landmarks[self.RIGHT_ELBOW],
-            landmarks[self.RIGHT_WRIST]
-        )
-        
-        # Calculate quaternions for bone rotations
-        import numpy as np
-        
-        # Left shoulder quaternion (shoulder -> elbow direction)
-        left_shoulder_dir = np.array([
-            landmarks[self.LEFT_ELBOW].x - landmarks[self.LEFT_SHOULDER].x,
-            landmarks[self.LEFT_ELBOW].y - landmarks[self.LEFT_SHOULDER].y,
-            -(landmarks[self.LEFT_ELBOW].z - landmarks[self.LEFT_SHOULDER].z)  # Negate Z for Three.js
-        ])
-        left_shoulder_quat = calculate_quaternion_from_direction(left_shoulder_dir)
-        
-        # Left elbow quaternion (elbow -> wrist direction)
-        left_elbow_dir = np.array([
-            landmarks[self.LEFT_WRIST].x - landmarks[self.LEFT_ELBOW].x,
-            landmarks[self.LEFT_WRIST].y - landmarks[self.LEFT_ELBOW].y,
-            -(landmarks[self.LEFT_WRIST].z - landmarks[self.LEFT_ELBOW].z)
-        ])
-        left_elbow_quat = calculate_quaternion_from_direction(left_elbow_dir)
-        
-        # Right shoulder quaternion
-        right_shoulder_dir = np.array([
-            landmarks[self.RIGHT_ELBOW].x - landmarks[self.RIGHT_SHOULDER].x,
-            landmarks[self.RIGHT_ELBOW].y - landmarks[self.RIGHT_SHOULDER].y,
-            -(landmarks[self.RIGHT_ELBOW].z - landmarks[self.RIGHT_SHOULDER].z)
-        ])
-        right_shoulder_quat = calculate_quaternion_from_direction(right_shoulder_dir)
-        
-        # Right elbow quaternion
-        right_elbow_dir = np.array([
-            landmarks[self.RIGHT_WRIST].x - landmarks[self.RIGHT_ELBOW].x,
-            landmarks[self.RIGHT_WRIST].y - landmarks[self.RIGHT_ELBOW].y,
-            -(landmarks[self.RIGHT_WRIST].z - landmarks[self.RIGHT_ELBOW].z)
-        ])
-        right_elbow_quat = calculate_quaternion_from_direction(right_elbow_dir)
+        # Export ALL 33 pose landmarks (Kalidokit needs them)
+        world_landmarks = []
+        for lm in landmarks:
+            world_landmarks.append({
+                "x": float(lm.x),
+                "y": float(lm.y),
+                "z": float(lm.z),
+                "visibility": float(lm.visibility) if hasattr(lm, 'visibility') else 1.0
+            })
         
         return {
-            "left_shoulder": {"x": left_shoulder[0], "y": left_shoulder[1], "z": left_shoulder[2]},
-            "left_elbow": {"x": left_elbow[0], "y": left_elbow[1], "z": left_elbow[2]},
-            "left_wrist": {"x": left_wrist[0], "y": left_wrist[1], "z": left_wrist[2]},
-            "left_arm_rotation": {"yaw": left_yaw, "pitch": left_pitch, "roll": left_roll},
-            "left_shoulder_quat": left_shoulder_quat,
-            "left_elbow_quat": left_elbow_quat,
-            "right_shoulder": {"x": right_shoulder[0], "y": right_shoulder[1], "z": right_shoulder[2]},
-            "right_elbow": {"x": right_elbow[0], "y": right_elbow[1], "z": right_elbow[2]},
-            "right_wrist": {"x": right_wrist[0], "y": right_wrist[1], "z": right_wrist[2]},
-            "right_arm_rotation": {"yaw": right_yaw, "pitch": right_pitch, "roll": right_roll},
-            "right_shoulder_quat": right_shoulder_quat,
-            "right_elbow_quat": right_elbow_quat
+            "worldLandmarks": world_landmarks
         }
-    
     def extract_hand_data(self, hand_landmarks) -> Optional[Dict]:
-        """Extract finger joint angles from hand landmarks."""
+        """Export raw hand landmarks for Kalidokit."""
         if not hand_landmarks:
             return None
         
-        # In new API, hand_landmarks is a list, not an object with .landmark
         landmarks = hand_landmarks if isinstance(hand_landmarks, list) else hand_landmarks
         
-        # Calculate joint angles for each finger (3 joints per finger)
-        # Thumb (special case - uses CMC as base)
-        thumb_angles = calculate_finger_joint_angles(
-            landmarks[self.THUMB_MCP],      # CMC (base)
-            landmarks[self.THUMB_MCP],      # MCP
-            landmarks[self.THUMB_IP],       # IP
-            landmarks[self.THUMB_IP],       # IP (reused)
-            landmarks[self.THUMB_TIP]       # Tip
-        )
+        # Export all 21 hand landmarks as a list
+        landmarks_list = []
+        for lm in landmarks:
+            landmarks_list.append({
+                "x": float(lm.x),
+                "y": float(lm.y),
+                "z": float(lm.z)
+            })
         
-        # Index finger
-        index_angles = calculate_finger_joint_angles(
-            landmarks[self.WRIST],          # Base reference
-            landmarks[self.INDEX_MCP],      # Knuckle
-            landmarks[self.INDEX_PIP],      # Middle joint
-            landmarks[self.INDEX_DIP],      # Near tip
-            landmarks[self.INDEX_TIP]       # Tip
-        )
-        
-        # Middle finger
-        middle_angles = calculate_finger_joint_angles(
-            landmarks[self.WRIST],
-            landmarks[self.MIDDLE_MCP],
-            landmarks[self.MIDDLE_PIP],
-            landmarks[self.MIDDLE_DIP],
-            landmarks[self.MIDDLE_TIP]
-        )
-        
-        # Ring finger
-        ring_angles = calculate_finger_joint_angles(
-            landmarks[self.WRIST],
-            landmarks[self.RING_MCP],
-            landmarks[self.RING_PIP],
-            landmarks[self.RING_DIP],
-            landmarks[self.RING_TIP]
-        )
-        
-        # Pinky finger
-        pinky_angles = calculate_finger_joint_angles(
-            landmarks[self.WRIST],
-            landmarks[self.PINKY_MCP],
-            landmarks[self.PINKY_PIP],
-            landmarks[self.PINKY_DIP],
-            landmarks[self.PINKY_TIP]
-        )
-        
-        # Calculate wrist orientation from hand plane
-        wrist_quat = calculate_wrist_quaternion(
-            landmarks[self.WRIST],
-            landmarks[self.INDEX_MCP],
-            landmarks[self.MIDDLE_MCP],
-            landmarks[self.PINKY_MCP]
-        )
-        
+        # Return as dict so exponential_decay_interpolate still works
         return {
-            "wrist_rotation": wrist_quat,
-            "thumb": thumb_angles,
-            "index": index_angles,
-            "middle": middle_angles,
-            "ring": ring_angles,
-            "pinky": pinky_angles
+            "landmarks": landmarks_list
         }
-    
+
     def extract_face_data(self, face_landmarks) -> Optional[Dict]:
         """Extract facial blendshapes from face landmarks."""
         if not face_landmarks:
@@ -411,7 +312,49 @@ class MotionExtractor:
             "eyeBrowRaise_R": eyebrow_raise_r
         }
     
-    def process_frame(self, frame: np.ndarray, frame_idx: int) -> Dict:
+
+    def reset_landmarkers(self):
+        """Reset MediaPipe landmarkers to handle new video timestamps."""
+        # Close existing landmarkers
+        self.pose_landmarker.close()
+        self.hand_landmarker.close()
+        self.face_landmarker.close()
+        
+        # Reinitialize them
+        pose_model = self._download_model('pose')
+        pose_options = mp.tasks.vision.PoseLandmarkerOptions(
+            base_options=mp.tasks.BaseOptions(model_asset_path=pose_model),
+            running_mode=mp.tasks.vision.RunningMode.VIDEO,
+            min_pose_detection_confidence=0.5,
+            min_pose_presence_confidence=0.5,
+            min_tracking_confidence=0.5,
+            output_segmentation_masks=False
+        )
+        self.pose_landmarker = mp.tasks.vision.PoseLandmarker.create_from_options(pose_options)
+        
+        hand_model = self._download_model('hand')
+        hand_options = mp.tasks.vision.HandLandmarkerOptions(
+            base_options=mp.tasks.BaseOptions(model_asset_path=hand_model),
+            running_mode=mp.tasks.vision.RunningMode.VIDEO,
+            num_hands=2,
+            min_hand_detection_confidence=0.5,
+            min_hand_presence_confidence=0.5,
+            min_tracking_confidence=0.5
+        )
+        self.hand_landmarker = mp.tasks.vision.HandLandmarker.create_from_options(hand_options)
+        
+        face_model = self._download_model('face')
+        face_options = mp.tasks.vision.FaceLandmarkerOptions(
+            base_options=mp.tasks.BaseOptions(model_asset_path=face_model),
+            running_mode=mp.tasks.vision.RunningMode.VIDEO,
+            min_face_detection_confidence=0.5,
+            min_face_presence_confidence=0.5,
+            min_tracking_confidence=0.5,
+            output_face_blendshapes=False,
+            output_facial_transformation_matrixes=False
+        )
+        self.face_landmarker = mp.tasks.vision.FaceLandmarker.create_from_options(face_options)
+    def process_frame(self, frame: np.ndarray, frame_idx: int, timestamp_ms: Optional[int] = None) -> Dict:
         """
         Process single frame with MediaPipe and extract all motion data.
         
@@ -428,10 +371,28 @@ class MotionExtractor:
         # Create MediaPipe Image
         mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
         
-        # Process with separate landmarkers (IMAGE mode - no timestamp needed)
-        pose_results = self.pose_landmarker.detect(mp_image)
-        hand_results = self.hand_landmarker.detect(mp_image)
-        face_results = self.face_landmarker.detect(mp_image)
+        # Process with separate landmarkers. If running in VIDEO mode, pass timestamp when available.
+        if timestamp_ms is not None:
+            # Prefer video-mode API when available. Only fall back to image-mode
+            # detect if the video-method is not present (AttributeError).
+            try:
+                pose_results = self.pose_landmarker.detect_for_video(mp_image, timestamp_ms)
+            except AttributeError:
+                pose_results = self.pose_landmarker.detect(mp_image)
+
+            try:
+                hand_results = self.hand_landmarker.detect_for_video(mp_image, timestamp_ms)
+            except AttributeError:
+                hand_results = self.hand_landmarker.detect(mp_image)
+
+            try:
+                face_results = self.face_landmarker.detect_for_video(mp_image, timestamp_ms)
+            except AttributeError:
+                face_results = self.face_landmarker.detect(mp_image)
+        else:
+            pose_results = self.pose_landmarker.detect(mp_image)
+            hand_results = self.hand_landmarker.detect(mp_image)
+            face_results = self.face_landmarker.detect(mp_image)
         
         # Extract body data from pose_world_landmarks
         body_data = None
@@ -476,7 +437,7 @@ class MotionExtractor:
         if face_results.face_landmarks:
             face_data = self.extract_face_data(face_results.face_landmarks[0] if face_results.face_landmarks else None)
         
-        # Calculate timestamp
+        # Calculate timestamp (keep output schema as seconds/frame index)
         timestamp = frame_idx / self.target_fps
         
         return {
@@ -489,55 +450,62 @@ class MotionExtractor:
             "face": face_data
         }
     
-    def extract_motion(self, video_path: str, gloss: str) -> Dict:
-        """
-        Extract complete motion data from video.
-        
-        Args:
-            video_path: Path to video file
-            gloss: Sign language word/gloss
-            
-        Returns:
-            Dict with motion data including metadata and frames
-        """
-        if self.verbose:
-            print(f"\n🎬 Processing: {gloss.upper()}")
-            print(f"   Video: {video_path}")
-        
-        # Reset tracking state
-        self.prev_left_hand = None
-        self.prev_right_hand = None
-        self.left_hand_missing_frames = 0
-        self.right_hand_missing_frames = 0
-        
-        # Load and resample video
-        cap, total_frames, duration, fps = self.load_video(video_path)
-        
-        if self.verbose:
-            print(f"   Original: {total_frames} frames at {fps:.2f}fps, {duration:.2f}s")
-        
-        frames = self.resample_frames(cap, total_frames, duration)
-        
-        # Process each frame
-        motion_frames = []
-        for idx, frame in enumerate(frames):
-            frame_data = self.process_frame(frame, idx)
-            motion_frames.append(frame_data)
-            
-            if self.verbose and (idx + 1) % 10 == 0:
-                print(f"   Processed {idx + 1}/{len(frames)} frames", end='\r')
-        
-        if self.verbose:
-            print(f"   ✅ Completed {len(motion_frames)} frames")
-        
-        return {
-            "gloss": gloss,
-            "fps": self.target_fps,
-            "duration": round(duration, 3),
-            "frame_count": len(motion_frames),
-            "frames": motion_frames
-        }
+def extract_motion(self, video_path: str, gloss: str) -> Dict:
+    """
+    Extract complete motion data from video.
     
+    Args:
+        video_path: Path to video file
+        gloss: Sign language word/gloss
+        
+    Returns:
+        Dict with motion data including metadata and frames
+    """
+    if self.verbose:
+        print(f"\n🎬 Processing: {gloss.upper()}")
+        print(f"   Video: {video_path}")
+    
+    # Reset tracking state
+    self.prev_left_hand = None
+    self.prev_right_hand = None
+    self.left_hand_missing_frames = 0
+    self.right_hand_missing_frames = 0
+    
+    # Reset landmarkers to handle fresh timestamps
+    self.reset_landmarkers()
+    
+    # Load and resample video
+    cap, total_frames, duration, fps = self.load_video(video_path)
+    
+    if self.verbose:
+        print(f"   Original: {total_frames} frames at {fps:.2f}fps, {duration:.2f}s")
+    
+    # Reset global timestamp offset for this video
+    self._global_ts_offset = 0
+    
+    frames = self.resample_frames(cap, total_frames, duration, fps, global_offset_ms=0)
+    
+    # Process each frame
+    motion_frames = []
+    for idx, (frame, ts_ms) in enumerate(frames):
+        frame_data = self.process_frame(frame, idx, timestamp_ms=ts_ms)
+        motion_frames.append(frame_data)
+        
+        if self.verbose and (idx + 1) % 10 == 0:
+            print(f"   Processed {idx + 1}/{len(frames)} frames", end='\r')
+    
+    if self.verbose:
+        print(f"   ✅ Completed {len(motion_frames)} frames")
+    
+    return {
+        "gloss": gloss,
+        "fps": self.target_fps,
+        "duration": round(duration, 3),
+        "frame_count": len(motion_frames),
+        "frames": motion_frames
+    }
+
+
     def save_motion_data(self, motion_data: Dict, output_path: Path):
         """Save motion data to JSON file."""
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -553,3 +521,176 @@ class MotionExtractor:
         self.pose_landmarker.close()
         self.hand_landmarker.close()
         self.face_landmarker.close()
+
+    def visualize_tracking(self, video_path: str, output_path: Optional[str] = None, overlay_indices: bool = False, overlay_json: Optional[str] = None):
+        """
+        Create a new video with detected hand/pose landmarks overlaid for debugging.
+
+        Args:
+            video_path: input video file path
+            output_path: output video path to write (mp4)
+            overlay_indices: draw landmark index numbers next to points
+        """
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            raise ValueError(f"Failed to open video: {video_path}")
+
+        width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        fps = cap.get(cv2.CAP_PROP_FPS) or self.target_fps
+
+        # Default output path: save under motion_library/overlayed_video
+        base_dir = Path(__file__).parent
+        default_out_dir = base_dir / "motion_library" / "overlayed_video"
+        default_out_dir.mkdir(parents=True, exist_ok=True)
+
+        if output_path is None:
+            output_path = default_out_dir / (Path(video_path).stem + "_overlay.mp4")
+        else:
+            output_path = Path(output_path)
+
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        out = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+
+        # If overlay_json provided, load exported motion JSON to draw same landmarks
+        motion_json = None
+        if overlay_json:
+            try:
+                with open(overlay_json, 'r', encoding='utf-8') as jf:
+                    motion_json = json.load(jf)
+            except Exception:
+                motion_json = None
+
+        frame_idx = 0
+        last_ts = -1
+
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            timestamp_ms = int(round((frame_idx / (fps if fps > 0 else 1.0)) * 1000)) + int(self._global_ts_offset)
+            if timestamp_ms <= last_ts:
+                timestamp_ms = last_ts + 1
+            last_ts = timestamp_ms
+
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
+
+            # Safe defaults for detector results when drawing from JSON
+            hand_results = None
+            pose_results = None
+            face_results = None
+
+            # If motion JSON provided, draw landmarks from exported JSON for this frame index
+            if motion_json and 'frames' in motion_json and frame_idx < len(motion_json['frames']):
+                js_frame = motion_json['frames'][frame_idx]
+                hands = js_frame.get('hands', {})
+
+                for side in ('left', 'right'):
+                    hand = hands.get(side)
+                    if not hand:
+                        continue
+
+                    landmarks = hand.get('landmarks')
+                    # landmarks in exported JSON are Three.js coords or normalized coords.
+                    if not landmarks:
+                        continue
+
+                    # Heuristic: decide if x is normalized (0..1) or world meters
+                    sample_x = landmarks[0].get('x', 0.0)
+                    is_normalized = (-0.5 <= sample_x <= 1.5)
+
+                    color = (0, 255, 0) if side == 'left' else (0, 128, 255)
+                    for i, lm in enumerate(landmarks):
+                        lx = lm.get('x', 0.0)
+                        ly = lm.get('y', 0.0)
+                        if is_normalized:
+                            x_px = int(lx * width)
+                            y_px = int(ly * height)
+                        else:
+                            # Fallback: treat Three.js X/Y as normalized around center
+                            # Map X from [-0.5,0.5] -> [0,width]
+                            x_px = int((0.5 + lx) * width)
+                            y_px = int((0.5 + ly) * height)
+
+                        cv2.circle(frame, (x_px, y_px), 3, color, -1)
+                        if overlay_indices:
+                            cv2.putText(frame, str(i), (x_px + 4, y_px - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
+
+                    # Draw label
+                    try:
+                        wrist = landmarks[0]
+                        wx = int((wrist.get('x', 0.0) * width) if is_normalized else (0.5 + wrist.get('x', 0.0)) * width)
+                        wy = int((wrist.get('y', 0.0) * height) if is_normalized else (0.5 + wrist.get('y', 0.0)) * height)
+                        cv2.putText(frame, side, (wx - 10, wy - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2)
+                    except Exception:
+                        pass
+
+            else:
+                # Run detectors in video mode when available
+                try:
+                    hand_results = self.hand_landmarker.detect_for_video(mp_image, timestamp_ms)
+                except AttributeError:
+                    hand_results = self.hand_landmarker.detect(mp_image)
+
+                try:
+                    pose_results = self.pose_landmarker.detect_for_video(mp_image, timestamp_ms)
+                except AttributeError:
+                    pose_results = self.pose_landmarker.detect(mp_image)
+
+                # Draw hands from detections
+                if hand_results and getattr(hand_results, 'hand_landmarks', None):
+                    for hand_idx, hand_landmarks in enumerate(hand_results.hand_landmarks):
+                        # handedness label if present
+                        label = None
+                        if getattr(hand_results, 'handedness', None) and len(hand_results.handedness) > hand_idx:
+                            try:
+                                label = hand_results.handedness[hand_idx][0].category_name
+                            except Exception:
+                                label = None
+
+                        # Draw landmarks (assume normalized x/y in [0,1])
+                        for i, lm in enumerate(hand_landmarks):
+                            try:
+                                x_px = int(lm.x * width)
+                                y_px = int(lm.y * height)
+                            except Exception:
+                                # fallback: skip if coordinates not available
+                                continue
+
+                            color = (0, 255, 0) if label and label.lower() == 'left' else (0, 128, 255)
+                            cv2.circle(frame, (x_px, y_px), 3, color, -1)
+                            if overlay_indices:
+                                cv2.putText(frame, str(i), (x_px + 4, y_px - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
+
+                        # Put handedness text
+                        if label:
+                            # place label near wrist if available
+                            try:
+                                wrist = hand_landmarks[0]
+                                wx = int(wrist.x * width)
+                                wy = int(wrist.y * height)
+                                cv2.putText(frame, label, (wx - 10, wy - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2)
+                            except Exception:
+                                pass
+
+            # Draw pose keypoints (optional small circles)
+            if pose_results and getattr(pose_results, 'pose_world_landmarks', None):
+                # pose_world_landmarks may not have image coordinates; try pose_landmarks instead
+                if getattr(pose_results, 'pose_landmarks', None):
+                    pl = pose_results.pose_landmarks[0]
+                    for lm in pl:
+                        try:
+                            x_px = int(lm.x * width)
+                            y_px = int(lm.y * height)
+                            cv2.circle(frame, (x_px, y_px), 2, (255, 0, 0), -1)
+                        except Exception:
+                            continue
+
+            out.write(frame)
+            frame_idx += 1
+
+        cap.release()
+        out.release()
+        return output_path

@@ -131,7 +131,6 @@ def calculate_quaternion_from_direction_rpm(
     
     return normalize_quat_dict({"x": x, "y": y, "z": z, "w": w})
 
-
 def normalize_quat_dict(q: Dict[str, float]) -> Dict[str, float]:
     """
     Normalize a quaternion represented as a dict to unit length.

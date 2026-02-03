@@ -49,7 +49,7 @@ class Config:
     LLM_USE_QUANTIZATION = os.getenv("LLM_USE_QUANTIZATION", "true").lower() == "true"
     
     # HuggingFace Token
-    HF_TOKEN = os.getenv("HF_TOKEN", "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")
+    HF_TOKEN = os.getenv("HF_TOKEN", "")
     
     # Prompts file path
     PROMPTS_FILE_PATH = os.getenv(

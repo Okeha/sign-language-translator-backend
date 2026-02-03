@@ -100,11 +100,26 @@ class ChatRequest(BaseModel):
         max_length=2000
     )
 
+class SentenceToGlossRequest(BaseModel):
+    """Request for converting a sentence to gloss sequence"""
+    
+    sentence: str = Field(
+        ...,
+        description="Natural language sentence to convert to glosses",
+        min_length=1,
+        max_length=20000
+    )
 
 class ChatResponse(BaseModel):
     """Response from chat endpoint"""
     
     response: str = Field(..., description="LLM's response to user message")
+    timestamp: int = Field(..., description="Response timestamp in milliseconds")
+
+class ModelResponse(BaseModel):
+    """Response for 3d model to sign endpoint"""
+    
+    response: List[str] = Field(..., description="LLM's response to user message")
     timestamp: int = Field(..., description="Response timestamp in milliseconds")
 
 

@@ -1,10 +1,13 @@
 """Qwen sentence generation service for ASL gloss interpretation"""
 
 import logging
+import pathlib
 import torch
 from typing import List
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
+
+import yaml
 
 from src.api.config import config
 from src.api.sentence_generation.prompts import prompt_manager
@@ -13,6 +16,12 @@ logger = logging.getLogger(__name__)
 
 # HF_TOKEN = os.getenv('HF_TOKEN')
 # print("\n\n HF_TOKEN:", HF_TOKEN)
+
+# load prompts.yml from this package's folder
+_prompts_path = pathlib.Path(__file__).parent / "prompts.yml"
+
+with open(_prompts_path, 'r', encoding='utf-8') as f:
+    model_signing_prompt = yaml.safe_load(f)["model_signing_prompt"]
 
 class QwenSentenceService:
     """Singleton service for gloss-to-sentence generation using Qwen2.5-1.5B-Instruct"""
@@ -30,7 +39,12 @@ class QwenSentenceService:
         if self._initialized:
             return
         
-        logger.info(f"Loading Qwen model: {config.LLM_MODEL_NAME}")
+        logger.info(f"Loading Model: {config.LLM_MODEL_NAME}")
+
+       
+        self.model_signing_prompt = model_signing_prompt        
+
+            # print(model_signing_prompt)
         
         try:
             # Check HF token
@@ -48,7 +62,7 @@ class QwenSentenceService:
             model_kwargs = {
                 "device_map": "auto",
                 "torch_dtype": "auto",
-                "trust_remote_code": True,
+                "trust_remote_code": False,
             }
             
             if config.HF_TOKEN:
@@ -155,7 +169,7 @@ class QwenSentenceService:
             inputs = self.tokenizer.apply_chat_template(
                 messages,
                 add_generation_prompt=True,
-                enable_thinking = True, # TODO: Enable reasoning if needed
+                enable_thinking = False, # TODO: Enable reasoning if needed
                 tokenize = True,
                 return_dict = True,
                 return_tensors = "pt",
@@ -165,7 +179,7 @@ class QwenSentenceService:
             outputs = self.model.generate(
                 **inputs,
                 # max_new_tokens=config.LLM_MAX_LENGTH,
-                max_new_tokens = 3000,
+                max_new_tokens = 30000,
                 temperature=config.LLM_TEMPERATURE,
                 do_sample=True if config.LLM_TEMPERATURE > 0 else False,
                 top_p=0.9,
@@ -213,7 +227,7 @@ class QwenSentenceService:
             
             # Simple chat messages without complex system prompt
             messages = [
-                {"role": "system", "content": "You are a Signrr. A helpful AI assistant that provides clear, concise responses and bridges the digital gap between sign language users and AI technology. Encourage the user to start streaming signs so you can assist them better. The user may ask questions about how to use the system. Encourage them to start the camera, and click the start streaming button twice."},
+                {"role": "system", "content": "You are a Signrr. A helpful AI assistant that provides clear, concise responses and bridges the digital gap between sign language users and AI technology. The user may ask questions about how to use the system. Encourage them to start the camera, and click the start streaming button twice. However, reply in a concise manner. Avoid long explanations and answer questions asked or statements made by the user. Only encourage them to start streaming signs if they ask about it or mention it. If the user does not ask about the sign language system, respond to their query directly without mentioning sign language or the system."},
                 {"role": "user", "content": user_message}
             ]
             
@@ -250,6 +264,58 @@ class QwenSentenceService:
             logger.error(f"Error in chat generation: {str(e)}")
             raise
     
+    def convert_chat_to_gloss(self, chat_text:str) -> str:
+        """Convert chat text to gloss format by replacing spaces with underscores
+        
+        Args:
+            chat_text: Input chat text
+            
+        Returns:
+            str: Gloss formatted text
+        """
+        try:
+            device = self.model.device
+            
+            # Simple chat messages without complex system prompt
+            messages = [
+                {"role": "system", "content": self.model_signing_prompt},
+                {"role": "user", "content": chat_text}
+            ]
+            
+            # Apply chat template without reasoning enabled
+            inputs = self.tokenizer.apply_chat_template(
+                messages,
+                add_generation_prompt=True,
+                enable_thinking=False,  # No reasoning for simple gloss conversion
+                tokenize=True,
+                return_dict=True,
+                return_tensors="pt",
+            ).to(device)
+            
+            # Generate response with temperature control
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=500,  # Shorter responses for chat
+                temperature=0.7,
+                do_sample=True if 0.5 > 0 else False,
+                top_p=0.9,
+                pad_token_id=self.tokenizer.eos_token_id
+            )
+            
+            # Decode response
+            response = self.tokenizer.decode(
+                outputs[0][inputs["input_ids"].shape[-1]:],
+                skip_special_tokens=True
+            )
+            
+            logger.info(f"Chat response generated: {response[:100]}...")
+            return response.strip()
+            
+        except Exception as e:
+            logger.error(f"Error in chat generation: {str(e)}")
+            raise
+
+
     def is_loaded(self) -> bool:
         """Check if model is loaded and ready"""
         return self._initialized

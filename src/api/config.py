@@ -37,16 +37,19 @@ class Config:
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
     
     # LLM Settings for Sentence Generation
-    # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-4B")
-    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-1.7B")
+    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-4B")
+    # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-1.7B")
+    # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "microsoft/Phi-4-mini-reasoning")
+    # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "microsoft/Phi-4-mini-reasoning")
+
 
     LLM_DEVICE = os.getenv("LLM_DEVICE", "auto")  # auto, cuda, cpu
     LLM_MAX_LENGTH = int(os.getenv("LLM_MAX_LENGTH", 100))
-    LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", 0.7))
+    LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", 0.5))
     LLM_USE_QUANTIZATION = os.getenv("LLM_USE_QUANTIZATION", "true").lower() == "true"
     
     # HuggingFace Token
-    HF_TOKEN = os.getenv("HF_TOKEN", "")
+    HF_TOKEN = os.getenv("HF_TOKEN", "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")
     
     # Prompts file path
     PROMPTS_FILE_PATH = os.getenv(

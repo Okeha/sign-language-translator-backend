@@ -1,11 +1,13 @@
 """Sign Language Detection API - Main FastAPI Application"""
 
 import logging
+import re
 import time
 from typing import Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import torch
+import json
 
 from src.api.config import config
 from src.api.schemas import (
@@ -18,7 +20,9 @@ from src.api.schemas import (
     InterpretGlossesRequest,
     InterpretGlossesResponse,
     ChatRequest,
-    ChatResponse
+    ChatResponse,
+    ModelResponse,
+    SentenceToGlossRequest
 )
 from src.api.videomae.model_service import VideoMAEService
 from src.api.websocket_manager import ConnectionManager
@@ -87,7 +91,7 @@ async def startup_event():
         raise
     
     # Load Qwen sentence generation model (this takes 3-5 seconds)
-    logger.info(f"Loading Qwen model: {config.LLM_MODEL_NAME}")
+    logger.info(f"Loading model: {config.LLM_MODEL_NAME}")
     try:
         sentence_service = QwenSentenceService()
         logger.info(f"✓ Qwen loaded successfully on {sentence_service.device}")
@@ -208,6 +212,8 @@ async def chat(request: ChatRequest):
         
         # Generate response using Qwen chat method
         response = sentence_service.chat(request.message)
+
+        
         
         logger.info(f"Chat response: {response[:100]}...")
         
@@ -353,6 +359,67 @@ async def glosses_to_sentence(request: GlossToSentenceRequest):
         glosses_used=glosses_to_use,
         confidence=0.75  # Placeholder confidence
     )
+
+@app.post("/convert-sentence-to-gloss", response_model=ModelResponse)
+async def sentence_to_gloss(request: SentenceToGlossRequest):
+    """
+    Convert sentence to gloss sequence
+    """
+
+    if not sentence_service or not sentence_service.is_loaded():
+        raise HTTPException(
+            status_code=503,
+            detail="Chat service not available. LLM model failed to load."
+        )
+    
+    try:
+        logger.info(f"Sentence to gloss request: {request.sentence[:100]}...")
+        
+        # Generate response using Qwen chat method
+        response = sentence_service.convert_chat_to_gloss(request.sentence)
+        
+        gloss = ['ABOUT', 'AFRAID', 'AFTER', 'AFTERNOON', 'AGAIN', 'ALL', 'ALWAYS', 'AND', 'ANGRY', 'ANSWER', 'ARRIVE', 'ASK', 'BABY', 'BAD', 'BALL', 'BANK', 'BATHROOM', 'BECAUSE', 'BED', 'BEFORE', 'BIG', 'BLACK', 'BLUE', 'BODY', 'BOOK', 'BORED', 'BOSS', 'BOTTLE', 'BOX', 'BOY', 'BRAVE', 'BRING', 'BROTHER', 'BROWN', 'BUILDING', 'BUS', 'BUT', 'CALL', 'CALM', 'CAMERA', 'CAN', 'CAR', 'CARD', 'CARE', 'CARRY', 'CHAIR', 'CHANGE', 'CHILD', 'CHOICE', 'CHURCH', 'CITY', 'CLEAN', 'CLOSE', 'CLOTHES', 'COLD', 'COLOR', 'COME', 'COMPUTER', 'CONFUSED', 'CONTINUE', 'COUNTRY', 'CUP', 'CUSTOMER', 'DANGEROUS', 'DAY', 'DIFFERENT', 'DIRTY', 'DOCTOR', 'DOOR', 'DRINK', 'DROP', 'EARLY', 'EASY', 'EAT', 'EIGHT', 'EMPTY', 'ENOUGH', 'ENTER', 'EVENT', 'EXCITED', 'FAMILY', 'FARM', 'FAST', 'FATHER', 'FEEL', 'FEW', 'FIND', 'FIRE', 'FIRST', 'FIVE', 'FOLLOW', 'FOOD', 'FOR', 'FOUR', 'FRIEND', 'FROM', 'FULL', 'GIRL', 'GIVE', 'GO', 'GOAL', 'GOOD', 'GREEN', 'GROUP', 'HAPPY', 'HARD', 'HATE', 'HAVE', 'HELP', 'HIGH', 'HIT', 'HOME', 'HOPE', 'HOSPITAL', 'HOT', 'HOUR', 'HOUSE', 'HOW', 'HURT', 'I', 'IDEA', 'IF', 'IMPORTANT', 'JUMP', 'KEY', 'KITCHEN', 'KNOW', 'LANGUAGE', 'LAST', 'LATE', 'LEAVE', 'LESS', 'LIBRARY', 'LIFT', 'LIGHT', 'LIKE', 'LONELY', 'LONG', 'LOUD', 'LOVE', 'MAKE', 'MAN', 'MANY', 'MAYBE', 'ME', 'MEDICINE', 'MIND', 'MINE', 'MINUTE', 'MONEY', 'MONTH', 'MORE', 'MORNING', 'MOTHER', 'MOVE', 'MUST', 'NAME', 'NEED', 'NERVOUS', 'NEVER', 'NEW', 'NEXT', 'NIGHT', 'NINE', 'NONE', 'NOW', 'NUMBER', 'NURSE', 'OLD', 'ONE', 'OPEN', 'OR', 'ORANGE', 'PAPER', 'PEOPLE', 'PERSON', 'PHONE', 'PINK', 'PLACE', 'PLAN', 'PLAY', 'POLICE', 'POOR', 'PROBLEM', 'PROUD', 'PULL', 'PURPLE', 'PUSH', 'PUT', 'QUESTION', 'QUIET', 'REASON', 'RED', 'RELAX', 'RESTAURANT', 'RICH', 'RIGHT', 'ROOM', 'RUN', 'SAD', 'SAFE', 'SAME', 'SCHOOL', 'SECOND', 'SEE', 'SEVEN', 'SHE', 'SHOES', 'SHORT', 'SHOULD', 'SICK', 'SIGN', 'SISTER', 'SIX', 'SLEEP', 'SLOW', 'SMALL', 'SOME', 'SOMETIMES', 'SOON', 'START', 'STOP', 'STORE', 'STORY', 'STREET', 'STRONG', 'STUDENT', 'TABLE', 'TAKE', 'TEACHER', 'TEAM', 'TELL', 'TEN', 'THAT', 'THEM', 'THEY', 'THING', 'THINK', 'THIS', 'THREE', 'TIME', 'TIRED', 'TODAY', 'TOMORROW', 'TOUCH', 'TRAIN', 'TRUE', 'TRY', 'TURN', 'TV', 'TWO', 'USE', 'WAIT', 'WALK', 'WANT', 'WATCH', 'WATER', 'WAY', 'WE', 'WEAK', 'WEEK', 'WHAT', 'WHEN', 'WHERE', 'WHICH', 'WHITE', 'WHO', 'WHY', 'WILL', 'WINDOW', 'WITH', 'WITHOUT', 'WOMAN', 'WORK', 'WORKER', 'WORLD', 'WORRY', 'WRONG', 'YEAR', 'YELLOW', 'YESTERDAY', 'YOU']
+
+        try:
+            # 1. Remove Markdown code blocks if they exist
+            response = re.sub(r'```json|```', '', response)
+            
+            # 2. Fix non-breaking spaces and whitespace
+            response = response.replace('\xa0', ' ').strip()
+            
+            # 3. Parse! (JSON handles the \" escaped quotes automatically)
+            response = json.loads(response)
+        
+        except Exception as e:
+            print(f"Parsing failed: {e}")
+            raise HTTPException(status_code=500, detail="LLM output was not valid JSON.")
+        # response = response.replace("\n", "")
+        # try:
+        #     response = json.loads(response)
+
+        # except json.JSONDecodeError as e:
+        #     logger.error(f"Failed to parse gloss response: {str(e)}")
+        #     raise HTTPException(
+        #         status_code=500,
+        #         detail=f"Sentence to gloss generation failed: {str(e)}"
+        #     )
+
+        response =  [word for word in response if word.upper() in gloss]
+
+        logger.info(f"Sentence to gloss response: {response[:100]}...")
+        
+        return ModelResponse(
+            response=response,
+            timestamp=int(time.time() * 1000)
+        )
+    
+    except Exception as e:
+        logger.error(f"Failed to generate sentence to gloss response: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Sentence to gloss generation failed: {str(e)}"
+        )
+    pass
 
 
 @app.post("/predict/video", response_model=GlossPrediction)

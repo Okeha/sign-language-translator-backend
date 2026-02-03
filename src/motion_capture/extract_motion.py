@@ -245,23 +245,145 @@ class MotionExtractor:
             "right_elbow_quat": direction_to_quat(right_lower_dir),
         }
     
-    def extract_hand_data(self, hand_landmarks) -> Optional[Dict]:
-        """Export raw hand landmarks."""
-        if not hand_landmarks:
+    def extract_hand_data(self, hand_landmarks, hand_world_landmarks, handedness: str) -> Optional[Dict]:
+        """
+        Export hand landmarks with wrist orientation.
+        
+        Args:
+            hand_landmarks: Normalized image coordinates (used for 2D if needed)
+            hand_world_landmarks: 3D world coordinates in meters
+            handedness: 'left' or 'right'
+        """
+        if not hand_world_landmarks:
             return None
         
-        landmarks = hand_landmarks if isinstance(hand_landmarks, list) else hand_landmarks
-        
+        # Convert world landmarks to Three.js coordinate system
         landmarks_list = []
-        for lm in landmarks:
+        for lm in hand_world_landmarks:
             landmarks_list.append({
                 "x": float(lm.x),
-                "y": float(lm.y),
-                "z": float(lm.z)
+                "y": float(-lm.y),  # Flip Y (MediaPipe Y+ is down, Three.js Y+ is up)
+                "z": float(-lm.z)   # Flip Z for Three.js
             })
         
-        return {"landmarks": landmarks_list}
-    
+        # Calculate wrist orientation from palm geometry
+        wrist_quat = self._calculate_wrist_orientation(
+            landmarks_list, 
+            is_left=(handedness == 'left')
+        )
+        
+        return {
+            "landmarks": landmarks_list,
+            "wrist_quaternion": wrist_quat
+        }
+
+
+    def _calculate_wrist_orientation(self, landmarks: List[Dict], is_left: bool) -> Dict[str, float]:
+        """
+        Calculate wrist quaternion from palm plane.
+        Uses the palm normal and finger direction to build a rotation matrix.
+        """
+        import numpy as np
+        
+        # Key landmarks (indices from MediaPipe hand model)
+        wrist = np.array([landmarks[0]['x'], landmarks[0]['y'], landmarks[0]['z']])
+        index_mcp = np.array([landmarks[5]['x'], landmarks[5]['y'], landmarks[5]['z']])
+        middle_mcp = np.array([landmarks[9]['x'], landmarks[9]['y'], landmarks[9]['z']])
+        pinky_mcp = np.array([landmarks[17]['x'], landmarks[17]['y'], landmarks[17]['z']])
+        ring_mcp = np.array([landmarks[13]['x'], landmarks[13]['y'], landmarks[13]['z']])
+        
+        # Calculate palm center (average of MCP joints)
+        palm_center = (index_mcp + middle_mcp + ring_mcp + pinky_mcp) / 4.0
+        
+        # Forward direction: wrist to palm center (finger direction)
+        forward = palm_center - wrist
+        forward_len = np.linalg.norm(forward)
+        if forward_len < 1e-8:
+            return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+        forward = forward / forward_len
+        
+        # Palm vectors for normal calculation
+        vec_to_index = index_mcp - wrist
+        vec_to_pinky = pinky_mcp - wrist
+        
+        # Palm normal (perpendicular to palm surface)
+        # Cross product order determines which side is "up"
+        if is_left:
+            palm_normal = np.cross(vec_to_pinky, vec_to_index)
+        else:
+            palm_normal = np.cross(vec_to_index, vec_to_pinky)
+        
+        normal_len = np.linalg.norm(palm_normal)
+        if normal_len < 1e-8:
+            return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+        palm_normal = palm_normal / normal_len
+        
+        # Right vector (perpendicular to both forward and normal)
+        right = np.cross(forward, palm_normal)
+        right_len = np.linalg.norm(right)
+        if right_len < 1e-8:
+            return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+        right = right / right_len
+        
+        # Recalculate palm_normal to ensure orthogonality
+        palm_normal = np.cross(right, forward)
+        palm_normal = palm_normal / (np.linalg.norm(palm_normal) + 1e-8)
+        
+        # Build rotation matrix (columns are the basis vectors)
+        # For RPM hands: X = right, Y = forward (along fingers), Z = palm normal
+        rot_matrix = np.array([
+            [right[0], forward[0], palm_normal[0]],
+            [right[1], forward[1], palm_normal[1]],
+            [right[2], forward[2], palm_normal[2]]
+        ])
+        
+        # Convert rotation matrix to quaternion
+        return self._matrix_to_quaternion(rot_matrix)
+
+
+    def _matrix_to_quaternion(self, m: np.ndarray) -> Dict[str, float]:
+        """Convert 3x3 rotation matrix to quaternion."""
+        import numpy as np
+        
+        trace = m[0, 0] + m[1, 1] + m[2, 2]
+        
+        if trace > 0:
+            s = 0.5 / np.sqrt(trace + 1.0)
+            w = 0.25 / s
+            x = (m[2, 1] - m[1, 2]) * s
+            y = (m[0, 2] - m[2, 0]) * s
+            z = (m[1, 0] - m[0, 1]) * s
+        elif m[0, 0] > m[1, 1] and m[0, 0] > m[2, 2]:
+            s = 2.0 * np.sqrt(1.0 + m[0, 0] - m[1, 1] - m[2, 2])
+            w = (m[2, 1] - m[1, 2]) / s
+            x = 0.25 * s
+            y = (m[0, 1] + m[1, 0]) / s
+            z = (m[0, 2] + m[2, 0]) / s
+        elif m[1, 1] > m[2, 2]:
+            s = 2.0 * np.sqrt(1.0 + m[1, 1] - m[0, 0] - m[2, 2])
+            w = (m[0, 2] - m[2, 0]) / s
+            x = (m[0, 1] + m[1, 0]) / s
+            y = 0.25 * s
+            z = (m[1, 2] + m[2, 1]) / s
+        else:
+            s = 2.0 * np.sqrt(1.0 + m[2, 2] - m[0, 0] - m[1, 1])
+            w = (m[1, 0] - m[0, 1]) / s
+            x = (m[0, 2] + m[2, 0]) / s
+            y = (m[1, 2] + m[2, 1]) / s
+            z = 0.25 * s
+        
+        # Normalize
+        length = np.sqrt(x*x + y*y + z*z + w*w)
+        if length < 1e-8:
+            return {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+        
+        return {
+            "x": float(x / length),
+            "y": float(y / length),
+            "z": float(z / length),
+            "w": float(w / length)
+        }
+
     def extract_face_data(self, face_landmarks) -> Optional[Dict]:
         """Extract facial blendshapes."""
         if not face_landmarks:
@@ -297,10 +419,17 @@ class MotionExtractor:
         
         left_hand_data = None
         right_hand_data = None
-        if hand_results.hand_landmarks and hand_results.handedness:
-            for hand_landmarks, handedness in zip(hand_results.hand_landmarks, hand_results.handedness):
+        
+        # Use WORLD landmarks for hands (critical for 3D orientation)
+        if hand_results.hand_landmarks and hand_results.hand_world_landmarks and hand_results.handedness:
+            for hand_lm, hand_world_lm, handedness in zip(
+                hand_results.hand_landmarks, 
+                hand_results.hand_world_landmarks,
+                hand_results.handedness
+            ):
                 hand_label = handedness[0].category_name.lower()
-                hand_data = self.extract_hand_data(hand_landmarks)
+                hand_data = self.extract_hand_data(hand_lm, hand_world_lm, hand_label)
+                
                 if hand_label == 'left':
                     left_hand_data = hand_data
                 elif hand_label == 'right':

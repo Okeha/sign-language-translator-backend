@@ -115,12 +115,13 @@ class VideoMAEDataset(torch.utils.data.Dataset):
             indices = np.clip(indices, 0, total_frames - 1)
             video = vr.get_batch(indices).asnumpy()  # (NUM_FRAMES, H, W, C)
 
+            
             # ============================================================
             # 🅱️ SPATIAL AUGMENTATION (Flip & Crop)
             # ============================================================
             # 1. Random Horizontal Flip (50%)
-            if random.random() < 0.5:
-                video = np.flip(video, axis=2).copy() # Flip Width
+            # if random.random() < 0.5:
+            #     video = np.flip(video, axis=2).copy() # Flip Width
 
             # 2. Random Brightness/Contrast (70%)
             if random.random() < 0.7:
@@ -170,6 +171,44 @@ class VideoMAEDataset(torch.utils.data.Dataset):
                 selected_indices = np.clip(selected_indices, 0, n_frames - 1)
                 
                 video = video[selected_indices]
+            
+            # 6. Color Jitter (Hue/Saturation) (25% chance)
+            if random.random() < 0.25:
+                video_hsv = np.array([cv2.cvtColor(frame, cv2.COLOR_RGB2HSV) for frame in video])
+                
+                # Hue shift
+                hue_shift = random.randint(-10, 10)
+                video_hsv[:, :, :, 0] = (video_hsv[:, :, :, 0].astype(int) + hue_shift) % 180
+                
+                # Saturation shift
+                sat_factor = random.uniform(0.8, 1.2)
+                video_hsv[:, :, :, 1] = np.clip(video_hsv[:, :, :, 1] * sat_factor, 0, 255)
+                
+                video = np.array([cv2.cvtColor(frame, cv2.COLOR_HSV2RGB) for frame in video_hsv])
+
+            # 8. Gaussian Noise (15%)
+            if random.random() < 0.15:
+                noise = np.random.randn(*video.shape) * 255 * 0.05
+                video = np.clip(video + noise, 0, 255).astype(np.uint8)
+
+            # 9. Gaussian Blur (15%)
+            if random.random() < 0.15:
+                kernel_size = random.choice([3, 5])
+                video = np.array([cv2.GaussianBlur(frame, (kernel_size, kernel_size), 0) for frame in video])
+
+            # 10. Motion Blur (15%)
+            if random.random() < 0.15:
+                kernel_size = random.choice([5, 7])
+                kernel = np.zeros((kernel_size, kernel_size))
+                kernel[kernel_size // 2, :] = 1.0 / kernel_size
+                video = np.array([cv2.filter2D(frame, -1, kernel) for frame in video])
+
+            # 11. Frame Dropping (25%)
+            if random.random() < 0.25:
+                num_drops = random.randint(1, 2)
+                for _ in range(num_drops):
+                    drop_idx = random.randint(1, len(video) - 2)
+                    video[drop_idx] = video[drop_idx - 1]  # Duplicate previous frame
 
             inputs = self.processor(list(video), return_tensors="pt")
 
@@ -263,7 +302,7 @@ class VideoMAEFineTuner:
         # 2. Unfreeze the last 4 layers of the encoder (VideoMAE Base has 12 layers)
         # This allows the model to learn high-level sign language features
         # while keeping low-level motion features stable.
-        layers_to_unfreeze = 8
+        layers_to_unfreeze = 16
         encoder_layers = self.model.videomae.encoder.layer
         
         for i in range(len(encoder_layers) - layers_to_unfreeze, len(encoder_layers)):
@@ -321,6 +360,7 @@ class VideoMAEFineTuner:
             metric_for_best_model="top5_accuracy",
             load_best_model_at_end=True,
             label_smoothing_factor=0.1, 
+            lr_scheduler_type="cosine",
             fp16=True
         )
 
@@ -344,5 +384,5 @@ class VideoMAEFineTuner:
 
 if __name__ == "__main__":
     finetuner = VideoMAEFineTuner()
-    finetuner.train()
+    finetuner.train() 
     # finetuner.get_glosses()

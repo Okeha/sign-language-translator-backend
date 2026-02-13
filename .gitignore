@@ -19,3 +19,5 @@ video_mae_finetuned_final/
 /results
 /checkpoints
 /datasets
+archived_models
+/videomae_base

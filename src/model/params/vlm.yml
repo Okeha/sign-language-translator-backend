@@ -48,8 +48,8 @@ video_mae_params:
     per_device_train_batch_size: 1
     per_device_eval_batch_size: 1
     gradient_accumulation_steps: 8
-    num_train_epochs: 40
+    num_train_epochs: 20
     learning_rate: 0.00005
     weight_decay: 0.025
-    warmup_steps: 500
+    warmup_steps: 1000
     output_dir: "./video_mae_finetuned_final"

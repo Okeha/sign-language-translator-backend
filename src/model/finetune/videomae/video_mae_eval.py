@@ -172,5 +172,5 @@ class VideoMAEEvaluator:
 if __name__ == "__main__":
     # Ensure you point to the folder where trainer.save_model() saved the files
     # Usually "./video_mae_finetuned" or a specific checkpoint folder
-    evaluator = VideoMAEEvaluator(model_path="./video_mae_finetuned/checkpoint-21048", batch_size=8)
+    evaluator = VideoMAEEvaluator(model_path="./video_mae_finetuned_final", batch_size=8)
     evaluator.evaluate()

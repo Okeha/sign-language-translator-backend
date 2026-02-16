@@ -203,13 +203,6 @@ class VideoMAEDataset(torch.utils.data.Dataset):
                 kernel[kernel_size // 2, :] = 1.0 / kernel_size
                 video = np.array([cv2.filter2D(frame, -1, kernel) for frame in video])
 
-            # 11. Frame Dropping (25%)
-            if random.random() < 0.25:
-                num_drops = random.randint(1, 2)
-                for _ in range(num_drops):
-                    drop_idx = random.randint(1, len(video) - 2)
-                    video[drop_idx] = video[drop_idx - 1]  # Duplicate previous frame
-
             inputs = self.processor(list(video), return_tensors="pt")
 
             return {

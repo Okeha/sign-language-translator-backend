@@ -6,6 +6,7 @@ import time
 from typing import Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 import torch
 import json
 
@@ -182,53 +183,127 @@ async def interpret_glosses(request: InterpretGlossesRequest):
             detail=f"Sentence generation failed: {str(e)}"
         )
 
+# === OLD /chat endpoint (kept for reference, may be re-enabled in the future) ===
+# @app.post("/chat", response_model=ChatResponse)
+# async def chat(request: ChatRequest):
+#     """
+#     General chat endpoint using the same LLM as interpret-glosses
+    
+#     Accepts a user message and returns an LLM response without reasoning.
+    
+#     Request body:
+#     {
+#         "message": "What is the capital of France?"
+#     }
+    
+#     Response:
+#     {
+#         "response": "The capital of France is Paris.",
+#         "timestamp": 1736640000000
+#     }
+#     """
+#     if not sentence_service or not sentence_service.is_loaded():
+#         raise HTTPException(
+#             status_code=503,
+#             detail="Chat service not available. LLM model failed to load."
+#         )
+    
+#     try:
+#         logger.info(f"Chat request: {request.message[:100]}...")
+        
+#         # Generate response using Qwen chat method
+#         response = sentence_service.chat(request.message)
 
+        
+        
+#         logger.info(f"Chat response: {response[:100]}...")
+        
+#         return ChatResponse(
+#             response=response,
+#             timestamp=int(time.time() * 1000)
+#         )
+        
+#     except Exception as e:
+#         logger.error(f"Failed to generate chat response: {str(e)}")
+#         raise HTTPException(
+#             status_code=500,
+#             detail=f"Chat generation failed: {str(e)}"
+#         )
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """
-    General chat endpoint using the same LLM as interpret-glosses
-    
-    Accepts a user message and returns an LLM response without reasoning.
-    
-    Request body:
-    {
-        "message": "What is the capital of France?"
-    }
-    
-    Response:
-    {
-        "response": "The capital of France is Paris.",
-        "timestamp": 1736640000000
-    }
-    """
+    """Chat endpoint with session memory (non-streaming)"""
     if not sentence_service or not sentence_service.is_loaded():
         raise HTTPException(
             status_code=503,
-            detail="Chat service not available. LLM model failed to load."
+            detail="Chat service not available. LLM model failed to load.",
         )
-    
-    try:
-        logger.info(f"Chat request: {request.message[:100]}...")
-        
-        # Generate response using Qwen chat method
-        response = sentence_service.chat(request.message)
 
-        
-        
+    try:
+        logger.info(f"Chat request [{request.session_id}]: {request.message[:100]}...")
+
+        response = sentence_service.chat(
+            request.message,
+            session_id=request.session_id,
+        )
+
         logger.info(f"Chat response: {response[:100]}...")
-        
+
         return ChatResponse(
             response=response,
-            timestamp=int(time.time() * 1000)
+            timestamp=int(time.time() * 1000),
         )
-        
+
     except Exception as e:
         logger.error(f"Failed to generate chat response: {str(e)}")
         raise HTTPException(
             status_code=500,
-            detail=f"Chat generation failed: {str(e)}"
+            detail=f"Chat generation failed: {str(e)}",
         )
 
+@app.post("/chat/stream")
+async def chat_stream(request: ChatRequest):
+    """ 
+    Streaming chat endpoint using server-sent events
+
+    Streams tokens as they are generated. Each SSE event contains a JSON payload with a token or a done signal
+
+    SSE Format:
+        data: {"token": "The"}
+        data: {"token": " capital"}
+        data: {"token": " of"}
+        data: {"token": " France"}  
+        data: {"done": true}
+    """
+
+    if not sentence_service or not sentence_service.is_loaded():
+        raise HTTPException(
+            status_code=503,
+            detail = "Chat service not available. LLM model failed to load.",
+        )
+    
+    def event_generator():
+        try:
+            for token in sentence_service.chat_stream(
+                request.message,
+                session_id = request.session_id,
+            ):
+                yield f"data: {json.dumps({'token': token})}\n\n"
+
+            yield f"data: {json.dumps({'done': True})}\n\n"
+
+        except Exception as e:
+            logger.error(f"Streaming Chat Error: {str(e)}")
+            yield f"data: {json.dumps({'error': 'Chat generation failed: ' + str(e)})}\n\n"
+
+    return StreamingResponse(
+        event_generator(),
+        media_type = "text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        }
+    )
 
 @app.websocket("/ws/stream/{session_id}")
 async def websocket_endpoint(websocket: WebSocket, session_id: str):

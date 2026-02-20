@@ -74,7 +74,7 @@ class ErrorResponse(BaseModel):
 class InterpretGlossesRequest(BaseModel):
     """Request for interpreting gloss sequences to natural language"""
     
-    input: List[List[str]] = Field(
+    input: List[List[Tuple[str, float]]] = Field(
         ...,
         description="2D array of glosses. Each inner array represents a video chunk with 5 possible glosses",
         min_length=1
@@ -82,7 +82,7 @@ class InterpretGlossesRequest(BaseModel):
     
     @field_validator('input')
     @classmethod
-    def validate_input(cls, v: List[List[str]]) -> List[List[str]]:
+    def validate_input(cls, v: List[List[Tuple[str, float]]]) -> List[List[Tuple[str, float]]]:
         """Validate that each chunk has glosses"""
         for idx, chunk in enumerate(v):
             if len(chunk) == 0:
@@ -99,6 +99,7 @@ class ChatRequest(BaseModel):
         min_length=1,
         max_length=2000
     )
+    session_id: Optional[str] = None
 
 class SentenceToGlossRequest(BaseModel):
     """Request for converting a sentence to gloss sequence"""

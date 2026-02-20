@@ -1,0 +1,4310 @@
+[
+    {
+        "video_path": "./../data_engineering/raw_videos/11253.mp4",
+        "ground_truth": "close",
+        "predicted_gloss": "house",
+        "top_5_predictions": [
+            "house",
+            "family",
+            "important",
+            "arrive",
+            "mother"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/24609.mp4",
+        "ground_truth": "girl",
+        "predicted_gloss": "girl",
+        "top_5_predictions": [
+            "girl",
+            "green",
+            "yesterday",
+            "who",
+            "home"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/10769.mp4",
+        "ground_truth": "church",
+        "predicted_gloss": "night",
+        "top_5_predictions": [
+            "night",
+            "watch",
+            "church",
+            "school",
+            "afternoon"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28205.mp4",
+        "ground_truth": "how",
+        "predicted_gloss": "how",
+        "top_5_predictions": [
+            "how",
+            "book",
+            "run",
+            "family",
+            "come"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/24955.mp4",
+        "ground_truth": "go",
+        "predicted_gloss": "go",
+        "top_5_predictions": [
+            "go",
+            "doctor",
+            "answer",
+            "change",
+            "leave"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69489.mp4",
+        "ground_truth": "store",
+        "predicted_gloss": "store",
+        "top_5_predictions": [
+            "store",
+            "clothes",
+            "problem",
+            "boss",
+            "big"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69442.mp4",
+        "ground_truth": "question",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "child",
+            "bored",
+            "reason",
+            "never"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69387.mp4",
+        "ground_truth": "lift",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "lift",
+            "new",
+            "room",
+            "maybe"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/32304.mp4",
+        "ground_truth": "late",
+        "predicted_gloss": "late",
+        "top_5_predictions": [
+            "late",
+            "afternoon",
+            "weak",
+            "them",
+            "nervous"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/10450.mp4",
+        "ground_truth": "child",
+        "predicted_gloss": "short",
+        "top_5_predictions": [
+            "short",
+            "child",
+            "soon",
+            "must",
+            "today"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/54461.mp4",
+        "ground_truth": "start",
+        "predicted_gloss": "first",
+        "top_5_predictions": [
+            "first",
+            "how",
+            "start",
+            "weak",
+            "train"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/01986.mp4",
+        "ground_truth": "all",
+        "predicted_gloss": "some",
+        "top_5_predictions": [
+            "some",
+            "good",
+            "before",
+            "arrive",
+            "week"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/59991.mp4",
+        "ground_truth": "turn",
+        "predicted_gloss": "turn",
+        "top_5_predictions": [
+            "turn",
+            "happy",
+            "walk",
+            "we",
+            "library"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69347.mp4",
+        "ground_truth": "good",
+        "predicted_gloss": "good",
+        "top_5_predictions": [
+            "good",
+            "before",
+            "tv",
+            "feel",
+            "white"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28441.mp4",
+        "ground_truth": "hurt",
+        "predicted_gloss": "room",
+        "top_5_predictions": [
+            "room",
+            "car",
+            "play",
+            "tired",
+            "people"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/34581.mp4",
+        "ground_truth": "make",
+        "predicted_gloss": "year",
+        "top_5_predictions": [
+            "year",
+            "night",
+            "make",
+            "enough",
+            "start"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/04858.mp4",
+        "ground_truth": "ball",
+        "predicted_gloss": "ball",
+        "top_5_predictions": [
+            "ball",
+            "afraid",
+            "language",
+            "about",
+            "clothes"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/14437.mp4",
+        "ground_truth": "customer",
+        "predicted_gloss": "take",
+        "top_5_predictions": [
+            "take",
+            "car",
+            "big",
+            "short",
+            "now"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/38336.mp4",
+        "ground_truth": "night",
+        "predicted_gloss": "after",
+        "top_5_predictions": [
+            "after",
+            "afternoon",
+            "night",
+            "watch",
+            "doctor"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/43062.mp4",
+        "ground_truth": "plan",
+        "predicted_gloss": "open",
+        "top_5_predictions": [
+            "open",
+            "close",
+            "room",
+            "box",
+            "short"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69342.mp4",
+        "ground_truth": "girl",
+        "predicted_gloss": "girl",
+        "top_5_predictions": [
+            "girl",
+            "reason",
+            "lonely",
+            "tomorrow",
+            "think"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/06834.mp4",
+        "ground_truth": "blue",
+        "predicted_gloss": "angry",
+        "top_5_predictions": [
+            "angry",
+            "woman",
+            "confused",
+            "morning",
+            "mother"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/35544.mp4",
+        "ground_truth": "me",
+        "predicted_gloss": "old",
+        "top_5_predictions": [
+            "old",
+            "proud",
+            "purple",
+            "car",
+            "police"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/24638.mp4",
+        "ground_truth": "give",
+        "predicted_gloss": "give",
+        "top_5_predictions": [
+            "give",
+            "restaurant",
+            "orange",
+            "old",
+            "green"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/22721.mp4",
+        "ground_truth": "follow",
+        "predicted_gloss": "close",
+        "top_5_predictions": [
+            "close",
+            "how",
+            "street",
+            "help",
+            "plan"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/39957.mp4",
+        "ground_truth": "open",
+        "predicted_gloss": "door",
+        "top_5_predictions": [
+            "door",
+            "close",
+            "before",
+            "tired",
+            "box"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/55283.mp4",
+        "ground_truth": "strong",
+        "predicted_gloss": "make",
+        "top_5_predictions": [
+            "make",
+            "cold",
+            "year",
+            "last",
+            "move"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/27596.mp4",
+        "ground_truth": "hit",
+        "predicted_gloss": "all",
+        "top_5_predictions": [
+            "all",
+            "leave",
+            "when",
+            "go",
+            "from"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/54995.mp4",
+        "ground_truth": "story",
+        "predicted_gloss": "number",
+        "top_5_predictions": [
+            "number",
+            "house",
+            "sign",
+            "short",
+            "city"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51615.mp4",
+        "ground_truth": "sign",
+        "predicted_gloss": "sign",
+        "top_5_predictions": [
+            "sign",
+            "when",
+            "go",
+            "walk",
+            "play"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/43525.mp4",
+        "ground_truth": "police",
+        "predicted_gloss": "police",
+        "top_5_predictions": [
+            "police",
+            "ball",
+            "dirty",
+            "afternoon",
+            "afraid"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63879.mp4",
+        "ground_truth": "worry",
+        "predicted_gloss": "teacher",
+        "top_5_predictions": [
+            "teacher",
+            "confused",
+            "worry",
+            "student",
+            "because"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69319.mp4",
+        "ground_truth": "feel",
+        "predicted_gloss": "feel",
+        "top_5_predictions": [
+            "feel",
+            "have",
+            "tv",
+            "yellow",
+            "excited"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/23774.mp4",
+        "ground_truth": "full",
+        "predicted_gloss": "full",
+        "top_5_predictions": [
+            "full",
+            "drink",
+            "woman",
+            "yesterday",
+            "man"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/26530.mp4",
+        "ground_truth": "happy",
+        "predicted_gloss": "happy",
+        "top_5_predictions": [
+            "happy",
+            "turn",
+            "hospital",
+            "help",
+            "like"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62746.mp4",
+        "ground_truth": "week",
+        "predicted_gloss": "week",
+        "top_5_predictions": [
+            "week",
+            "close",
+            "what",
+            "family",
+            "different"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08130.mp4",
+        "ground_truth": "building",
+        "predicted_gloss": "house",
+        "top_5_predictions": [
+            "house",
+            "student",
+            "people",
+            "put",
+            "play"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/07458.mp4",
+        "ground_truth": "boy",
+        "predicted_gloss": "boy",
+        "top_5_predictions": [
+            "boy",
+            "why",
+            "drink",
+            "because",
+            "will"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/34823.mp4",
+        "ground_truth": "many",
+        "predicted_gloss": "now",
+        "top_5_predictions": [
+            "now",
+            "calm",
+            "none",
+            "that",
+            "medicine"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/06472.mp4",
+        "ground_truth": "black",
+        "predicted_gloss": "black",
+        "top_5_predictions": [
+            "black",
+            "why",
+            "girl",
+            "know",
+            "think"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/22015.mp4",
+        "ground_truth": "fire",
+        "predicted_gloss": "many",
+        "top_5_predictions": [
+            "many",
+            "wait",
+            "sad",
+            "fire",
+            "before"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48995.mp4",
+        "ground_truth": "safe",
+        "predicted_gloss": "safe",
+        "top_5_predictions": [
+            "safe",
+            "team",
+            "change",
+            "none",
+            "loud"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/19760.mp4",
+        "ground_truth": "event",
+        "predicted_gloss": "person",
+        "top_5_predictions": [
+            "person",
+            "can",
+            "lift",
+            "today",
+            "event"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69219.mp4",
+        "ground_truth": "bad",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "white",
+            "good",
+            "bad",
+            "farm"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/54925.mp4",
+        "ground_truth": "stop",
+        "predicted_gloss": "some",
+        "top_5_predictions": [
+            "some",
+            "sister",
+            "bad",
+            "stop",
+            "minute"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/33051.mp4",
+        "ground_truth": "library",
+        "predicted_gloss": "library",
+        "top_5_predictions": [
+            "library",
+            "event",
+            "feel",
+            "play",
+            "see"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08942.mp4",
+        "ground_truth": "can",
+        "predicted_gloss": "take",
+        "top_5_predictions": [
+            "take",
+            "now",
+            "must",
+            "short",
+            "today"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69412.mp4",
+        "ground_truth": "none",
+        "predicted_gloss": "cold",
+        "top_5_predictions": [
+            "cold",
+            "none",
+            "safe",
+            "maybe",
+            "short"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/56557.mp4",
+        "ground_truth": "table",
+        "predicted_gloss": "table",
+        "top_5_predictions": [
+            "table",
+            "night",
+            "afternoon",
+            "time",
+            "child"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69389.mp4",
+        "ground_truth": "like",
+        "predicted_gloss": "like",
+        "top_5_predictions": [
+            "like",
+            "white",
+            "nervous",
+            "problem",
+            "police"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/11769.mp4",
+        "ground_truth": "color",
+        "predicted_gloss": "pink",
+        "top_5_predictions": [
+            "pink",
+            "mother",
+            "color",
+            "light",
+            "bad"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69221.mp4",
+        "ground_truth": "ball",
+        "predicted_gloss": "ball",
+        "top_5_predictions": [
+            "ball",
+            "city",
+            "choice",
+            "building",
+            "world"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62452.mp4",
+        "ground_truth": "watch",
+        "predicted_gloss": "when",
+        "top_5_predictions": [
+            "when",
+            "card",
+            "year",
+            "from",
+            "move"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69360.mp4",
+        "ground_truth": "have",
+        "predicted_gloss": "have",
+        "top_5_predictions": [
+            "have",
+            "angry",
+            "body",
+            "tired",
+            "nervous"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/01373.mp4",
+        "ground_truth": "afraid",
+        "predicted_gloss": "angry",
+        "top_5_predictions": [
+            "angry",
+            "next",
+            "baby",
+            "body",
+            "afraid"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69505.mp4",
+        "ground_truth": "think",
+        "predicted_gloss": "think",
+        "top_5_predictions": [
+            "think",
+            "reason",
+            "mind",
+            "orange",
+            "tv"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08706.mp4",
+        "ground_truth": "call",
+        "predicted_gloss": "same",
+        "top_5_predictions": [
+            "same",
+            "train",
+            "walk",
+            "like",
+            "move"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/57671.mp4",
+        "ground_truth": "that",
+        "predicted_gloss": "find",
+        "top_5_predictions": [
+            "find",
+            "few",
+            "library",
+            "where",
+            "eight"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63087.mp4",
+        "ground_truth": "where",
+        "predicted_gloss": "tell",
+        "top_5_predictions": [
+            "tell",
+            "bus",
+            "lonely",
+            "same",
+            "choice"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62967.mp4",
+        "ground_truth": "what",
+        "predicted_gloss": "good",
+        "top_5_predictions": [
+            "good",
+            "new",
+            "sister",
+            "hope",
+            "before"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/38015.mp4",
+        "ground_truth": "nervous",
+        "predicted_gloss": "drop",
+        "top_5_predictions": [
+            "drop",
+            "move",
+            "close",
+            "proud",
+            "late"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/05729.mp4",
+        "ground_truth": "before",
+        "predicted_gloss": "before",
+        "top_5_predictions": [
+            "before",
+            "box",
+            "room",
+            "run",
+            "tomorrow"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/46734.mp4",
+        "ground_truth": "red",
+        "predicted_gloss": "pink",
+        "top_5_predictions": [
+            "pink",
+            "lonely",
+            "red",
+            "one",
+            "which"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/52552.mp4",
+        "ground_truth": "small",
+        "predicted_gloss": "door",
+        "top_5_predictions": [
+            "door",
+            "open",
+            "small",
+            "without",
+            "hour"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/25072.mp4",
+        "ground_truth": "good",
+        "predicted_gloss": "good",
+        "top_5_predictions": [
+            "good",
+            "bad",
+            "what",
+            "sad",
+            "week"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/59851.mp4",
+        "ground_truth": "try",
+        "predicted_gloss": "take",
+        "top_5_predictions": [
+            "take",
+            "now",
+            "big",
+            "short",
+            "today"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/27206.mp4",
+        "ground_truth": "help",
+        "predicted_gloss": "help",
+        "top_5_predictions": [
+            "help",
+            "sister",
+            "again",
+            "afternoon",
+            "school"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69337.mp4",
+        "ground_truth": "from",
+        "predicted_gloss": "from",
+        "top_5_predictions": [
+            "from",
+            "hit",
+            "minute",
+            "tv",
+            "answer"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/53293.mp4",
+        "ground_truth": "soon",
+        "predicted_gloss": "soon",
+        "top_5_predictions": [
+            "soon",
+            "food",
+            "who",
+            "eat",
+            "you"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69244.mp4",
+        "ground_truth": "box",
+        "predicted_gloss": "room",
+        "top_5_predictions": [
+            "room",
+            "before",
+            "box",
+            "problem",
+            "bad"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/23574.mp4",
+        "ground_truth": "friend",
+        "predicted_gloss": "friend",
+        "top_5_predictions": [
+            "friend",
+            "but",
+            "first",
+            "change",
+            "language"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69395.mp4",
+        "ground_truth": "man",
+        "predicted_gloss": "man",
+        "top_5_predictions": [
+            "man",
+            "sick",
+            "because",
+            "woman",
+            "black"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/38994.mp4",
+        "ground_truth": "now",
+        "predicted_gloss": "can",
+        "top_5_predictions": [
+            "can",
+            "what",
+            "where",
+            "child",
+            "want"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/31564.mp4",
+        "ground_truth": "key",
+        "predicted_gloss": "key",
+        "top_5_predictions": [
+            "key",
+            "from",
+            "minute",
+            "how",
+            "come"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/09235.mp4",
+        "ground_truth": "car",
+        "predicted_gloss": "car",
+        "top_5_predictions": [
+            "car",
+            "play",
+            "need",
+            "strong",
+            "last"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64085.mp4",
+        "ground_truth": "wrong",
+        "predicted_gloss": "color",
+        "top_5_predictions": [
+            "color",
+            "wrong",
+            "mother",
+            "bad",
+            "few"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/22748.mp4",
+        "ground_truth": "food",
+        "predicted_gloss": "eat",
+        "top_5_predictions": [
+            "eat",
+            "bed",
+            "take",
+            "brown",
+            "food"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69433.mp4",
+        "ground_truth": "play",
+        "predicted_gloss": "nervous",
+        "top_5_predictions": [
+            "nervous",
+            "tv",
+            "play",
+            "have",
+            "excited"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/58499.mp4",
+        "ground_truth": "time",
+        "predicted_gloss": "watch",
+        "top_5_predictions": [
+            "watch",
+            "same",
+            "start",
+            "again",
+            "chair"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51128.mp4",
+        "ground_truth": "shoes",
+        "predicted_gloss": "shoes",
+        "top_5_predictions": [
+            "shoes",
+            "close",
+            "same",
+            "take",
+            "answer"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63417.mp4",
+        "ground_truth": "window",
+        "predicted_gloss": "happy",
+        "top_5_predictions": [
+            "happy",
+            "window",
+            "next",
+            "bottle",
+            "about"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69432.mp4",
+        "ground_truth": "place",
+        "predicted_gloss": "language",
+        "top_5_predictions": [
+            "language",
+            "what",
+            "want",
+            "give",
+            "thing"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36142.mp4",
+        "ground_truth": "mine",
+        "predicted_gloss": "like",
+        "top_5_predictions": [
+            "like",
+            "before",
+            "room",
+            "afraid",
+            "good"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08786.mp4",
+        "ground_truth": "camera",
+        "predicted_gloss": "teacher",
+        "top_5_predictions": [
+            "teacher",
+            "card",
+            "hope",
+            "why",
+            "goal"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/04974.mp4",
+        "ground_truth": "bank",
+        "predicted_gloss": "ask",
+        "top_5_predictions": [
+            "ask",
+            "follow",
+            "before",
+            "bus",
+            "go"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/17013.mp4",
+        "ground_truth": "doctor",
+        "predicted_gloss": "again",
+        "top_5_predictions": [
+            "again",
+            "doctor",
+            "nurse",
+            "leave",
+            "weak"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69494.mp4",
+        "ground_truth": "student",
+        "predicted_gloss": "again",
+        "top_5_predictions": [
+            "again",
+            "weak",
+            "new",
+            "doctor",
+            "slow"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/27922.mp4",
+        "ground_truth": "hope",
+        "predicted_gloss": "hope",
+        "top_5_predictions": [
+            "hope",
+            "come",
+            "many",
+            "last",
+            "people"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69430.mp4",
+        "ground_truth": "pink",
+        "predicted_gloss": "pink",
+        "top_5_predictions": [
+            "pink",
+            "true",
+            "restaurant",
+            "tv",
+            "who"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/22086.mp4",
+        "ground_truth": "first",
+        "predicted_gloss": "second",
+        "top_5_predictions": [
+            "second",
+            "from",
+            "with",
+            "before",
+            "friend"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/53212.mp4",
+        "ground_truth": "some",
+        "predicted_gloss": "all",
+        "top_5_predictions": [
+            "all",
+            "before",
+            "week",
+            "new",
+            "kitchen"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/38130.mp4",
+        "ground_truth": "new",
+        "predicted_gloss": "full",
+        "top_5_predictions": [
+            "full",
+            "help",
+            "baby",
+            "bring",
+            "room"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69524.mp4",
+        "ground_truth": "want",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "what",
+            "want",
+            "wait",
+            "bring"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/03607.mp4",
+        "ground_truth": "ask",
+        "predicted_gloss": "one",
+        "top_5_predictions": [
+            "one",
+            "tell",
+            "brother",
+            "ask",
+            "care"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69512.mp4",
+        "ground_truth": "today",
+        "predicted_gloss": "today",
+        "top_5_predictions": [
+            "today",
+            "tv",
+            "now",
+            "bring",
+            "fire"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48810.mp4",
+        "ground_truth": "run",
+        "predicted_gloss": "run",
+        "top_5_predictions": [
+            "run",
+            "help",
+            "follow",
+            "start",
+            "how"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/07578.mp4",
+        "ground_truth": "brave",
+        "predicted_gloss": "take",
+        "top_5_predictions": [
+            "take",
+            "car",
+            "have",
+            "clothes",
+            "angry"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/41028.mp4",
+        "ground_truth": "paper",
+        "predicted_gloss": "paper",
+        "top_5_predictions": [
+            "paper",
+            "book",
+            "full",
+            "new",
+            "brown"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/47661.mp4",
+        "ground_truth": "restaurant",
+        "predicted_gloss": "pink",
+        "top_5_predictions": [
+            "pink",
+            "if",
+            "girl",
+            "red",
+            "blue"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/57278.mp4",
+        "ground_truth": "tell",
+        "predicted_gloss": "pink",
+        "top_5_predictions": [
+            "pink",
+            "one",
+            "tell",
+            "true",
+            "red"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/17710.mp4",
+        "ground_truth": "drink",
+        "predicted_gloss": "mother",
+        "top_5_predictions": [
+            "mother",
+            "brown",
+            "father",
+            "woman",
+            "why"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69450.mp4",
+        "ground_truth": "sad",
+        "predicted_gloss": "sad",
+        "top_5_predictions": [
+            "sad",
+            "sick",
+            "soon",
+            "happy",
+            "hot"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28791.mp4",
+        "ground_truth": "i",
+        "predicted_gloss": "one",
+        "top_5_predictions": [
+            "one",
+            "find",
+            "bus",
+            "same",
+            "short"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/56698.mp4",
+        "ground_truth": "take",
+        "predicted_gloss": "take",
+        "top_5_predictions": [
+            "take",
+            "same",
+            "this",
+            "like",
+            "purple"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/38376.mp4",
+        "ground_truth": "nine",
+        "predicted_gloss": "three",
+        "top_5_predictions": [
+            "three",
+            "many",
+            "before",
+            "now",
+            "choice"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/17327.mp4",
+        "ground_truth": "door",
+        "predicted_gloss": "door",
+        "top_5_predictions": [
+            "door",
+            "important",
+            "family",
+            "brown",
+            "push"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69375.mp4",
+        "ground_truth": "if",
+        "predicted_gloss": "think",
+        "top_5_predictions": [
+            "think",
+            "home",
+            "mind",
+            "food",
+            "reason"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/37421.mp4",
+        "ground_truth": "must",
+        "predicted_gloss": "must",
+        "top_5_predictions": [
+            "must",
+            "hope",
+            "people",
+            "brother",
+            "she"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/07962.mp4",
+        "ground_truth": "brown",
+        "predicted_gloss": "brown",
+        "top_5_predictions": [
+            "brown",
+            "mother",
+            "quiet",
+            "door",
+            "father"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/16409.mp4",
+        "ground_truth": "dirty",
+        "predicted_gloss": "dirty",
+        "top_5_predictions": [
+            "dirty",
+            "soon",
+            "white",
+            "table",
+            "police"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/17724.mp4",
+        "ground_truth": "drink",
+        "predicted_gloss": "bored",
+        "top_5_predictions": [
+            "bored",
+            "drink",
+            "orange",
+            "black",
+            "old"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51621.mp4",
+        "ground_truth": "sign",
+        "predicted_gloss": "sign",
+        "top_5_predictions": [
+            "sign",
+            "follow",
+            "run",
+            "from",
+            "hour"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62742.mp4",
+        "ground_truth": "week",
+        "predicted_gloss": "minute",
+        "top_5_predictions": [
+            "minute",
+            "run",
+            "room",
+            "right",
+            "book"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/24940.mp4",
+        "ground_truth": "go",
+        "predicted_gloss": "when",
+        "top_5_predictions": [
+            "when",
+            "card",
+            "hot",
+            "student",
+            "need"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/32156.mp4",
+        "ground_truth": "language",
+        "predicted_gloss": "language",
+        "top_5_predictions": [
+            "language",
+            "computer",
+            "maybe",
+            "mother",
+            "carry"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69217.mp4",
+        "ground_truth": "baby",
+        "predicted_gloss": "box",
+        "top_5_predictions": [
+            "box",
+            "baby",
+            "body",
+            "before",
+            "room"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/07243.mp4",
+        "ground_truth": "boss",
+        "predicted_gloss": "leave",
+        "top_5_predictions": [
+            "leave",
+            "go",
+            "boss",
+            "big",
+            "happy"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36248.mp4",
+        "ground_truth": "minute",
+        "predicted_gloss": "hour",
+        "top_5_predictions": [
+            "hour",
+            "with",
+            "how",
+            "minute",
+            "city"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63783.mp4",
+        "ground_truth": "worker",
+        "predicted_gloss": "last",
+        "top_5_predictions": [
+            "last",
+            "work",
+            "make",
+            "year",
+            "close"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/32249.mp4",
+        "ground_truth": "last",
+        "predicted_gloss": "last",
+        "top_5_predictions": [
+            "last",
+            "name",
+            "hot",
+            "call",
+            "hard"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/37087.mp4",
+        "ground_truth": "move",
+        "predicted_gloss": "put",
+        "top_5_predictions": [
+            "put",
+            "move",
+            "name",
+            "chair",
+            "take"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69257.mp4",
+        "ground_truth": "can",
+        "predicted_gloss": "take",
+        "top_5_predictions": [
+            "take",
+            "tv",
+            "put",
+            "close",
+            "can"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69275.mp4",
+        "ground_truth": "come",
+        "predicted_gloss": "come",
+        "top_5_predictions": [
+            "come",
+            "from",
+            "minute",
+            "fast",
+            "hit"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/11623.mp4",
+        "ground_truth": "cold",
+        "predicted_gloss": "cold",
+        "top_5_predictions": [
+            "cold",
+            "team",
+            "take",
+            "more",
+            "with"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/20980.mp4",
+        "ground_truth": "family",
+        "predicted_gloss": "family",
+        "top_5_predictions": [
+            "family",
+            "book",
+            "sad",
+            "important",
+            "house"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/05630.mp4",
+        "ground_truth": "bed",
+        "predicted_gloss": "bed",
+        "top_5_predictions": [
+            "bed",
+            "city",
+            "full",
+            "key",
+            "quiet"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69405.mp4",
+        "ground_truth": "name",
+        "predicted_gloss": "name",
+        "top_5_predictions": [
+            "name",
+            "nurse",
+            "problem",
+            "chair",
+            "about"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62591.mp4",
+        "ground_truth": "weak",
+        "predicted_gloss": "weak",
+        "top_5_predictions": [
+            "weak",
+            "medicine",
+            "again",
+            "help",
+            "jump"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/05629.mp4",
+        "ground_truth": "bed",
+        "predicted_gloss": "bed",
+        "top_5_predictions": [
+            "bed",
+            "brown",
+            "farm",
+            "know",
+            "sleep"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/02710.mp4",
+        "ground_truth": "answer",
+        "predicted_gloss": "different",
+        "top_5_predictions": [
+            "different",
+            "answer",
+            "question",
+            "go",
+            "change"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/21099.mp4",
+        "ground_truth": "farm",
+        "predicted_gloss": "bad",
+        "top_5_predictions": [
+            "bad",
+            "mother",
+            "pink",
+            "hospital",
+            "woman"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/39093.mp4",
+        "ground_truth": "nurse",
+        "predicted_gloss": "money",
+        "top_5_predictions": [
+            "money",
+            "medicine",
+            "care",
+            "help",
+            "kitchen"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36828.mp4",
+        "ground_truth": "more",
+        "predicted_gloss": "more",
+        "top_5_predictions": [
+            "more",
+            "ball",
+            "none",
+            "team",
+            "number"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/09963.mp4",
+        "ground_truth": "change",
+        "predicted_gloss": "go",
+        "top_5_predictions": [
+            "go",
+            "care",
+            "change",
+            "nurse",
+            "same"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69422.mp4",
+        "ground_truth": "orange",
+        "predicted_gloss": "orange",
+        "top_5_predictions": [
+            "orange",
+            "girl",
+            "home",
+            "who",
+            "yesterday"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28038.mp4",
+        "ground_truth": "hospital",
+        "predicted_gloss": "hospital",
+        "top_5_predictions": [
+            "hospital",
+            "we",
+            "poor",
+            "afternoon",
+            "year"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62505.mp4",
+        "ground_truth": "water",
+        "predicted_gloss": "water",
+        "top_5_predictions": [
+            "water",
+            "drink",
+            "who",
+            "hot",
+            "farm"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69402.mp4",
+        "ground_truth": "mother",
+        "predicted_gloss": "mother",
+        "top_5_predictions": [
+            "mother",
+            "find",
+            "eight",
+            "if",
+            "bored"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69479.mp4",
+        "ground_truth": "sleep",
+        "predicted_gloss": "sleep",
+        "top_5_predictions": [
+            "sleep",
+            "reason",
+            "red",
+            "find",
+            "tell"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/61062.mp4",
+        "ground_truth": "use",
+        "predicted_gloss": "computer",
+        "top_5_predictions": [
+            "computer",
+            "use",
+            "paper",
+            "afternoon",
+            "minute"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/16194.mp4",
+        "ground_truth": "different",
+        "predicted_gloss": "but",
+        "top_5_predictions": [
+            "but",
+            "worker",
+            "three",
+            "take",
+            "idea"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69531.mp4",
+        "ground_truth": "what",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "what",
+            "bring",
+            "want",
+            "room"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69547.mp4",
+        "ground_truth": "you",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "need",
+            "should",
+            "nurse",
+            "question"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69466.mp4",
+        "ground_truth": "she",
+        "predicted_gloss": "girl",
+        "top_5_predictions": [
+            "girl",
+            "tv",
+            "she",
+            "old",
+            "true"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/49602.mp4",
+        "ground_truth": "school",
+        "predicted_gloss": "kitchen",
+        "top_5_predictions": [
+            "kitchen",
+            "money",
+            "school",
+            "paper",
+            "medicine"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/12968.mp4",
+        "ground_truth": "continue",
+        "predicted_gloss": "continue",
+        "top_5_predictions": [
+            "continue",
+            "more",
+            "card",
+            "house",
+            "cold"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63104.mp4",
+        "ground_truth": "which",
+        "predicted_gloss": "car",
+        "top_5_predictions": [
+            "car",
+            "play",
+            "have",
+            "which",
+            "fast"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08752.mp4",
+        "ground_truth": "calm",
+        "predicted_gloss": "hurt",
+        "top_5_predictions": [
+            "hurt",
+            "calm",
+            "now",
+            "turn",
+            "before"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64219.mp4",
+        "ground_truth": "year",
+        "predicted_gloss": "make",
+        "top_5_predictions": [
+            "make",
+            "hard",
+            "sister",
+            "last",
+            "first"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/01464.mp4",
+        "ground_truth": "again",
+        "predicted_gloss": "again",
+        "top_5_predictions": [
+            "again",
+            "help",
+            "school",
+            "medicine",
+            "after"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48510.mp4",
+        "ground_truth": "room",
+        "predicted_gloss": "room",
+        "top_5_predictions": [
+            "room",
+            "box",
+            "arrive",
+            "house",
+            "before"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63283.mp4",
+        "ground_truth": "why",
+        "predicted_gloss": "blue",
+        "top_5_predictions": [
+            "blue",
+            "why",
+            "who",
+            "boy",
+            "go"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/53295.mp4",
+        "ground_truth": "soon",
+        "predicted_gloss": "name",
+        "top_5_predictions": [
+            "name",
+            "place",
+            "short",
+            "same",
+            "soon"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/26701.mp4",
+        "ground_truth": "hate",
+        "predicted_gloss": "important",
+        "top_5_predictions": [
+            "important",
+            "choice",
+            "house",
+            "hope",
+            "go"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/58805.mp4",
+        "ground_truth": "tomorrow",
+        "predicted_gloss": "old",
+        "top_5_predictions": [
+            "old",
+            "tomorrow",
+            "reason",
+            "she",
+            "orange"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63790.mp4",
+        "ground_truth": "work",
+        "predicted_gloss": "work",
+        "top_5_predictions": [
+            "work",
+            "nurse",
+            "year",
+            "use",
+            "time"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63665.mp4",
+        "ground_truth": "woman",
+        "predicted_gloss": "woman",
+        "top_5_predictions": [
+            "woman",
+            "man",
+            "library",
+            "white",
+            "find"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/05606.mp4",
+        "ground_truth": "because",
+        "predicted_gloss": "black",
+        "top_5_predictions": [
+            "black",
+            "why",
+            "because",
+            "father",
+            "last"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/32154.mp4",
+        "ground_truth": "language",
+        "predicted_gloss": "language",
+        "top_5_predictions": [
+            "language",
+            "play",
+            "leave",
+            "card",
+            "clothes"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/13545.mp4",
+        "ground_truth": "country",
+        "predicted_gloss": "poor",
+        "top_5_predictions": [
+            "poor",
+            "country",
+            "hospital",
+            "baby",
+            "paper"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/34733.mp4",
+        "ground_truth": "man",
+        "predicted_gloss": "man",
+        "top_5_predictions": [
+            "man",
+            "student",
+            "enter",
+            "again",
+            "happy"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69370.mp4",
+        "ground_truth": "how",
+        "predicted_gloss": "without",
+        "top_5_predictions": [
+            "without",
+            "how",
+            "with",
+            "follow",
+            "hit"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/19054.mp4",
+        "ground_truth": "empty",
+        "predicted_gloss": "full",
+        "top_5_predictions": [
+            "full",
+            "afternoon",
+            "computer",
+            "table",
+            "time"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/42227.mp4",
+        "ground_truth": "person",
+        "predicted_gloss": "street",
+        "top_5_predictions": [
+            "street",
+            "plan",
+            "play",
+            "small",
+            "people"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/19309.mp4",
+        "ground_truth": "enough",
+        "predicted_gloss": "weak",
+        "top_5_predictions": [
+            "weak",
+            "same",
+            "medicine",
+            "full",
+            "afternoon"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69386.mp4",
+        "ground_truth": "less",
+        "predicted_gloss": "less",
+        "top_5_predictions": [
+            "less",
+            "cup",
+            "new",
+            "again",
+            "quiet"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/03439.mp4",
+        "ground_truth": "arrive",
+        "predicted_gloss": "new",
+        "top_5_predictions": [
+            "new",
+            "kitchen",
+            "less",
+            "bring",
+            "bad"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/55150.mp4",
+        "ground_truth": "street",
+        "predicted_gloss": "street",
+        "top_5_predictions": [
+            "street",
+            "box",
+            "how",
+            "tired",
+            "with"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/42829.mp4",
+        "ground_truth": "pink",
+        "predicted_gloss": "red",
+        "top_5_predictions": [
+            "red",
+            "pink",
+            "restaurant",
+            "mother",
+            "one"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/05741.mp4",
+        "ground_truth": "before",
+        "predicted_gloss": "last",
+        "top_5_predictions": [
+            "last",
+            "before",
+            "find",
+            "or",
+            "computer"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/43679.mp4",
+        "ground_truth": "poor",
+        "predicted_gloss": "boss",
+        "top_5_predictions": [
+            "boss",
+            "police",
+            "minute",
+            "idea",
+            "white"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48114.mp4",
+        "ground_truth": "right",
+        "predicted_gloss": "go",
+        "top_5_predictions": [
+            "go",
+            "ask",
+            "leave",
+            "one",
+            "before"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/40242.mp4",
+        "ground_truth": "or",
+        "predicted_gloss": "bus",
+        "top_5_predictions": [
+            "bus",
+            "ask",
+            "find",
+            "same",
+            "like"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/02568.mp4",
+        "ground_truth": "angry",
+        "predicted_gloss": "body",
+        "top_5_predictions": [
+            "body",
+            "nervous",
+            "have",
+            "angry",
+            "baby"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/00416.mp4",
+        "ground_truth": "about",
+        "predicted_gloss": "name",
+        "top_5_predictions": [
+            "name",
+            "about",
+            "give",
+            "short",
+            "problem"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51501.mp4",
+        "ground_truth": "sick",
+        "predicted_gloss": "sick",
+        "top_5_predictions": [
+            "sick",
+            "rich",
+            "sad",
+            "soon",
+            "because"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69364.mp4",
+        "ground_truth": "help",
+        "predicted_gloss": "help",
+        "top_5_predictions": [
+            "help",
+            "some",
+            "new",
+            "after",
+            "stop"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/53240.mp4",
+        "ground_truth": "sometimes",
+        "predicted_gloss": "when",
+        "top_5_predictions": [
+            "when",
+            "sometimes",
+            "arrive",
+            "before",
+            "care"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64087.mp4",
+        "ground_truth": "wrong",
+        "predicted_gloss": "wrong",
+        "top_5_predictions": [
+            "wrong",
+            "mother",
+            "color",
+            "bad",
+            "farm"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69343.mp4",
+        "ground_truth": "give",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "short",
+            "put",
+            "pull",
+            "need"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/21204.mp4",
+        "ground_truth": "father",
+        "predicted_gloss": "father",
+        "top_5_predictions": [
+            "father",
+            "high",
+            "boy",
+            "sick",
+            "find"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69474.mp4",
+        "ground_truth": "six",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "child",
+            "seven",
+            "three",
+            "bring"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/11034.mp4",
+        "ground_truth": "clean",
+        "predicted_gloss": "week",
+        "top_5_predictions": [
+            "week",
+            "school",
+            "before",
+            "again",
+            "student"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08429.mp4",
+        "ground_truth": "but",
+        "predicted_gloss": "blue",
+        "top_5_predictions": [
+            "blue",
+            "ask",
+            "go",
+            "brown",
+            "bathroom"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69236.mp4",
+        "ground_truth": "black",
+        "predicted_gloss": "black",
+        "top_5_predictions": [
+            "black",
+            "why",
+            "because",
+            "reason",
+            "bored"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62502.mp4",
+        "ground_truth": "water",
+        "predicted_gloss": "mother",
+        "top_5_predictions": [
+            "mother",
+            "restaurant",
+            "water",
+            "pink",
+            "light"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/41030.mp4",
+        "ground_truth": "paper",
+        "predicted_gloss": "school",
+        "top_5_predictions": [
+            "school",
+            "paper",
+            "new",
+            "help",
+            "carry"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36733.mp4",
+        "ground_truth": "month",
+        "predicted_gloss": "month",
+        "top_5_predictions": [
+            "month",
+            "go",
+            "answer",
+            "minute",
+            "when"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/32248.mp4",
+        "ground_truth": "last",
+        "predicted_gloss": "call",
+        "top_5_predictions": [
+            "call",
+            "last",
+            "woman",
+            "take",
+            "child"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/31775.mp4",
+        "ground_truth": "kitchen",
+        "predicted_gloss": "arrive",
+        "top_5_predictions": [
+            "arrive",
+            "kitchen",
+            "clean",
+            "new",
+            "cup"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28164.mp4",
+        "ground_truth": "house",
+        "predicted_gloss": "house",
+        "top_5_predictions": [
+            "house",
+            "city",
+            "family",
+            "teacher",
+            "sad"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/42423.mp4",
+        "ground_truth": "phone",
+        "predicted_gloss": "phone",
+        "top_5_predictions": [
+            "phone",
+            "know",
+            "drink",
+            "man",
+            "high"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/55340.mp4",
+        "ground_truth": "student",
+        "predicted_gloss": "less",
+        "top_5_predictions": [
+            "less",
+            "student",
+            "again",
+            "jump",
+            "lift"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64264.mp4",
+        "ground_truth": "yellow",
+        "predicted_gloss": "bank",
+        "top_5_predictions": [
+            "bank",
+            "ten",
+            "one",
+            "see",
+            "who"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/17827.mp4",
+        "ground_truth": "drop",
+        "predicted_gloss": "drop",
+        "top_5_predictions": [
+            "drop",
+            "man",
+            "late",
+            "boss",
+            "move"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/59051.mp4",
+        "ground_truth": "touch",
+        "predicted_gloss": "church",
+        "top_5_predictions": [
+            "church",
+            "worker",
+            "answer",
+            "use",
+            "watch"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36121.mp4",
+        "ground_truth": "mind",
+        "predicted_gloss": "why",
+        "top_5_predictions": [
+            "why",
+            "know",
+            "bored",
+            "because",
+            "drink"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/37086.mp4",
+        "ground_truth": "move",
+        "predicted_gloss": "city",
+        "top_5_predictions": [
+            "city",
+            "bring",
+            "language",
+            "change",
+            "ball"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69240.mp4",
+        "ground_truth": "body",
+        "predicted_gloss": "nervous",
+        "top_5_predictions": [
+            "nervous",
+            "body",
+            "have",
+            "angry",
+            "baby"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/34121.mp4",
+        "ground_truth": "love",
+        "predicted_gloss": "with",
+        "top_5_predictions": [
+            "with",
+            "love",
+            "poor",
+            "safe",
+            "make"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69307.mp4",
+        "ground_truth": "eat",
+        "predicted_gloss": "home",
+        "top_5_predictions": [
+            "home",
+            "food",
+            "girl",
+            "who",
+            "think"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/57282.mp4",
+        "ground_truth": "tell",
+        "predicted_gloss": "tell",
+        "top_5_predictions": [
+            "tell",
+            "red",
+            "bored",
+            "who",
+            "true"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/47063.mp4",
+        "ground_truth": "relax",
+        "predicted_gloss": "relax",
+        "top_5_predictions": [
+            "relax",
+            "sad",
+            "love",
+            "wrong",
+            "baby"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/17823.mp4",
+        "ground_truth": "drop",
+        "predicted_gloss": "drop",
+        "top_5_predictions": [
+            "drop",
+            "take",
+            "sign",
+            "walk",
+            "many"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69441.mp4",
+        "ground_truth": "put",
+        "predicted_gloss": "put",
+        "top_5_predictions": [
+            "put",
+            "chair",
+            "make",
+            "number",
+            "shoes"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/14796.mp4",
+        "ground_truth": "day",
+        "predicted_gloss": "day",
+        "top_5_predictions": [
+            "day",
+            "afternoon",
+            "work",
+            "computer",
+            "morning"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/12614.mp4",
+        "ground_truth": "confused",
+        "predicted_gloss": "important",
+        "top_5_predictions": [
+            "important",
+            "choice",
+            "hour",
+            "dangerous",
+            "family"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69455.mp4",
+        "ground_truth": "school",
+        "predicted_gloss": "after",
+        "top_5_predictions": [
+            "after",
+            "again",
+            "school",
+            "cup",
+            "table"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69533.mp4",
+        "ground_truth": "white",
+        "predicted_gloss": "hospital",
+        "top_5_predictions": [
+            "hospital",
+            "white",
+            "problem",
+            "tv",
+            "woman"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/02521.mp4",
+        "ground_truth": "and",
+        "predicted_gloss": "and",
+        "top_5_predictions": [
+            "and",
+            "like",
+            "go",
+            "soon",
+            "happy"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/33206.mp4",
+        "ground_truth": "light",
+        "predicted_gloss": "calm",
+        "top_5_predictions": [
+            "calm",
+            "seven",
+            "big",
+            "many",
+            "teacher"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/27770.mp4",
+        "ground_truth": "home",
+        "predicted_gloss": "home",
+        "top_5_predictions": [
+            "home",
+            "bored",
+            "eat",
+            "if",
+            "old"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/09128.mp4",
+        "ground_truth": "card",
+        "predicted_gloss": "card",
+        "top_5_predictions": [
+            "card",
+            "building",
+            "different",
+            "clothes",
+            "language"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63284.mp4",
+        "ground_truth": "why",
+        "predicted_gloss": "black",
+        "top_5_predictions": [
+            "black",
+            "because",
+            "why",
+            "man",
+            "call"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63789.mp4",
+        "ground_truth": "work",
+        "predicted_gloss": "work",
+        "top_5_predictions": [
+            "work",
+            "nurse",
+            "change",
+            "last",
+            "she"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08349.mp4",
+        "ground_truth": "bus",
+        "predicted_gloss": "where",
+        "top_5_predictions": [
+            "where",
+            "need",
+            "bus",
+            "restaurant",
+            "blue"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/27407.mp4",
+        "ground_truth": "high",
+        "predicted_gloss": "man",
+        "top_5_predictions": [
+            "man",
+            "call",
+            "yesterday",
+            "name",
+            "purple"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36857.mp4",
+        "ground_truth": "morning",
+        "predicted_gloss": "paper",
+        "top_5_predictions": [
+            "paper",
+            "morning",
+            "minute",
+            "new",
+            "use"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48105.mp4",
+        "ground_truth": "right",
+        "predicted_gloss": "sister",
+        "top_5_predictions": [
+            "sister",
+            "minute",
+            "go",
+            "hit",
+            "name"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69439.mp4",
+        "ground_truth": "pull",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "pull",
+            "fast",
+            "new",
+            "bring"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69380.mp4",
+        "ground_truth": "jump",
+        "predicted_gloss": "nurse",
+        "top_5_predictions": [
+            "nurse",
+            "new",
+            "cup",
+            "make",
+            "again"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/07196.mp4",
+        "ground_truth": "bored",
+        "predicted_gloss": "bored",
+        "top_5_predictions": [
+            "bored",
+            "yesterday",
+            "drink",
+            "because",
+            "why"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/09967.mp4",
+        "ground_truth": "change",
+        "predicted_gloss": "with",
+        "top_5_predictions": [
+            "with",
+            "change",
+            "team",
+            "take",
+            "how"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/01433.mp4",
+        "ground_truth": "afternoon",
+        "predicted_gloss": "afternoon",
+        "top_5_predictions": [
+            "afternoon",
+            "school",
+            "watch",
+            "church",
+            "today"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/12320.mp4",
+        "ground_truth": "computer",
+        "predicted_gloss": "computer",
+        "top_5_predictions": [
+            "computer",
+            "choice",
+            "calm",
+            "many",
+            "sad"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62098.mp4",
+        "ground_truth": "wait",
+        "predicted_gloss": "many",
+        "top_5_predictions": [
+            "many",
+            "computer",
+            "today",
+            "fire",
+            "wait"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/39748.mp4",
+        "ground_truth": "one",
+        "predicted_gloss": "one",
+        "top_5_predictions": [
+            "one",
+            "same",
+            "ask",
+            "child",
+            "three"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/04708.mp4",
+        "ground_truth": "bad",
+        "predicted_gloss": "never",
+        "top_5_predictions": [
+            "never",
+            "bad",
+            "good",
+            "feel",
+            "three"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62159.mp4",
+        "ground_truth": "walk",
+        "predicted_gloss": "walk",
+        "top_5_predictions": [
+            "walk",
+            "play",
+            "short",
+            "clothes",
+            "nervous"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64211.mp4",
+        "ground_truth": "year",
+        "predicted_gloss": "make",
+        "top_5_predictions": [
+            "make",
+            "year",
+            "work",
+            "nurse",
+            "today"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51223.mp4",
+        "ground_truth": "short",
+        "predicted_gloss": "child",
+        "top_5_predictions": [
+            "child",
+            "short",
+            "never",
+            "afternoon",
+            "answer"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/39032.mp4",
+        "ground_truth": "number",
+        "predicted_gloss": "number",
+        "top_5_predictions": [
+            "number",
+            "hope",
+            "give",
+            "orange",
+            "take"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/22996.mp4",
+        "ground_truth": "for",
+        "predicted_gloss": "black",
+        "top_5_predictions": [
+            "black",
+            "why",
+            "yesterday",
+            "because",
+            "bored"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/32655.mp4",
+        "ground_truth": "leave",
+        "predicted_gloss": "friend",
+        "top_5_predictions": [
+            "friend",
+            "change",
+            "from",
+            "go",
+            "card"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63360.mp4",
+        "ground_truth": "will",
+        "predicted_gloss": "why",
+        "top_5_predictions": [
+            "why",
+            "mother",
+            "teacher",
+            "reason",
+            "one"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69333.mp4",
+        "ground_truth": "four",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "three",
+            "two",
+            "bring",
+            "push"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/06194.mp4",
+        "ground_truth": "big",
+        "predicted_gloss": "different",
+        "top_5_predictions": [
+            "different",
+            "without",
+            "open",
+            "box",
+            "follow"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/24872.mp4",
+        "ground_truth": "goal",
+        "predicted_gloss": "hit",
+        "top_5_predictions": [
+            "hit",
+            "follow",
+            "from",
+            "goal",
+            "minute"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/57874.mp4",
+        "ground_truth": "they",
+        "predicted_gloss": "them",
+        "top_5_predictions": [
+            "them",
+            "we",
+            "library",
+            "continue",
+            "brother"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/07811.mp4",
+        "ground_truth": "bring",
+        "predicted_gloss": "bring",
+        "top_5_predictions": [
+            "bring",
+            "give",
+            "help",
+            "baby",
+            "new"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69463.mp4",
+        "ground_truth": "seven",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "child",
+            "three",
+            "seven",
+            "two"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63226.mp4",
+        "ground_truth": "who",
+        "predicted_gloss": "who",
+        "top_5_predictions": [
+            "who",
+            "orange",
+            "you",
+            "first",
+            "go"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62440.mp4",
+        "ground_truth": "watch",
+        "predicted_gloss": "watch",
+        "top_5_predictions": [
+            "watch",
+            "slow",
+            "doctor",
+            "jump",
+            "long"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/10589.mp4",
+        "ground_truth": "choice",
+        "predicted_gloss": "family",
+        "top_5_predictions": [
+            "family",
+            "choice",
+            "world",
+            "ball",
+            "run"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/34087.mp4",
+        "ground_truth": "loud",
+        "predicted_gloss": "excited",
+        "top_5_predictions": [
+            "excited",
+            "play",
+            "many",
+            "last",
+            "loud"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28108.mp4",
+        "ground_truth": "hot",
+        "predicted_gloss": "white",
+        "top_5_predictions": [
+            "white",
+            "light",
+            "bad",
+            "child",
+            "hot"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36930.mp4",
+        "ground_truth": "mother",
+        "predicted_gloss": "mother",
+        "top_5_predictions": [
+            "mother",
+            "sad",
+            "color",
+            "light",
+            "father"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/44684.mp4",
+        "ground_truth": "problem",
+        "predicted_gloss": "problem",
+        "top_5_predictions": [
+            "problem",
+            "when",
+            "sign",
+            "continue",
+            "year"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/29071.mp4",
+        "ground_truth": "important",
+        "predicted_gloss": "important",
+        "top_5_predictions": [
+            "important",
+            "different",
+            "how",
+            "card",
+            "open"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/05299.mp4",
+        "ground_truth": "bathroom",
+        "predicted_gloss": "bathroom",
+        "top_5_predictions": [
+            "bathroom",
+            "need",
+            "should",
+            "girl",
+            "you"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/58072.mp4",
+        "ground_truth": "this",
+        "predicted_gloss": "bathroom",
+        "top_5_predictions": [
+            "bathroom",
+            "can",
+            "should",
+            "she",
+            "must"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69508.mp4",
+        "ground_truth": "three",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "three",
+            "always",
+            "feel",
+            "two"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/32657.mp4",
+        "ground_truth": "leave",
+        "predicted_gloss": "hot",
+        "top_5_predictions": [
+            "hot",
+            "hope",
+            "high",
+            "sick",
+            "because"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/49175.mp4",
+        "ground_truth": "same",
+        "predicted_gloss": "same",
+        "top_5_predictions": [
+            "same",
+            "like",
+            "child",
+            "hospital",
+            "place"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62160.mp4",
+        "ground_truth": "walk",
+        "predicted_gloss": "walk",
+        "top_5_predictions": [
+            "walk",
+            "nervous",
+            "happy",
+            "late",
+            "room"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/45263.mp4",
+        "ground_truth": "pull",
+        "predicted_gloss": "give",
+        "top_5_predictions": [
+            "give",
+            "put",
+            "small",
+            "come",
+            "make"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69396.mp4",
+        "ground_truth": "many",
+        "predicted_gloss": "want",
+        "top_5_predictions": [
+            "want",
+            "many",
+            "tv",
+            "bring",
+            "maybe"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/21854.mp4",
+        "ground_truth": "find",
+        "predicted_gloss": "eight",
+        "top_5_predictions": [
+            "eight",
+            "find",
+            "hate",
+            "child",
+            "again"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64305.mp4",
+        "ground_truth": "yesterday",
+        "predicted_gloss": "yesterday",
+        "top_5_predictions": [
+            "yesterday",
+            "few",
+            "girl",
+            "home",
+            "tomorrow"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62570.mp4",
+        "ground_truth": "way",
+        "predicted_gloss": "next",
+        "top_5_predictions": [
+            "next",
+            "feel",
+            "way",
+            "box",
+            "play"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/38238.mp4",
+        "ground_truth": "next",
+        "predicted_gloss": "before",
+        "top_5_predictions": [
+            "before",
+            "what",
+            "sister",
+            "week",
+            "window"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63607.mp4",
+        "ground_truth": "without",
+        "predicted_gloss": "with",
+        "top_5_predictions": [
+            "with",
+            "without",
+            "safe",
+            "plan",
+            "city"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63666.mp4",
+        "ground_truth": "woman",
+        "predicted_gloss": "woman",
+        "top_5_predictions": [
+            "woman",
+            "man",
+            "light",
+            "white",
+            "water"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/11622.mp4",
+        "ground_truth": "cold",
+        "predicted_gloss": "strong",
+        "top_5_predictions": [
+            "strong",
+            "cold",
+            "none",
+            "store",
+            "team"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51221.mp4",
+        "ground_truth": "short",
+        "predicted_gloss": "why",
+        "top_5_predictions": [
+            "why",
+            "black",
+            "because",
+            "man",
+            "purple"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69274.mp4",
+        "ground_truth": "color",
+        "predicted_gloss": "color",
+        "top_5_predictions": [
+            "color",
+            "mother",
+            "light",
+            "bad",
+            "if"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69241.mp4",
+        "ground_truth": "book",
+        "predicted_gloss": "small",
+        "top_5_predictions": [
+            "small",
+            "book",
+            "answer",
+            "how",
+            "different"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69323.mp4",
+        "ground_truth": "find",
+        "predicted_gloss": "find",
+        "top_5_predictions": [
+            "find",
+            "tv",
+            "computer",
+            "eight",
+            "father"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/14287.mp4",
+        "ground_truth": "cup",
+        "predicted_gloss": "care",
+        "top_5_predictions": [
+            "care",
+            "cup",
+            "use",
+            "nurse",
+            "less"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69326.mp4",
+        "ground_truth": "five",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "three",
+            "five",
+            "bring",
+            "find"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64382.mp4",
+        "ground_truth": "you",
+        "predicted_gloss": "old",
+        "top_5_predictions": [
+            "old",
+            "she",
+            "you",
+            "last",
+            "who"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/10447.mp4",
+        "ground_truth": "child",
+        "predicted_gloss": "bus",
+        "top_5_predictions": [
+            "bus",
+            "blue",
+            "right",
+            "boy",
+            "child"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/43166.mp4",
+        "ground_truth": "play",
+        "predicted_gloss": "car",
+        "top_5_predictions": [
+            "car",
+            "carry",
+            "now",
+            "play",
+            "person"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/59791.mp4",
+        "ground_truth": "true",
+        "predicted_gloss": "one",
+        "top_5_predictions": [
+            "one",
+            "red",
+            "woman",
+            "find",
+            "old"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69316.mp4",
+        "ground_truth": "family",
+        "predicted_gloss": "family",
+        "top_5_predictions": [
+            "family",
+            "important",
+            "group",
+            "want",
+            "nervous"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/52560.mp4",
+        "ground_truth": "small",
+        "predicted_gloss": "close",
+        "top_5_predictions": [
+            "close",
+            "street",
+            "open",
+            "big",
+            "room"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63592.mp4",
+        "ground_truth": "with",
+        "predicted_gloss": "take",
+        "top_5_predictions": [
+            "take",
+            "close",
+            "how",
+            "same",
+            "open"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/49173.mp4",
+        "ground_truth": "same",
+        "predicted_gloss": "same",
+        "top_5_predictions": [
+            "same",
+            "restaurant",
+            "child",
+            "dirty",
+            "yesterday"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69503.mp4",
+        "ground_truth": "them",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "need",
+            "should",
+            "watch",
+            "find"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/52512.mp4",
+        "ground_truth": "slow",
+        "predicted_gloss": "slow",
+        "top_5_predictions": [
+            "slow",
+            "weak",
+            "help",
+            "full",
+            "doctor"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/10595.mp4",
+        "ground_truth": "choice",
+        "predicted_gloss": "find",
+        "top_5_predictions": [
+            "find",
+            "choice",
+            "three",
+            "many",
+            "light"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/33266.mp4",
+        "ground_truth": "like",
+        "predicted_gloss": "library",
+        "top_5_predictions": [
+            "library",
+            "ask",
+            "few",
+            "same",
+            "hospital"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/01418.mp4",
+        "ground_truth": "after",
+        "predicted_gloss": "after",
+        "top_5_predictions": [
+            "after",
+            "help",
+            "medicine",
+            "again",
+            "quiet"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/64307.mp4",
+        "ground_truth": "yesterday",
+        "predicted_gloss": "reason",
+        "top_5_predictions": [
+            "reason",
+            "black",
+            "tomorrow",
+            "morning",
+            "sick"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48973.mp4",
+        "ground_truth": "sad",
+        "predicted_gloss": "sad",
+        "top_5_predictions": [
+            "sad",
+            "teacher",
+            "house",
+            "fire",
+            "family"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69413.mp4",
+        "ground_truth": "now",
+        "predicted_gloss": "today",
+        "top_5_predictions": [
+            "today",
+            "now",
+            "tv",
+            "maybe",
+            "fire"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/09198.mp4",
+        "ground_truth": "care",
+        "predicted_gloss": "new",
+        "top_5_predictions": [
+            "new",
+            "baby",
+            "medicine",
+            "carry",
+            "people"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/46428.mp4",
+        "ground_truth": "reason",
+        "predicted_gloss": "why",
+        "top_5_predictions": [
+            "why",
+            "reason",
+            "idea",
+            "think",
+            "home"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48029.mp4",
+        "ground_truth": "rich",
+        "predicted_gloss": "student",
+        "top_5_predictions": [
+            "student",
+            "rich",
+            "bad",
+            "less",
+            "cup"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/05598.mp4",
+        "ground_truth": "because",
+        "predicted_gloss": "because",
+        "top_5_predictions": [
+            "because",
+            "why",
+            "sleep",
+            "call",
+            "black"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63070.mp4",
+        "ground_truth": "when",
+        "predicted_gloss": "when",
+        "top_5_predictions": [
+            "when",
+            "about",
+            "name",
+            "problem",
+            "place"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/33804.mp4",
+        "ground_truth": "long",
+        "predicted_gloss": "afternoon",
+        "top_5_predictions": [
+            "afternoon",
+            "table",
+            "night",
+            "after",
+            "time"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/11310.mp4",
+        "ground_truth": "clothes",
+        "predicted_gloss": "nervous",
+        "top_5_predictions": [
+            "nervous",
+            "play",
+            "take",
+            "excited",
+            "drop"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/57391.mp4",
+        "ground_truth": "ten",
+        "predicted_gloss": "one",
+        "top_5_predictions": [
+            "one",
+            "ten",
+            "tell",
+            "red",
+            "girl"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/37886.mp4",
+        "ground_truth": "need",
+        "predicted_gloss": "must",
+        "top_5_predictions": [
+            "must",
+            "short",
+            "this",
+            "take",
+            "now"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69426.mp4",
+        "ground_truth": "people",
+        "predicted_gloss": "people",
+        "top_5_predictions": [
+            "people",
+            "tv",
+            "maybe",
+            "go",
+            "play"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/48509.mp4",
+        "ground_truth": "room",
+        "predicted_gloss": "room",
+        "top_5_predictions": [
+            "room",
+            "before",
+            "box",
+            "again",
+            "week"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/26526.mp4",
+        "ground_truth": "happy",
+        "predicted_gloss": "angry",
+        "top_5_predictions": [
+            "angry",
+            "excited",
+            "body",
+            "tired",
+            "happy"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/25829.mp4",
+        "ground_truth": "group",
+        "predicted_gloss": "play",
+        "top_5_predictions": [
+            "play",
+            "hurt",
+            "turn",
+            "house",
+            "teacher"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/21557.mp4",
+        "ground_truth": "few",
+        "predicted_gloss": "open",
+        "top_5_predictions": [
+            "open",
+            "short",
+            "same",
+            "now",
+            "bus"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/27920.mp4",
+        "ground_truth": "hope",
+        "predicted_gloss": "last",
+        "top_5_predictions": [
+            "last",
+            "strong",
+            "teacher",
+            "none",
+            "i"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69397.mp4",
+        "ground_truth": "maybe",
+        "predicted_gloss": "maybe",
+        "top_5_predictions": [
+            "maybe",
+            "tv",
+            "bring",
+            "carry",
+            "new"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62100.mp4",
+        "ground_truth": "wait",
+        "predicted_gloss": "wait",
+        "top_5_predictions": [
+            "wait",
+            "many",
+            "room",
+            "push",
+            "sad"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/50007.mp4",
+        "ground_truth": "second",
+        "predicted_gloss": "three",
+        "top_5_predictions": [
+            "three",
+            "where",
+            "tell",
+            "one",
+            "first"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69500.mp4",
+        "ground_truth": "take",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "same",
+            "nurse",
+            "need",
+            "take"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69368.mp4",
+        "ground_truth": "hot",
+        "predicted_gloss": "hot",
+        "top_5_predictions": [
+            "hot",
+            "like",
+            "white",
+            "tv",
+            "find"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/02228.mp4",
+        "ground_truth": "always",
+        "predicted_gloss": "always",
+        "top_5_predictions": [
+            "always",
+            "feel",
+            "child",
+            "bring",
+            "lonely"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/18306.mp4",
+        "ground_truth": "easy",
+        "predicted_gloss": "group",
+        "top_5_predictions": [
+            "group",
+            "what",
+            "good",
+            "want",
+            "book"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51287.mp4",
+        "ground_truth": "should",
+        "predicted_gloss": "need",
+        "top_5_predictions": [
+            "need",
+            "should",
+            "must",
+            "ask",
+            "can"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69401.mp4",
+        "ground_truth": "more",
+        "predicted_gloss": "more",
+        "top_5_predictions": [
+            "more",
+            "number",
+            "orange",
+            "put",
+            "minute"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/21168.mp4",
+        "ground_truth": "fast",
+        "predicted_gloss": "second",
+        "top_5_predictions": [
+            "second",
+            "play",
+            "have",
+            "before",
+            "small"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/20153.mp4",
+        "ground_truth": "excited",
+        "predicted_gloss": "event",
+        "top_5_predictions": [
+            "event",
+            "big",
+            "excited",
+            "like",
+            "always"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/10894.mp4",
+        "ground_truth": "city",
+        "predicted_gloss": "plan",
+        "top_5_predictions": [
+            "plan",
+            "language",
+            "quiet",
+            "computer",
+            "place"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/07937.mp4",
+        "ground_truth": "brother",
+        "predicted_gloss": "brother",
+        "top_5_predictions": [
+            "brother",
+            "stop",
+            "help",
+            "window",
+            "sister"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/26570.mp4",
+        "ground_truth": "hard",
+        "predicted_gloss": "sister",
+        "top_5_predictions": [
+            "sister",
+            "right",
+            "hard",
+            "enough",
+            "name"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/19326.mp4",
+        "ground_truth": "enter",
+        "predicted_gloss": "after",
+        "top_5_predictions": [
+            "after",
+            "again",
+            "enter",
+            "window",
+            "morning"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/04509.mp4",
+        "ground_truth": "baby",
+        "predicted_gloss": "late",
+        "top_5_predictions": [
+            "late",
+            "big",
+            "right",
+            "hot",
+            "maybe"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/31899.mp4",
+        "ground_truth": "know",
+        "predicted_gloss": "know",
+        "top_5_predictions": [
+            "know",
+            "boy",
+            "black",
+            "idea",
+            "father"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/57090.mp4",
+        "ground_truth": "team",
+        "predicted_gloss": "team",
+        "top_5_predictions": [
+            "team",
+            "none",
+            "change",
+            "more",
+            "number"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69504.mp4",
+        "ground_truth": "thing",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "bring",
+            "language",
+            "room",
+            "new"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/34583.mp4",
+        "ground_truth": "make",
+        "predicted_gloss": "make",
+        "top_5_predictions": [
+            "make",
+            "short",
+            "year",
+            "time",
+            "last"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69251.mp4",
+        "ground_truth": "brother",
+        "predicted_gloss": "sister",
+        "top_5_predictions": [
+            "sister",
+            "brother",
+            "tomorrow",
+            "because",
+            "sick"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/45762.mp4",
+        "ground_truth": "quiet",
+        "predicted_gloss": "city",
+        "top_5_predictions": [
+            "city",
+            "hour",
+            "quiet",
+            "open",
+            "how"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63237.mp4",
+        "ground_truth": "who",
+        "predicted_gloss": "red",
+        "top_5_predictions": [
+            "red",
+            "tell",
+            "pink",
+            "eat",
+            "girl"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69243.mp4",
+        "ground_truth": "bottle",
+        "predicted_gloss": "cup",
+        "top_5_predictions": [
+            "cup",
+            "night",
+            "name",
+            "make",
+            "nurse"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/14656.mp4",
+        "ground_truth": "dangerous",
+        "predicted_gloss": "year",
+        "top_5_predictions": [
+            "year",
+            "work",
+            "make",
+            "when",
+            "move"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69460.mp4",
+        "ground_truth": "see",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "see",
+            "find",
+            "two",
+            "why"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/44682.mp4",
+        "ground_truth": "problem",
+        "predicted_gloss": "continue",
+        "top_5_predictions": [
+            "continue",
+            "problem",
+            "place",
+            "year",
+            "sign"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/39627.mp4",
+        "ground_truth": "old",
+        "predicted_gloss": "old",
+        "top_5_predictions": [
+            "old",
+            "she",
+            "must",
+            "proud",
+            "try"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69527.mp4",
+        "ground_truth": "we",
+        "predicted_gloss": "we",
+        "top_5_predictions": [
+            "we",
+            "me",
+            "tv",
+            "hospital",
+            "white"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69309.mp4",
+        "ground_truth": "eight",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "because",
+            "leave",
+            "reason",
+            "they"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28139.mp4",
+        "ground_truth": "hour",
+        "predicted_gloss": "hour",
+        "top_5_predictions": [
+            "hour",
+            "quiet",
+            "brown",
+            "some",
+            "follow"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/17015.mp4",
+        "ground_truth": "doctor",
+        "predicted_gloss": "nurse",
+        "top_5_predictions": [
+            "nurse",
+            "again",
+            "time",
+            "slow",
+            "use"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/28652.mp4",
+        "ground_truth": "idea",
+        "predicted_gloss": "high",
+        "top_5_predictions": [
+            "high",
+            "for",
+            "why",
+            "because",
+            "black"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/58593.mp4",
+        "ground_truth": "tired",
+        "predicted_gloss": "tired",
+        "top_5_predictions": [
+            "tired",
+            "how",
+            "new",
+            "walk",
+            "street"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/58684.mp4",
+        "ground_truth": "today",
+        "predicted_gloss": "now",
+        "top_5_predictions": [
+            "now",
+            "today",
+            "three",
+            "want",
+            "angry"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/45479.mp4",
+        "ground_truth": "push",
+        "predicted_gloss": "computer",
+        "top_5_predictions": [
+            "computer",
+            "many",
+            "angry",
+            "sad",
+            "wait"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69260.mp4",
+        "ground_truth": "carry",
+        "predicted_gloss": "carry",
+        "top_5_predictions": [
+            "carry",
+            "new",
+            "bring",
+            "maybe",
+            "put"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/51885.mp4",
+        "ground_truth": "sister",
+        "predicted_gloss": "sister",
+        "top_5_predictions": [
+            "sister",
+            "minute",
+            "woman",
+            "next",
+            "come"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/23771.mp4",
+        "ground_truth": "full",
+        "predicted_gloss": "dirty",
+        "top_5_predictions": [
+            "dirty",
+            "table",
+            "full",
+            "enter",
+            "man"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63836.mp4",
+        "ground_truth": "world",
+        "predicted_gloss": "world",
+        "top_5_predictions": [
+            "world",
+            "woman",
+            "like",
+            "afraid",
+            "problem"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/09848.mp4",
+        "ground_truth": "chair",
+        "predicted_gloss": "train",
+        "top_5_predictions": [
+            "train",
+            "chair",
+            "nurse",
+            "name",
+            "short"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69353.mp4",
+        "ground_truth": "green",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "yellow",
+            "always",
+            "reason",
+            "first"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/36651.mp4",
+        "ground_truth": "money",
+        "predicted_gloss": "school",
+        "top_5_predictions": [
+            "school",
+            "cup",
+            "again",
+            "less",
+            "name"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/33766.mp4",
+        "ground_truth": "lonely",
+        "predicted_gloss": "lonely",
+        "top_5_predictions": [
+            "lonely",
+            "girl",
+            "happy",
+            "restaurant",
+            "library"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69521.mp4",
+        "ground_truth": "two",
+        "predicted_gloss": "tv",
+        "top_5_predictions": [
+            "tv",
+            "two",
+            "always",
+            "reason",
+            "bring"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/18167.mp4",
+        "ground_truth": "early",
+        "predicted_gloss": "world",
+        "top_5_predictions": [
+            "world",
+            "after",
+            "country",
+            "window",
+            "again"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/63204.mp4",
+        "ground_truth": "white",
+        "predicted_gloss": "white",
+        "top_5_predictions": [
+            "white",
+            "like",
+            "woman",
+            "room",
+            "soon"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/12312.mp4",
+        "ground_truth": "computer",
+        "predicted_gloss": "church",
+        "top_5_predictions": [
+            "church",
+            "use",
+            "watch",
+            "computer",
+            "afternoon"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/40119.mp4",
+        "ground_truth": "orange",
+        "predicted_gloss": "orange",
+        "top_5_predictions": [
+            "orange",
+            "ask",
+            "like",
+            "afternoon",
+            "person"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/45090.mp4",
+        "ground_truth": "proud",
+        "predicted_gloss": "full",
+        "top_5_predictions": [
+            "full",
+            "proud",
+            "take",
+            "time",
+            "girl"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/69407.mp4",
+        "ground_truth": "new",
+        "predicted_gloss": "new",
+        "top_5_predictions": [
+            "new",
+            "book",
+            "arrive",
+            "plan",
+            "small"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/57042.mp4",
+        "ground_truth": "teacher",
+        "predicted_gloss": "teacher",
+        "top_5_predictions": [
+            "teacher",
+            "event",
+            "know",
+            "drink",
+            "angry"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/59309.mp4",
+        "ground_truth": "train",
+        "predicted_gloss": "chair",
+        "top_5_predictions": [
+            "chair",
+            "train",
+            "card",
+            "continue",
+            "name"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/38084.mp4",
+        "ground_truth": "never",
+        "predicted_gloss": "mother",
+        "top_5_predictions": [
+            "mother",
+            "never",
+            "find",
+            "maybe",
+            "question"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/62246.mp4",
+        "ground_truth": "want",
+        "predicted_gloss": "what",
+        "top_5_predictions": [
+            "what",
+            "sad",
+            "wait",
+            "many",
+            "event"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/08707.mp4",
+        "ground_truth": "call",
+        "predicted_gloss": "train",
+        "top_5_predictions": [
+            "train",
+            "same",
+            "last",
+            "hard",
+            "time"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/35453.mp4",
+        "ground_truth": "medicine",
+        "predicted_gloss": "important",
+        "top_5_predictions": [
+            "important",
+            "medicine",
+            "book",
+            "how",
+            "minute"
+        ]
+    },
+    {
+        "video_path": "./../data_engineering/raw_videos/45436.mp4",
+        "ground_truth": "purple",
+        "predicted_gloss": "light",
+        "top_5_predictions": [
+            "light",
+            "pink",
+            "water",
+            "mother",
+            "wrong"
+        ]
+    }
+]

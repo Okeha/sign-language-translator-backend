@@ -41,7 +41,10 @@ classifier_training_arguments:
   num_classes: 282
 
 video_mae_params:
-  pretrained_model_name: "MCG-NJU/videomae-large"
+  # pretrained_model_name: "MCG-NJU/videomae-large"
+  # pretrained_model_name: "OpenGVLab/VideoMAEv2-Huge"
+  pretrained_model_name: "MCG-NJU/videomae-huge-finetuned-kinetics"
+
   num_frames: 16
   repeat_factor: 10
   training_arguments:

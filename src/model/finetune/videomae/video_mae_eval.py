@@ -172,5 +172,10 @@ class VideoMAEEvaluator:
 if __name__ == "__main__":
     # Ensure you point to the folder where trainer.save_model() saved the files
     # Usually "./video_mae_finetuned" or a specific checkpoint folder
-    evaluator = VideoMAEEvaluator(model_path="./video_mae_finetuned_final", batch_size=8)
+
+    #test with these checkpoints to find the best one:
+    # 49112 - train eval acc: 68.7% top 5 and 38.59% top 1 => evaluation script: 0.4 top 1 and 0.7152 top 5
+    # 38588 - train eval acc: 69.12% top 5 and 36.84% top 1  evaluation script: 0.41 top 1 and 0.7019 top 5
+    # 31572 - train eval acc: 70.18% top 5 and 36.49% top 1  evaluation script: 0.38 top 1 and xx top 5
+    evaluator = VideoMAEEvaluator(model_path="./video_mae_finetuned/checkpoint-31572", batch_size=8)
     evaluator.evaluate()

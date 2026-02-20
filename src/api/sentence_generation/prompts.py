@@ -3,7 +3,7 @@
 import yaml
 import logging
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
 
 from src.api.config import config
 
@@ -55,21 +55,37 @@ class PromptManager:
         
         return "\n\n".join(formatted_examples)
     
-    def format_gloss_input(self, glosses_sequence: List[List[str]]) -> str:
+    # def format_gloss_input(self, glosses_sequence: List[List[str]]) -> str:
+    #     """
+    #     Format gloss sequence into prompt format
+        
+    #     Args:
+    #         glosses_sequence: 2D array of glosses [[chunk1], [chunk2], ...]
+            
+    #     Returns:
+    #         Formatted string for prompt
+    #     """
+    #     glosses_text = "Possible glosses (pick ONE per array):\n"
+    #     for chunk_idx, chunk in enumerate(glosses_sequence, 1):
+    #         glosses_text += f"  Array {chunk_idx}: [{', '.join(chunk)}]\n"
+        
+    #     return glosses_text
+
+    def format_gloss_input(self, input_glosses: List[List[Tuple[str, float]]]) -> str:
         """
-        Format gloss sequence into prompt format
+        Format gloss sequence with confidence scores into prompt format
         
         Args:
-            glosses_sequence: 2D array of glosses [[chunk1], [chunk2], ...]
+            input_glosses: 2D array of glosses with confidence scores [[(gloss1, score), (gloss2, score)], ...]
             
         Returns:
             Formatted string for prompt
         """
-        glosses_text = "Possible glosses (pick ONE per array):\n"
-        for chunk_idx, chunk in enumerate(glosses_sequence, 1):
-            glosses_text += f"  Array {chunk_idx}: [{', '.join(chunk)}]\n"
-        
-        return glosses_text
+        lines = []
+        for i, array in enumerate(input_glosses, 1):
+            items = [f"{word}:{score*100:.1f}%" for word, score in array]
+            lines.append(f"Array {i}: [{', '.join(items)}]")
+        return "\n".join(lines)
     
     def build_prompt(self, glosses_sequence: List[List[str]]) -> str:
         """

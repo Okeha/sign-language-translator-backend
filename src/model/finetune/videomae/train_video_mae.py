@@ -296,7 +296,7 @@ class VideoMAEFineTuner:
         # 2. Unfreeze the last 4 layers of the encoder (VideoMAE Base has 12 layers, VideoMAE Large has 24 layers)
         # This allows the model to learn high-level sign language features
         # while keeping low-level motion features stable.
-        layers_to_unfreeze = 4
+        layers_to_unfreeze = 8
         encoder_layers = self.model.videomae.encoder.layer
         
         for i in range(len(encoder_layers) - layers_to_unfreeze, len(encoder_layers)):

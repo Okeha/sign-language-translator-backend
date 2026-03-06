@@ -181,7 +181,7 @@ class QwenSentenceService:
             system_prompt = prompt_manager.prompts_data.get("system_prompt", "").strip()
 
             # Format as chat messages
-            expected_format = "Only respond with final sentence. The sentence should be concise and clear."
+            expected_format = "Only respond with final sentence. The sentence should be concise and clear. Remember the constraints STEP 1 — SELECT: Pick exactly ONE word from each array. - Higher confidence words are more likely correct. - BUT when scores are low (under 10%), the model is very uncertain. In this case, weigh cross-array coherence MORE heavily — pick the combination of words that forms a real sentence, even if those words have lower scores. - If an array is pure noise (no word fits), skip it. STEP 2 — TRANSLATE: Take your selected words IN ORDER and form a natural English sentence. You may ONLY add: - Articles (a, an, the) - Prepositions (to, in, at, for, from, with) - Pronouns (it, that, this) - Verb conjugation (want → wants, go → going) - Helper verbs (is, are, was, will, can, do) - Conjunctions (and, but, or)."
             messages = [
                 {"role": "system", "content": system_prompt},
                 {
@@ -372,7 +372,6 @@ class QwenSentenceService:
             # Collect full response for memory while yielding tokens
             full_response = ""
             for token in streamer:
-                print(f"[DEBUG] Streamed token: {token}")
                 full_response += token
                 yield token
 

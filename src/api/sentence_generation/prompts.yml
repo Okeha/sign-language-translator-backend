@@ -19,7 +19,7 @@ system_prompt: |
   - If an array is pure noise (no word fits), skip it.
 
   STEP 2 — TRANSLATE:
-  Take your selected words IN ORDER and form a natural
+  Take your selected words  and form a natural
   English sentence. You may ONLY add:
   - Articles (a, an, the)
   - Prepositions (to, in, at, for, from, with)
@@ -41,15 +41,22 @@ system_prompt: |
   → My name is Sarah.
 
   Input:
-  Array 1: [hard:8.7%, care:5.4%, rich:1.7%, name:1.7%, purple:1.6%]
+  Array 1: [hard:8.7%, care:5.4%, purple:1.6%]
   Array 2: [language:2.5%, hard:2.3%, computer:1.9%, what:1.7%, change:1.6%]
   Selected: NAME (1.7%), WHAT (1.7%) — low confidence, picked for coherence
   → What is your name?
 
   Input:
-  Array 1: [where:32.1%, what:18.5%, why:8.2%, when:5.1%, who:4.8%]
+  Array1: [name:20.4, short:6.3, first:1.7, move:1.5, again:1.3]
+  Array2: [big:7.8, none:5.7, what:4.7, short:3.0, language:2.1]
+  Selected: NAME (20.4%), WHAT (4.7%) — low confidence, picked for coherence
+  → What is your name?
+   
+
+  Input:
+  Array 1: [rich:9.7%, name:6.7%, , wshort:6.3, first:5.7,, when:5.1%, where:4.8%]
   Array 2: [bathroom:28.7%, restroom:15.2%, bath:6.1%, room:3.0%, toilet:2.8%]
-  Selected: WHERE (32.1%), BATHROOM (28.7%) — high confidence, trust ranking
+  Selected: WHERE (4.8%), BATHROOM (28.7%) — high confidence, trust ranking
   → Where is the bathroom?
 
   Input:
@@ -68,6 +75,40 @@ system_prompt: |
   → Help me find the book.
 
   RESPOND WITH ONLY THE SENTENCE. No reasoning, no quotes.
+
+
+template: |
+  {system_prompt}
+
+model_signing_prompt: |
+  "You are an expert ASL interpreter. Your goal is to convert English text into ASL Gloss format using a strict 'Time-Topic-Comment' structure. DO NOT OUTPUT INTERNAL CHAIN OF THOUGHT OR <think> tags. Follow these MAJOR RULES and CONSTRAINTS carefully:
+  ### MAJOR RULES:
+  1. WORD ORDER: Place Time markers first, followed by the Topic (Subject), and finally the Comment (Action/Question).
+  2. QUESTIONS: Place question words (WHO, WHAT, WHEN, WHERE, WHY, HOW) at the very end of the sentence.
+  3. SIMPLIFICATION: Omit English 'be' verbs (am, is, are, was, were) and articles (a, an, the).
+  4. FORMATTING: Output the result ONLY as a JSON array of strings in UPPERCASE. No punctuation inside strings.
+
+  ### CONSTRAINTS:
+  - You MUST ONLY use words found in the provided vocabulary array to generate an output. DO NOT invent or add any words outside this array.
+  - If an English word is not in the array, replace it with the closest synonym from the array or omit it if it's a filler word.
+  - [STRICT VOCABULARY RULE]
+  YOU ARE FORBIDDEN from using any word not in the VOCABULARY list. 
+  If an English word is missing, you MUST use the closest general category (e.g., 'APPLE' becomes 'FOOD').
+  - VOCABULARY LIST: ['ABOUT', 'AFRAID', 'AFTER', 'AFTERNOON', 'AGAIN', 'ALL', 'ALWAYS', 'AND', 'ANGRY', 'ANSWER', 'ARRIVE', 'ASK', 'BABY', 'BAD', 'BALL', 'BANK', 'BATHROOM', 'BECAUSE', 'BED', 'BEFORE', 'BIG', 'BLACK', 'BLUE', 'BODY', 'BOOK', 'BORED', 'BOSS', 'BOTTLE', 'BOX', 'BOY', 'BRAVE', 'BRING', 'BROTHER', 'BROWN', 'BUILDING', 'BUS', 'BUT', 'CALL', 'CALM', 'CAMERA', 'CAN', 'CAR', 'CARD', 'CARE', 'CARRY', 'CHAIR', 'CHANGE', 'CHILD', 'CHOICE', 'CHURCH', 'CITY', 'CLEAN', 'CLOSE', 'CLOTHES', 'COLD', 'COLOR', 'COME', 'COMPUTER', 'CONFUSED', 'CONTINUE', 'COUNTRY', 'CUP', 'CUSTOMER', 'DANGEROUS', 'DAY', 'DIFFERENT', 'DIRTY', 'DOCTOR', 'DOOR', 'DRINK', 'DROP', 'EARLY', 'EASY', 'EAT', 'EIGHT', 'EMPTY', 'ENOUGH', 'ENTER', 'EVENT', 'EXCITED', 'FAMILY', 'FARM', 'FAST', 'FATHER', 'FEEL', 'FEW', 'FIND', 'FIRE', 'FIRST', 'FIVE', 'FOLLOW', 'FOOD', 'FOR', 'FOUR', 'FRIEND', 'FROM', 'FULL', 'GIRL', 'GIVE', 'GO', 'GOAL', 'GOOD', 'GREEN', 'GROUP', 'HAPPY', 'HARD', 'HATE', 'HAVE', 'HELP', 'HIGH', 'HIT', 'HOME', 'HOPE', 'HOSPITAL', 'HOT', 'HOUR', 'HOUSE', 'HOW', 'HURT', 'I', 'IDEA', 'IF', 'IMPORTANT', 'JUMP', 'KEY', 'KITCHEN', 'KNOW', 'LANGUAGE', 'LAST', 'LATE', 'LEAVE', 'LESS', 'LIBRARY', 'LIFT', 'LIGHT', 'LIKE', 'LONELY', 'LONG', 'LOUD', 'LOVE', 'MAKE', 'MAN', 'MANY', 'MAYBE', 'ME', 'MEDICINE', 'MIND', 'MINE', 'MINUTE', 'MONEY', 'MONTH', 'MORE', 'MORNING', 'MOTHER', 'MOVE', 'MUST', 'NAME', 'NEED', 'NERVOUS', 'NEVER', 'NEW', 'NEXT', 'NIGHT', 'NINE', 'NONE', 'NOW', 'NUMBER', 'NURSE', 'OLD', 'ONE', 'OPEN', 'OR', 'ORANGE', 'PAPER', 'PEOPLE', 'PERSON', 'PHONE', 'PINK', 'PLACE', 'PLAN', 'PLAY', 'POLICE', 'POOR', 'PROBLEM', 'PROUD', 'PULL', 'PURPLE', 'PUSH', 'PUT', 'QUESTION', 'QUIET', 'REASON', 'RED', 'RELAX', 'RESTAURANT', 'RICH', 'RIGHT', 'ROOM', 'RUN', 'SAD', 'SAFE', 'SAME', 'SCHOOL', 'SECOND', 'SEE', 'SEVEN', 'SHE', 'SHOES', 'SHORT', 'SHOULD', 'SICK', 'SIGN', 'SISTER', 'SIX', 'SLEEP', 'SLOW', 'SMALL', 'SOME', 'SOMETIMES', 'SOON', 'START', 'STOP', 'STORE', 'STORY', 'STREET', 'STRONG', 'STUDENT', 'TABLE', 'TAKE', 'TEACHER', 'TEAM', 'TELL', 'TEN', 'THAT', 'THEM', 'THEY', 'THING', 'THINK', 'THIS', 'THREE', 'TIME', 'TIRED', 'TODAY', 'TOMORROW', 'TOUCH', 'TRAIN', 'TRUE', 'TRY', 'TURN', 'TV', 'TWO', 'USE', 'WAIT', 'WALK', 'WANT', 'WATCH', 'WATER', 'WAY', 'WE', 'WEAK', 'WEEK', 'WHAT', 'WHEN', 'WHERE', 'WHICH', 'WHITE', 'WHO', 'WHY', 'WILL', 'WINDOW', 'WITH', 'WITHOUT', 'WOMAN', 'WORK', 'WORKER', 'WORLD', 'WORRY', 'WRONG', 'YEAR', 'YELLOW', 'YESTERDAY', 'YOU']
+
+  EXAMPLES:
+    Input: 'I want to go to the bathroom now.'
+    Output: ["NOW", "I", "GO", "BATHROOM"]
+
+    Input: "I am cooking beans in the kitchen."
+    Output: ["I", "MAKE", "FOOD", "ROOM"]
+
+  [FINAL REMINDER]
+  CHECK EVERY WORD against the VOCABULARY list before outputting. If it is not there, replace it with closest word(s) in the vocabulary list. ONLY OUTPUT THE JSON ARRAY.
+  "
+
+
+# OLD PROMPTS:
 
 # system_prompt: |
 #   SYSTEM / CONTEXT: You are an expert American Sign Language (ASL) interpreter for a video recognition system. You will receive a chronological sequence of arrays. Each array represents a specific time-step in a video and contains the model's top 5 predictions (glosses) for that specific sign. Note that it is impossible for a user to sign multiple words simultaneously, so only one gloss from each array can be part of the intended sentence. Some arrays may contain irrelevant words (prediction errors) that do not fit the context of the sentence. DO NOT OUTPUT INTERNAL CHAIN OF THOUGHT OR <think> tags.
@@ -204,32 +245,3 @@ system_prompt: |
 #   {gloss_input}
 
 #   English sentence:
-template: |
-  {system_prompt}
-
-model_signing_prompt: |
-  "You are an expert ASL interpreter. Your goal is to convert English text into ASL Gloss format using a strict 'Time-Topic-Comment' structure. DO NOT OUTPUT INTERNAL CHAIN OF THOUGHT OR <think> tags. Follow these MAJOR RULES and CONSTRAINTS carefully:
-  ### MAJOR RULES:
-  1. WORD ORDER: Place Time markers first, followed by the Topic (Subject), and finally the Comment (Action/Question).
-  2. QUESTIONS: Place question words (WHO, WHAT, WHEN, WHERE, WHY, HOW) at the very end of the sentence.
-  3. SIMPLIFICATION: Omit English 'be' verbs (am, is, are, was, were) and articles (a, an, the).
-  4. FORMATTING: Output the result ONLY as a JSON array of strings in UPPERCASE. No punctuation inside strings.
-
-  ### CONSTRAINTS:
-  - You MUST ONLY use words found in the provided vocabulary array to generate an output. DO NOT invent or add any words outside this array.
-  - If an English word is not in the array, replace it with the closest synonym from the array or omit it if it's a filler word.
-  - [STRICT VOCABULARY RULE]
-  YOU ARE FORBIDDEN from using any word not in the VOCABULARY list. 
-  If an English word is missing, you MUST use the closest general category (e.g., 'APPLE' becomes 'FOOD').
-  - VOCABULARY LIST: ['ABOUT', 'AFRAID', 'AFTER', 'AFTERNOON', 'AGAIN', 'ALL', 'ALWAYS', 'AND', 'ANGRY', 'ANSWER', 'ARRIVE', 'ASK', 'BABY', 'BAD', 'BALL', 'BANK', 'BATHROOM', 'BECAUSE', 'BED', 'BEFORE', 'BIG', 'BLACK', 'BLUE', 'BODY', 'BOOK', 'BORED', 'BOSS', 'BOTTLE', 'BOX', 'BOY', 'BRAVE', 'BRING', 'BROTHER', 'BROWN', 'BUILDING', 'BUS', 'BUT', 'CALL', 'CALM', 'CAMERA', 'CAN', 'CAR', 'CARD', 'CARE', 'CARRY', 'CHAIR', 'CHANGE', 'CHILD', 'CHOICE', 'CHURCH', 'CITY', 'CLEAN', 'CLOSE', 'CLOTHES', 'COLD', 'COLOR', 'COME', 'COMPUTER', 'CONFUSED', 'CONTINUE', 'COUNTRY', 'CUP', 'CUSTOMER', 'DANGEROUS', 'DAY', 'DIFFERENT', 'DIRTY', 'DOCTOR', 'DOOR', 'DRINK', 'DROP', 'EARLY', 'EASY', 'EAT', 'EIGHT', 'EMPTY', 'ENOUGH', 'ENTER', 'EVENT', 'EXCITED', 'FAMILY', 'FARM', 'FAST', 'FATHER', 'FEEL', 'FEW', 'FIND', 'FIRE', 'FIRST', 'FIVE', 'FOLLOW', 'FOOD', 'FOR', 'FOUR', 'FRIEND', 'FROM', 'FULL', 'GIRL', 'GIVE', 'GO', 'GOAL', 'GOOD', 'GREEN', 'GROUP', 'HAPPY', 'HARD', 'HATE', 'HAVE', 'HELP', 'HIGH', 'HIT', 'HOME', 'HOPE', 'HOSPITAL', 'HOT', 'HOUR', 'HOUSE', 'HOW', 'HURT', 'I', 'IDEA', 'IF', 'IMPORTANT', 'JUMP', 'KEY', 'KITCHEN', 'KNOW', 'LANGUAGE', 'LAST', 'LATE', 'LEAVE', 'LESS', 'LIBRARY', 'LIFT', 'LIGHT', 'LIKE', 'LONELY', 'LONG', 'LOUD', 'LOVE', 'MAKE', 'MAN', 'MANY', 'MAYBE', 'ME', 'MEDICINE', 'MIND', 'MINE', 'MINUTE', 'MONEY', 'MONTH', 'MORE', 'MORNING', 'MOTHER', 'MOVE', 'MUST', 'NAME', 'NEED', 'NERVOUS', 'NEVER', 'NEW', 'NEXT', 'NIGHT', 'NINE', 'NONE', 'NOW', 'NUMBER', 'NURSE', 'OLD', 'ONE', 'OPEN', 'OR', 'ORANGE', 'PAPER', 'PEOPLE', 'PERSON', 'PHONE', 'PINK', 'PLACE', 'PLAN', 'PLAY', 'POLICE', 'POOR', 'PROBLEM', 'PROUD', 'PULL', 'PURPLE', 'PUSH', 'PUT', 'QUESTION', 'QUIET', 'REASON', 'RED', 'RELAX', 'RESTAURANT', 'RICH', 'RIGHT', 'ROOM', 'RUN', 'SAD', 'SAFE', 'SAME', 'SCHOOL', 'SECOND', 'SEE', 'SEVEN', 'SHE', 'SHOES', 'SHORT', 'SHOULD', 'SICK', 'SIGN', 'SISTER', 'SIX', 'SLEEP', 'SLOW', 'SMALL', 'SOME', 'SOMETIMES', 'SOON', 'START', 'STOP', 'STORE', 'STORY', 'STREET', 'STRONG', 'STUDENT', 'TABLE', 'TAKE', 'TEACHER', 'TEAM', 'TELL', 'TEN', 'THAT', 'THEM', 'THEY', 'THING', 'THINK', 'THIS', 'THREE', 'TIME', 'TIRED', 'TODAY', 'TOMORROW', 'TOUCH', 'TRAIN', 'TRUE', 'TRY', 'TURN', 'TV', 'TWO', 'USE', 'WAIT', 'WALK', 'WANT', 'WATCH', 'WATER', 'WAY', 'WE', 'WEAK', 'WEEK', 'WHAT', 'WHEN', 'WHERE', 'WHICH', 'WHITE', 'WHO', 'WHY', 'WILL', 'WINDOW', 'WITH', 'WITHOUT', 'WOMAN', 'WORK', 'WORKER', 'WORLD', 'WORRY', 'WRONG', 'YEAR', 'YELLOW', 'YESTERDAY', 'YOU']
-
-  EXAMPLES:
-    Input: 'I want to go to the bathroom now.'
-    Output: ["NOW", "I", "GO", "BATHROOM"]
-
-    Input: "I am cooking beans in the kitchen."
-    Output: ["I", "MAKE", "FOOD", "ROOM"]
-
-  [FINAL REMINDER]
-  CHECK EVERY WORD against the VOCABULARY list before outputting. If it is not there, replace it with closest word(s) in the vocabulary list. ONLY OUTPUT THE JSON ARRAY.
-  "

@@ -1,18 +1,21 @@
 # Sign Language Detector Backend 🤟
 
-A comprehensive backend system for real-time sign language detection and interpretation using VideoMAE for gloss prediction and Qwen3-1.7B LLM (default) for natural language generation.
+A comprehensive backend system for real-time sign language detection and interpretation using VideoMAE for gloss prediction and Qwen3.5-4B LLM (default) for natural language generation.
 
 ## 🎯 Project Overview
 
-This project bridges communication gaps by providing an intelligent system that accurately detects and interprets sign language gestures in real-time. The system combines computer vision (VideoMAE), natural language processing (Qwen3-1.7B by default), and modern web technologies (FastAPI + WebSocket) to create an accessible and scalable solution.
+This project bridges communication gaps by providing an intelligent system that accurately detects and interprets sign language gestures in real-time. The system combines computer vision (VideoMAE), natural language processing (Qwen3.5-4B by default), and modern web technologies (FastAPI + WebSocket) to create an accessible and scalable solution.
 
 ### Key Features
 
 - **Real-time Sign Language Detection**: WebSocket streaming with 60-frame batches every 2 seconds
 - **FastAPI + WebSocket Backend**: Production-ready API with WebSocket support for live video streaming
-- **VideoMAE Gloss Prediction**: Fine-tuned on 282 WLASL glosses with 27% Top-5 accuracy
-- **LLM Sentence Generation**: Qwen3-1.7B interprets gloss sequences into natural English sentences (default, configurable)
+- **VideoMAE Gloss Prediction**: Fine-tuned VideoMAE-Large on 282 WLASL glosses with 61% Top-5 accuracy and 30% Top-1 accuracy
+- **LLM Sentence Generation**: Qwen3.5-4B interprets gloss sequences into natural English sentences (default, configurable)
 - **Semantic Path Disambiguation**: LLM analyzes top-5 predictions per chunk to find coherent meaning
+- **💾 Session Memory System** (NEW): Per-session gloss history with deduplication and conversation context tracking
+- **⚡ Event Streaming** (NEW): Real-time WebSocket event streaming for predictions + Server-Sent Events (SSE) for streaming chat responses
+- **🧠 Streaming Chat Endpoint** (NEW): Token-by-token LLM response streaming with session conversation memory
 - **Motion Capture & 3D Export**: MediaPipe Holistic extracts skeletal, hand, and facial motion data for 3D avatar animation
 - **Three.js Compatible Output**: JSON motion files ready for web-based 3D visualization
 - **Multi-Hardware Support**: Optimized for NVIDIA CUDA (with TF32/BF16), AMD DirectML, and CPU
@@ -27,19 +30,19 @@ This project bridges communication gaps by providing an intelligent system that 
 sign-language-detector-backend/
 ├── src/
 │   ├── __init__.py                # Package marker
-│   ├── api/                       # 🚀 FastAPI Backend (NEW!)
+│   ├── api/                       # 🚀 FastAPI Backend with Memory & Streaming
 │   │   ├── __init__.py            # Package marker
-│   │   ├── main.py                # FastAPI app with WebSocket + REST endpoints
+│   │   ├── main.py                # FastAPI app: WebSocket + REST endpoints + SSE streaming
 │   │   ├── config.py              # Configuration with environment variables
 │   │   ├── schemas.py             # Pydantic request/response models
-│   │   ├── websocket_manager.py   # WebSocket connection management
-│   │   ├── session_store.py       # Per-session gloss buffering
+│   │   ├── websocket_manager.py   # 🆕 WebSocket connection management with event streaming
+│   │   ├── session_store.py       # 🆕 Per-session memory: gloss buffer + chat history
 │   │   ├── videomae/              # VideoMAE inference module
 │   │   │   ├── __init__.py        # Package marker
 │   │   │   └── model_service.py   # VideoMAE singleton service
-│   │   └── sentence_generation/   # LLM sentence generation module
+│   │   └── sentence_generation/   # LLM sentence generation module with streaming
 │   │       ├── __init__.py        # Package marker
-│   │       ├── sentence_service.py  # Qwen LLM singleton service
+│   │       ├── sentence_service.py  # Qwen LLM singleton service with streaming support
 │   │       ├── prompts.py         # YAML prompt loader and formatter
 │   │       └── prompts.yml        # ASL interpretation prompts
 │   ├── app/                       # 🎨 Streamlit Web Application
@@ -65,7 +68,7 @@ sign-language-detector-backend/
 │   │   │   │       ├── wlasl_cleaned.json     # May have corrupted videos
 │   │   │   │       └── corrupted_videos.json  # Corruption log
 │   │   │   ├── dataset.py         # Shared dataset loader
-│   │   │   ├── videomae/          # 📹 VideoMAE Training
+│   │   │   ├── videomae/          # 📹 VideoMAE Training (Primary)
 │   │   │   │   ├── train_video_mae.py         # VideoMAE fine-tuning script
 │   │   │   │   ├── video_mae_eval.py          # Evaluation script
 │   │   │   │   ├── dataset.py                 # VideoMAE dataset loader
@@ -82,7 +85,7 @@ sign-language-detector-backend/
 │   │       └── data/
 │   │           ├── images/        # Test images
 │   │           └── videos/        # Test videos
-│   ├── motion_capture/            # 🎭 3D Motion Extraction (NEW!)
+│   ├── motion_capture/            # 🎭 3D Motion Extraction
 │   │   ├── __init__.py            # Package marker
 │   │   ├── extract_motion.py      # MediaPipe Holistic motion extractor
 │   │   ├── motion_utils.py        # Euler angles, quaternions, finger curl calculations
@@ -105,9 +108,11 @@ sign-language-detector-backend/
 
 - All directories have `__init__.py` files for proper Python package imports
 - Use **relative imports** throughout the codebase
-- **Production API**: `src/api/` (FastAPI with WebSocket streaming)
+- **Production API**: `src/api/` (FastAPI with WebSocket streaming + SSE + session memory)
 - **Primary Training Pipeline**: `src/model/finetune/videomae/` (VideoMAE for 282 WLASL classes)
-- **LLM Integration**: `src/api/sentence_generation/` (Qwen3-1.7B for gloss-to-sentence, configurable)
+- **LLM Integration**: `src/api/sentence_generation/` (Qwen with streaming chat + memory, configurable)
+- **Session Memory**: `src/api/session_store.py` (gloss buffer + conversation history)
+- **Event Streaming**: `src/api/websocket_manager.py` (WebSocket manager) + streaming endpoints in `main.py`
 - **Motion Capture**: `src/motion_capture/` (MediaPipe Holistic for 3D avatar animation data)
 - **Streamlit App**: `src/app/streamlit_app.py` (demo/testing interface)
 - Run API: `uvicorn src.api.main:app --host 0.0.0.0 --port 8000`
@@ -159,9 +164,9 @@ sign-language-detector-backend/
 
 **VideoMAE Training (Primary Pipeline):**
 
-- ✅ Successfully trained VideoMAE-base on WLASL dataset
+- ✅ Successfully trained VideoMAE-Large on WLASL dataset
 - ✅ Dataset: 282 classes, ~1,603 validated videos
-- ✅ Model: MCG-NJU/videomae-base fine-tuned with classification head
+- ✅ Model: MCG-NJU/videomae-large-patch16-224 fine-tuned with classification head
 - ✅ **Training Configuration:**
   - `batch_size=2`, `gradient_accumulation_steps=2` (effective batch=4)
   - `num_train_epochs=40` (stopped at 29 epochs)
@@ -175,11 +180,11 @@ sign-language-detector-backend/
     - Temporal speed variation (50%, 80-120%)
   - **Class Balancing:** Target 10 samples per class via repetition
   - **Label Smoothing:** 0.1
-  - **Architecture:** 8 unfrozen layers + classification head
+  - **Architecture:** 16 unfrozen layers + classification head
 - ✅ **Performance:**
-  - Top-5 Accuracy: ~28% @ Epoch 22 (best checkpoint)
-  - Top-1 Accuracy: ~12%
-  - Note: 28% Top-5 on 282 classes is reasonable for demo
+  - Top-5 Accuracy: 61% (final evaluation)
+  - Top-1 Accuracy: 30.36% (final evaluation)
+  - Note: Significant improvement with 16 unfrozen layers and optimized augmentation
 - ✅ **Evaluation Pipeline:**
   - `video_mae_eval.py` calculates Top-1/Top-5 accuracy
   - Generates `evaluation_results.json` with beam search predictions
@@ -215,20 +220,22 @@ sign-language-detector-backend/
 **Completed:**
 
 - [x] **FastAPI Backend** (Production-ready API)
-  - [x] WebSocket streaming for real-time sign detection
+  - [x] WebSocket streaming for real-time sign detection with session memory
   - [x] REST endpoints for gloss-to-sentence interpretation
   - [x] General chat endpoint with LLM
-  - [x] Session management with per-client buffering
+  - [x] 🆕 **Streaming chat endpoint with SSE** and full conversation memory
+  - [x] Session management with per-client gloss buffering
   - [x] Gloss deduplication and confidence thresholding
   - [x] Health check and monitoring endpoints
   - [x] CORS configuration for web integration
   - [x] Environment-based configuration (.env support)
-- [x] **LLM Integration** (Qwen3-1.7B default, Qwen2.5 supported)
+- [x] **LLM Integration** (Qwen3.5-4B default, Qwen2.5/Qwen3-1.7B supported)
   - [x] Semantic path disambiguation for top-5 predictions
   - [x] Natural language sentence generation from glosses
   - [x] YAML-based customizable prompts
   - [x] 4-bit quantization for efficient inference
   - [x] BitsAndBytes integration
+  - [x] 🆕 **Token-by-token response streaming with session memory**
 - [x] **Motion Capture & 3D Export** (MediaPipe Holistic)
   - [x] Full-body skeletal tracking (shoulders, elbows, wrists)
   - [x] Hand pose extraction with 21-landmark tracking
@@ -275,7 +282,7 @@ Create a `.env` file in the project root:
 ```env
 # Model Configuration
 MODEL_PATH=src/model/finetune/videomae/video_mae_finetuned_final
-LLM_MODEL_NAME=Qwen/Qwen3-1.7B
+LLM_MODEL_NAME=Qwen/Qwen3.5-4B
 LLM_USE_QUANTIZATION=true
 LLM_TEMPERATURE=0.7
 LLM_MAX_LENGTH=100
@@ -300,7 +307,92 @@ HF_TOKEN=your_token_here
 
 ### API Endpoints
 
-#### WebSocket Streaming
+## 💾 Memory & Session Management
+
+### Session Memory System
+
+The backend maintains per-session state for both gloss predictions and conversation history:
+
+#### **Gloss Buffer Memory**
+
+Each WebSocket session maintains a buffer of predicted glosses:
+
+- Stores up to 50 glosses by default (`MAX_GLOSSES_PER_SESSION` configurable)
+- Each entry includes: gloss, confidence score, timestamp
+- Automatic deduplication of consecutive duplicate glosses (e.g., "BOOK", "BOOK" → single entry)
+- Thread-safe operations with session-specific locks
+- Automatic cleanup of inactive sessions after timeout
+
+**Use Case**: Enables seamless continuation when users pause/resume signing, prevents jumping between similar gestures.
+
+#### **Conversation Memory**
+
+Chat sessions maintain full conversation history:
+
+- Per-session thread-safe chat history
+- Stores user messages and assistant responses
+- Persists during WebSocket connection lifetime
+- Automatically clears when session ends or client disconnects
+- Enables context-aware responses across multiple messages
+
+**Use Case**: Allows follow-up questions, clarifications, and multi-turn conversations with continuity.
+
+---
+
+## ⚡ Event Streaming
+
+### WebSocket Real-Time Streaming Features
+
+The WebSocket `/ws/stream/{session_id}` endpoint provides real-time event-based updates:
+
+**Features:**
+
+- Event-based push updates (predictions sent immediately when ready)
+- Maintains persistent connection per client
+- Automatic reconnection support on client side
+- Connection timeout management (configurable via `SESSION_TIMEOUT_HOURS`)
+- Active connection monitoring via health checks
+- Session memory integration for gloss buffering
+
+---
+
+### Server-Sent Events (SSE) Streaming Chat
+
+**Endpoint:** `POST /chat/stream`
+
+Token-by-token streaming of LLM responses with full session memory integration:
+
+**Features:**
+
+- Streams response tokens as they're generated (real-time feedback)
+- Maintains conversation context across multiple requests
+- Thread-safe async streaming implementation
+- Proper SSE formatting for browser compatibility
+- Full session memory integration (tracks entire conversation history)
+
+**Request Example:**
+
+```bash
+curl -N -X POST http://localhost:8000/chat/stream \
+  -H "Content-Type: application/json" \
+  -d '{\n    "message": "What is American Sign Language?",\n    "session_id": "user-session-123"\n  }'
+```
+
+**Response Format (Server-Sent Events):**
+
+```
+data: {"token": "American"}
+data: {"token": " Sign"}
+data: {"token": " Language"}
+data: {"token": " is"}
+data: {"token": " a"}
+data: {"token": " visual"}
+data: {"token": " language"}
+```
+
+---
+
+#### Details
 
 **Endpoint:** `ws://localhost:8000/ws/stream/{session_id}`
 
@@ -365,7 +457,7 @@ HF_TOKEN=your_token_here
 
 ---
 
-#### General Chat
+#### General Chat (Non-Streaming)
 
 **Endpoint:** `POST /chat`
 
@@ -373,7 +465,8 @@ HF_TOKEN=your_token_here
 
 ```json
 {
-  "message": "What is the capital of France?"
+  "message": "What is the capital of France?",
+  "session_id": "optional-session-id"
 }
 ```
 
@@ -388,9 +481,9 @@ HF_TOKEN=your_token_here
 
 **Features:**
 
-- Uses the same LLM as `/interpret-glosses` (Qwen3-1.7B by default, configurable)
+- Uses the same LLM as `/interpret-glosses` (Qwen3.5-4B by default, configurable)
 - Returns direct responses without reasoning overhead
-- Stateless endpoint (no conversation history)
+- Optional session memory support (if `session_id` provided)
 - Configurable via `LLM_TEMPERATURE` in `.env`
 - Shorter responses (max 500 tokens) optimized for chat
 
@@ -399,6 +492,51 @@ HF_TOKEN=your_token_here
 - General question answering
 - Context-aware assistance for sign language learners
 - Integration with chatbot interfaces
+- Quick one-off queries
+
+---
+
+#### Streaming Chat (Recommended for UX)
+
+**Endpoint:** `POST /chat/stream`
+
+Stream LLM responses token-by-token with full session memory support:
+
+**Request:**
+
+```json
+{
+  "message": "Tell me about American Sign Language",
+  "session_id": "user-session-123"
+}
+```
+
+**Response (Server-Sent Events):**
+
+Each token is streamed in real-time:
+
+```
+data: {"token": "American"}
+data: {"token": " Sign"}
+data: {"token": " Language"}
+```
+
+**Features:**
+
+- ✨ Token-by-token streaming for real-time feedback
+- 💾 Full session memory (tracks conversation history)
+- 🔄 Supports follow-up questions within same session
+- 🚀 Better user experience (feedback while generating)
+- 🔒 Thread-safe async implementation
+- 📱 Browser-compatible SSE format
+
+**Use cases:**
+
+- Interactive chat interfaces
+- Multi-turn conversations with context
+- Real-time feedback UI
+- Long-form response generation
+- Educational chatbot assistants
 
 ---
 
@@ -418,24 +556,116 @@ HF_TOKEN=your_token_here
 }
 ```
 
+---
+
+### API Endpoint Quick Reference
+
+| Endpoint                     | Method    | Memory Support                  | Streaming             | Use Case                    |
+| ---------------------------- | --------- | ------------------------------- | --------------------- | --------------------------- |
+| `/ws/stream/{session_id}`    | WebSocket | ✅ Gloss buffer + session trace | ✅ Event-based        | Real-time video detection   |
+| `/chat`                      | POST      | ✅ Optional (if session_id)     | ❌                    | Quick queries               |
+| `/chat/stream`               | POST      | ✅ Full conversation memory     | ✅ Server-Sent Events | Interactive conversations   |
+| `/interpret-glosses`         | POST      | ❌                              | ❌                    | Gloss → Sentence conversion |
+| `/convert-sentence-to-gloss` | POST      | ❌                              | ❌                    | Sentence → Gloss sequence   |
+| `/health`                    | GET       | ❌                              | ❌                    | System status monitoring    |
+
+---
+
 #### API Documentation
 
 - **Swagger UI:** http://localhost:8000/docs
 - **ReDoc:** http://localhost:8000/redoc
 
-### LLM Model Options
+### Models & Inference Services
 
-The system supports any compatible HuggingFace model. Recommended options:
+#### VideoMAE Model Service
 
-| Model                     | Size (4-bit) | Best For             | Config Value                         |
-| ------------------------- | ------------ | -------------------- | ------------------------------------ |
-| **Qwen3-1.7B**            | ~1.5GB       | Default, reasoning   | `Qwen/Qwen3-1.7B`                    |
-| **Qwen2.5-3B-Instruct**   | ~1.8GB       | Balanced performance | `Qwen/Qwen2.5-3B-Instruct`           |
-| **Qwen2.5-1.5B-Instruct** | ~1GB         | Fastest inference    | `Qwen/Qwen2.5-1.5B-Instruct`         |
-| **TinyLlama-1.1B**        | ~0.6GB       | Minimum resources    | `TinyLlama/TinyLlama-1.1B-Chat-v1.0` |
-| **Mistral-7B-Instruct**   | ~3.5GB       | Highest quality      | `mistralai/Mistral-7B-Instruct-v0.3` |
+Used for real-time gloss prediction from video frames:
 
-Update `LLM_MODEL_NAME` in `.env` to switch models. The default is `Qwen/Qwen3-1.7B`.
+- **Architecture**: MCG-NJU/videomae-large-patch16-224 with 16 unfrozen layers and fine-tuned classification head
+- **Input**: Video frames (60-frame batches)
+- **Output**: Top-5 gloss predictions with confidence scores
+- **Performance**: 61% Top-5 accuracy and 30.36% Top-1 accuracy on 282 WLASL glosses
+- **Hardware**: GPU-accelerated (CUDA/DirectML) or CPU fallback
+- **Latency**: ~200-300ms per 60-frame batch
+
+**Configuration:**
+
+```env
+MODEL_PATH=src/model/finetune/videomae/video_mae_finetuned_final
+NUM_FRAMES_TO_SAMPLE=16
+CONFIDENCE_THRESHOLD=0.4
+```
+
+### 📊 Model Training Benchmarks & Variation Comparison
+
+The project includes multiple VideoMAE model variations trained with different configurations to optimize accuracy and performance. Here's a comprehensive benchmark comparison:
+
+#### Model Variations & Performance
+
+| Model Variation                       | Top-1 Accuracy | Top-5 Accuracy | Configuration                           | Notes                          |
+| ------------------------------------- | -------------- | -------------- | --------------------------------------- | ------------------------------ |
+| **VideoMAE Base**                     | 9.17%          | 27.22%         | Base model, minimal fine-tuning         | Baseline, lower capacity       |
+| **VideoMAE Large v1**                 | 25.63%         | 53.76%         | Horizontal flip augmentation            | Initial large model variant    |
+| **VideoMAE Large v2**                 | 27.02%         | 60.72%         | No horizontal flip, 8 layers            | Improved augmentation strategy |
+| **VideoMAE Large v3**                 | 30.36%         | 61.00%         | No horizontal flip, 16 layers           | Balanced configuration         |
+| **VideoMAE Large v4 (Complex Aug)**   | 24.51%         | 53.20%         | Complex augmentations (rotation, speed) | Overly aggressive augmentation |
+| **VideoMAE Large v4 (No Frame Drop)** | 34.26%         | 59.33%         | No frame dropping, 16 layers            | No frame dropping strategy     |
+| **VideoMAE Huge v6**                  | **40.67%**     | **70.19%**     | 4 unfrozen layers, optimized aug        | 🏆 **Best performer**          |
+
+#### Benchmark Charts
+
+**Top-1 vs Top-5 Accuracy Comparison:**
+
+![Model Benchmark Combined](model_benchmark_combined.png)
+
+**Individual Metric Comparison:**
+
+![Model Benchmark Comparison](model_benchmark_comparison.png)
+
+#### Key Findings
+
+- **Best Model**: VideoMAE Huge v6 with 40.67% Top-1 and 70.19% Top-5 accuracy
+- **Optimal Configuration**: 4 unfrozen layers with balanced augmentation strategy outperforms deeper unfreezing
+- **Augmentation Impact**: Complex augmentations (rotation, speed variation) can hurt performance if too aggressive
+- **Model Size Effect**: Larger model capacity (Huge vs Large) shows significant improvement (+9-12% Top-1)
+- **Frame Sampling**: Consistent frame sampling strategy crucial for reproducibility
+
+**All model variations are stored in:** `src/model/finetune/archived_models/`
+
+#### Qwen LLM Model Service
+
+Used for sentence generation, chat, and gloss interpretation:
+
+- **Architecture**: Qwen3.5-4B (default, configurable)
+- **Capabilities**:
+  - ✨ Gloss sequence → Natural English sentence generation
+  - 💬 Multi-turn conversational chat with memory
+  - 🔄 Streaming token output (SSE compatible)
+  - 🔤 Sentence → Gloss sequence conversion
+  - 🧠 Semantic path disambiguation (chooses best gloss path from prediction lattice)
+- **Quantization**: 4-bit with BitsAndBytes (~1.5-2GB VRAM)
+- **Latency**: First token ~3-5s, subsequent tokens ~50-150ms (streaming)
+
+**Recommended Model Options:**
+
+| Model                   | Size (4-bit) | Best For                     | VRAM      | Speed           |
+| ----------------------- | ------------ | ---------------------------- | --------- | --------------- |
+| **Qwen3.5-4B**          | ~2.5GB       | Default, best reasoning      | 3-4GB     | Balanced        |
+| **Qwen3-1.7B**          | ~1.5GB       | Lighter weight               | 2-3GB     | Faster          |
+| **Qwen2.5-3B-Instruct** | ~1.8GB       | Better instruction following | 2.5-3.5GB | Slightly slower |
+| **Qwen2.5-1.5B**        | ~1GB         | Fast inference               | 1.5-2GB   | Faster          |
+| **TinyLlama-1.1B**      | ~0.6GB       | Minimal resources            | 1-1.5GB   | Fastest         |
+| **Mistral-7B**          | ~3.5GB       | Highest quality              | 4-5GB     | Slowest         |
+
+**Configuration:**
+
+```env
+LLM_MODEL_NAME=Qwen/Qwen3.5-4B
+LLM_USE_QUANTIZATION=true
+LLM_TEMPERATURE=0.7
+LLM_MAX_LENGTH=100
+```
 
 ### Customizing LLM Prompts
 

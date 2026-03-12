@@ -21,3 +21,5 @@ video_mae_finetuned_final/
 /datasets
 archived_models
 /videomae_base
+
+generate_benchmark_chart.py

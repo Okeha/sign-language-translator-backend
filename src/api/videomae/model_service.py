@@ -42,7 +42,21 @@ class VideoMAEService:
             try:
                 self.processor = VideoMAEImageProcessor.from_pretrained(config.MODEL_PATH)
             except Exception as e:
-                self.processor = VideoMAEImageProcessor.from_pretrained("MCG-NJU/videomae-large")
+                # Detect which base model processor to use based on model hidden_size
+                # Note: VideoMAE-Huge architecture config exists, but the base model was never
+                # officially released on HuggingFace Hub. Use Large processor as fallback since
+                # the processor is just for image preprocessing and compatible across sizes.
+                hidden_size = self.model.config.hidden_size
+                if hidden_size == 1280:  # Huge architecture
+                    base_model = "MCG-NJU/videomae-large"  # Use Large processor for Huge (not released)
+                    logger.info(f"Huge model detected (hidden_size=1280). Using Large processor (Huge not released on Hub)")
+                elif hidden_size == 1024:  # Large architecture
+                    base_model = "MCG-NJU/videomae-large"
+                else:  # Base or other
+                    base_model = "MCG-NJU/videomae-base"
+                    
+                logger.info(f"Processor not found in checkpoint. Falling back to: {base_model}")
+                self.processor = VideoMAEImageProcessor.from_pretrained(base_model)
             
             # Set device
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

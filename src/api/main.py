@@ -11,6 +11,7 @@ import torch
 import json
 
 from src.api.config import config
+from src.api.logger_config import setup_colored_logging
 from src.api.schemas import (
     FrameBatchRequest,
     GlossPrediction,
@@ -30,11 +31,8 @@ from src.api.websocket_manager import ConnectionManager
 from src.api.session_store import SessionStore
 from src.api.sentence_generation.sentence_service import QwenSentenceService
 
-# Configure logging
-logging.basicConfig(
-    level=config.LOG_LEVEL,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+# Configure colored logging
+setup_colored_logging(level=config.LOG_LEVEL)
 logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
@@ -73,60 +71,50 @@ async def startup_event():
     """
     global model_service, connection_manager, session_store, sentence_service
     
-    logger.info("=" * 60)
-    logger.info("Starting Sign Language Detection API")
-    logger.info("=" * 60)
+    logger.info("🚀 Starting Sign Language Detection API")
     
     # Initialize connection manager and session store
-    logger.info("Initializing managers...")
+    logger.info("📋 Initializing managers...")
     connection_manager = ConnectionManager()
     session_store = SessionStore()
     
     # Load VideoMAE model (this takes 5-10 seconds)
-    logger.info(f"Loading VideoMAE model from: {config.MODEL_PATH}")
+    logger.info(f"📹 Loading VideoMAE model from: {config.MODEL_PATH}")
     try:
         model_service = VideoMAEService()
-        # logger.info(f"✓ VideoMAE loaded successfully on {model_service.device}")
+        logger.info(f"✅ VideoMAE loaded successfully on {model_service.device}")
     except Exception as e:
-        logger.error(f"✗ Failed to load VideoMAE: {str(e)}")
+        logger.error(f"❌ Failed to load VideoMAE: {str(e)}")
         raise
     
     # Load Qwen sentence generation model (this takes 3-5 seconds)
-    logger.info(f"Loading model: {config.LLM_MODEL_NAME}")
+    logger.info(f"🤖 Loading LLM: {config.LLM_MODEL_NAME}")
     try:
         sentence_service = QwenSentenceService()
-        logger.info(f"✓ Qwen loaded successfully on {sentence_service.device}")
+        logger.info(f"✅ Qwen loaded successfully on {sentence_service.device}")
     except Exception as e:
-        logger.error(f"✗ Failed to load Qwen: {str(e)}")
-        logger.warning("Sentence generation will not be available")
+        logger.error(f"❌ Failed to load Qwen: {str(e)}")
+        logger.warning("⚠️  Sentence generation will not be available")
         sentence_service = None
 
-
-        # ✅ NEW: Free cached GPU memory and log usage
+    # GPU Memory Usage
     if torch.cuda.is_available():
-        # Reclaim unused memory from quantization loading
         torch.cuda.empty_cache()
-        
         allocated = torch.cuda.memory_allocated() / 1024**3
         reserved = torch.cuda.memory_reserved() / 1024**3
-        logger.info(f"GPU Allocated: {allocated:.2f} GB (actual model weights)")
-        logger.info(f"GPU Reserved:  {reserved:.2f} GB (total claimed from CUDA)")
-        logger.info(f"GPU Pool (unused): {reserved - allocated:.2f} GB")
+        logger.info(f"💾 GPU Allocated: {allocated:.2f} GB | Reserved: {reserved:.2f} GB | Pool: {reserved - allocated:.2f} GB")
     
-    logger.info("=" * 60)
-    logger.info("API ready to accept connections")
-    logger.info(f"GPU Available: {torch.cuda.is_available()}")
-    logger.info(f"VideoMAE Device: {model_service.device}")
-    if sentence_service:
-        logger.info(f"Qwen Device: {sentence_service.device}")
-    logger.info(f"CORS Origins: {config.CORS_ORIGINS}")
-    logger.info("=" * 60)
+    logger.info("=" * 70)
+    logger.info(f"✨ API ready to accept connections on http://0.0.0.0:{config.PORT}")
+    logger.info(f"📊 GPU: {'Yes (cuda)' if torch.cuda.is_available() else 'CPU only'} | VideoMAE: {model_service.device} | Qwen: {sentence_service.device if sentence_service else 'N/A'}")
+    logger.info(f"🌐 CORS: {', '.join(config.CORS_ORIGINS)}")
+    logger.info("=" * 70)
 
 
 @app.on_event("shutdown")
 async def shutdown_event():
     """Cleanup on server shutdown"""
-    logger.info("Shutting down Sign Language Detection API...")
+    logger.info("🛑 Shutting down Sign Language Detection API...")
 
 
 @app.get("/")

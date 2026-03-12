@@ -86,7 +86,7 @@ async def startup_event():
     logger.info(f"Loading VideoMAE model from: {config.MODEL_PATH}")
     try:
         model_service = VideoMAEService()
-        logger.info(f"✓ VideoMAE loaded successfully on {model_service.device}")
+        # logger.info(f"✓ VideoMAE loaded successfully on {model_service.device}")
     except Exception as e:
         logger.error(f"✗ Failed to load VideoMAE: {str(e)}")
         raise
@@ -100,6 +100,18 @@ async def startup_event():
         logger.error(f"✗ Failed to load Qwen: {str(e)}")
         logger.warning("Sentence generation will not be available")
         sentence_service = None
+
+
+        # ✅ NEW: Free cached GPU memory and log usage
+    if torch.cuda.is_available():
+        # Reclaim unused memory from quantization loading
+        torch.cuda.empty_cache()
+        
+        allocated = torch.cuda.memory_allocated() / 1024**3
+        reserved = torch.cuda.memory_reserved() / 1024**3
+        logger.info(f"GPU Allocated: {allocated:.2f} GB (actual model weights)")
+        logger.info(f"GPU Reserved:  {reserved:.2f} GB (total claimed from CUDA)")
+        logger.info(f"GPU Pool (unused): {reserved - allocated:.2f} GB")
     
     logger.info("=" * 60)
     logger.info("API ready to accept connections")

@@ -37,7 +37,8 @@ class Config:
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
     
     # LLM Settings for Sentence Generation
-    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-4B")
+    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3.5-4B")
+    # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-4B")
     # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "Qwen/Qwen3-1.7B")
     # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "microsoft/Phi-4-mini-reasoning")
     # LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "microsoft/Phi-4-mini-reasoning")
@@ -50,7 +51,7 @@ class Config:
     
     # HuggingFace Token
     # Update here with hugging face token
-    HF_TOKEN = os.getenv("HF_TOKEN", "")
+    HF_TOKEN = os.getenv("HF_TOKEN", "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")
     
     # Prompts file path
     PROMPTS_FILE_PATH = os.getenv(

@@ -54,6 +54,7 @@ class VLMModelLoader():
             print("❌ No GPU found. Falling back to CPU.")
         self.clear_memory()
         self.load_model()
+        
         self.processor.video_processor.size={"height": 448, "width": 448}
         # self.lora_model_path = f"./finetune/vlm_finetuned_final"
         self.lora_model_path = f"./finetune/vlm_finetuned/checkpoint-{CHECKPOINT_NUM}"

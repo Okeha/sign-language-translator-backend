@@ -32,7 +32,7 @@ class VideoMAEService:
         if self._initialized:
             return
         
-        logger.info(f"Loading VideoMAE model from {config.MODEL_PATH}")
+        # logger.info(f"Loading VideoMAE model from {config.MODEL_PATH}")
         
         try:
             # Load model and processor
@@ -42,10 +42,6 @@ class VideoMAEService:
             try:
                 self.processor = VideoMAEImageProcessor.from_pretrained(config.MODEL_PATH)
             except Exception as e:
-                logger.warning(
-                    f"preprocessor_config.json not found in checkpoint: {str(e)}. "
-                    "Loading from base model 'MCG-NJU/videomae-large'"
-                )
                 self.processor = VideoMAEImageProcessor.from_pretrained("MCG-NJU/videomae-large")
             
             # Set device

@@ -51,7 +51,7 @@ class Config:
     
     # HuggingFace Token
     # Update here with hugging face token
-    HF_TOKEN = os.getenv("HF_TOKEN", "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")
+    HF_TOKEN = os.getenv("HF_TOKEN", "")
     
     # Prompts file path
     PROMPTS_FILE_PATH = os.getenv(

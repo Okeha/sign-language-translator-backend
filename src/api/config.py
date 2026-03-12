@@ -52,6 +52,7 @@ class Config:
     # HuggingFace Token
     # Update here with hugging face token
 
+
     
     # Prompts file path
     PROMPTS_FILE_PATH = os.getenv(

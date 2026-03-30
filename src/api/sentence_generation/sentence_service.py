@@ -458,7 +458,7 @@ class QwenSentenceService:
                 "'WATER', 'WAY', 'WE', 'WEAK', 'WEEK', 'WHAT', 'WHEN', 'WHERE', "
                 "'WHICH', 'WHITE', 'WHO', 'WHY', 'WILL', 'WINDOW', 'WITH', 'WITHOUT', "
                 "'WOMAN', 'WORK', 'WORKER', 'WORLD', 'WORRY', 'WRONG', 'YEAR', "
-                "'YELLOW', 'YESTERDAY', 'YOU'] "
+                "'YELLOW', 'YESTERDAY', 'YOU']. \n ## NEVER ADD WORDS NOT IN THE VOCABULARY LIST BUT TRY TO USE THE VOCABULARY WORDS AS MUCH AS POSSIBLE. Always give a response. Ensure what you generate is actually cohesive please and represents the sentence to a large extent. \n - Use the closest synonyms to the sentence found in the vocabulary words if you cannot match exactly."
             )
             messages = [
                 {"role": "system", "content": self.model_signing_prompt},

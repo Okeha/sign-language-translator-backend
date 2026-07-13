@@ -20,7 +20,7 @@ with open(_prompts_path, 'r', encoding='utf-8') as f:
     model_signing_prompt = yaml.safe_load(f)["model_signing_prompt"]
 
 
-MODEL_NAME = "minimax/minimax-m2.5:free"
+MODEL_NAME = config.OPENROUTER_MODEL
 
 CHAT_SYSTEM_PROMPT = (
     "You are Signrr. A helpful AI assistant that provides clear, concise responses "
@@ -78,8 +78,8 @@ class ChatMemory:
             return len(self._sessions.get(session_id, []))
 
 
-class QwenSentenceService:
-    """Singleton service for gloss-to-sentence generation using Qwen"""
+class CloudSentenceService:
+    """Singleton service for gloss-to-sentence generation via a cloud LLM (OpenRouter)."""
 
     _instance = None
 
@@ -92,15 +92,24 @@ class QwenSentenceService:
     def __init__(self):
         self.chat_memory = ChatMemory()
         self.model_signing_prompt = model_signing_prompt
-        self.MODEL_NAME = MODEL_NAME
-        self.OPENROUTER_API_KEY = os.getenv(
-            "OPENROUTER_API_KEY",
-            ""
-        )
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+        # Remote LLM served over the OpenRouter API — this service does NOT run a
+        # local model on the GPU, so "device" is informational only.
+        self.backend = "cloud"
+        self.provider = config.LLM_PROVIDER
+        self.MODEL_NAME = config.OPENROUTER_MODEL
+        self.base_url = config.OPENROUTER_BASE_URL
+        self.OPENROUTER_API_KEY = config.OPENROUTER_API_KEY
+        self.device = "remote (openrouter)"
+
+        if not self.OPENROUTER_API_KEY:
+            logger.warning(
+                "OPENROUTER_API_KEY is not set — remote LLM calls will fail. "
+                "Set it in your .env to enable sentence/chat generation."
+            )
 
         self.client = OpenAI(
-            base_url="https://openrouter.ai/api/v1",
+            base_url=self.base_url,
             api_key=self.OPENROUTER_API_KEY,
         )
 
@@ -292,3 +301,7 @@ class QwenSentenceService:
     def is_loaded(self) -> bool:
         """Check if model is loaded and ready"""
         return self._initialized
+
+
+# Backward-compat alias — this service was historically (mis)named "Qwen".
+QwenSentenceService = CloudSentenceService

@@ -8,6 +8,11 @@ import os
 import torch.nn as nn
 from peft import PeftModel, PeftConfig
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env so HF_TOKEN (and other secrets) are available; without this the
+# getenv() below returns None and gated-model downloads fail.
+load_dotenv()
 
 HF_TOKEN = os.getenv('HF_TOKEN')
 NUM_FRAMES = 8 # Increased from 4 to 8

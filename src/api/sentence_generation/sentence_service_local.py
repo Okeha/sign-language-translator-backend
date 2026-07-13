@@ -87,8 +87,8 @@ class ChatMemory:
             return len(self._sessions.get(session_id, []))
 
 
-class QwenSentenceService:
-    """Singleton service for gloss-to-sentence generation using Qwen"""
+class LocalSentenceService:
+    """Singleton service for gloss-to-sentence generation using a local HF model."""
 
     _instance = None
 
@@ -99,12 +99,12 @@ class QwenSentenceService:
         return cls._instance
 
     def __init__(self):
-        """Initialize Qwen model (only once due to singleton pattern)"""
+        """Initialize the local model (only once due to singleton pattern)"""
         if self._initialized:
             return
 
-        # logger.info(f"Loading Model: {config.LLM_MODEL_NAME}")
-
+        self.backend = "local"
+        self.MODEL_NAME = config.LLM_MODEL_NAME
         self.model_signing_prompt = model_signing_prompt
         self.chat_memory = ChatMemory()
 
@@ -502,4 +502,8 @@ class QwenSentenceService:
     def is_loaded(self) -> bool:
         """Check if model is loaded and ready"""
         return self._initialized
+
+
+# Backward-compat alias.
+QwenSentenceService = LocalSentenceService
 

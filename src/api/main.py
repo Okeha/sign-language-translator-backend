@@ -29,7 +29,7 @@ from src.api.schemas import (
 from src.api.videomae.model_service import VideoMAEService
 from src.api.websocket_manager import ConnectionManager
 from src.api.session_store import SessionStore
-from src.api.sentence_generation.sentence_service import QwenSentenceService
+from src.api.sentence_generation.factory import create_sentence_service
 
 # Configure colored logging
 setup_colored_logging(level=config.LOG_LEVEL)
@@ -57,7 +57,7 @@ app.add_middleware(
 model_service: Optional[VideoMAEService] = None
 connection_manager: Optional[ConnectionManager] = None
 session_store: Optional[SessionStore] = None
-sentence_service: Optional[QwenSentenceService] = None
+sentence_service = None
 
 
 @app.on_event("startup")
@@ -87,13 +87,17 @@ async def startup_event():
         logger.error(f"❌ Failed to load VideoMAE: {str(e)}")
         raise
     
-    # Load Qwen sentence generation model (this takes 3-5 seconds)
-    logger.info(f"🤖 Loading LLM: {config.LLM_MODEL_NAME}")
+    # Initialize the sentence-generation LLM. The backend (local on-device model
+    # vs. remote cloud API) is selected by config.LLM_BACKEND — see factory.
+    logger.info(f"🤖 Initializing LLM (backend: {config.LLM_BACKEND})")
     try:
-        sentence_service = QwenSentenceService()
-        logger.info(f"✅ Qwen loaded successfully on {sentence_service.device}")
+        sentence_service = create_sentence_service()
+        logger.info(
+            f"✅ LLM ready | backend: {sentence_service.backend} "
+            f"| model: {sentence_service.MODEL_NAME} | device: {sentence_service.device}"
+        )
     except Exception as e:
-        logger.error(f"❌ Failed to load Qwen: {str(e)}")
+        logger.error(f"❌ Failed to initialize LLM ({config.LLM_BACKEND} backend): {str(e)}")
         logger.warning("⚠️  Sentence generation will not be available")
         sentence_service = None
 
@@ -106,7 +110,7 @@ async def startup_event():
     
     logger.info("=" * 70)
     logger.info(f"✨ API ready to accept connections on http://0.0.0.0:{config.PORT}")
-    logger.info(f"📊 GPU: {'Yes (cuda)' if torch.cuda.is_available() else 'CPU only'} | VideoMAE: {model_service.device} | Qwen: {sentence_service.device if sentence_service else 'N/A'}")
+    logger.info(f"📊 GPU: {'Yes (cuda)' if torch.cuda.is_available() else 'CPU only'} | VideoMAE: {model_service.device} | LLM: {f'{sentence_service.backend}:{sentence_service.MODEL_NAME}' if sentence_service else 'N/A'}")
     logger.info(f"🌐 CORS: {', '.join(config.CORS_ORIGINS)}")
     logger.info("=" * 70)
 

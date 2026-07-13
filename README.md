@@ -5,7 +5,7 @@ Real-time American Sign Language (ASL) detection and interpretation.
 A fine-tuned **VideoMAE** model predicts glosses from webcam video, and an **LLM** turns
 those gloss sequences into natural English. The LLM runs either **in the cloud via
 OpenRouter** (no GPU needed) or **locally via a HuggingFace model** — switch between them
-with a single environment variable.
+with a single environment variable. See `.env.example` for guide
 
 The backend is a **FastAPI** app with WebSocket streaming, and also ships the pipelines used
 to build the system: dataset engineering, VideoMAE fine-tuning, and MediaPipe motion capture

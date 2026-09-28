@@ -2,13 +2,13 @@
 
 import logging
 import pathlib
-import threading
 import torch
-from typing import List, Dict, Generator, Optional
+from typing import List, Generator, Optional
 import os
 from openai import OpenAI
 import yaml
 from src.api.config import config
+from src.api.sentence_generation.chat_memory import ChatMemory
 from src.api.sentence_generation.prompts import prompt_manager
 
 logger = logging.getLogger(__name__)
@@ -36,46 +36,6 @@ CHAT_SYSTEM_PROMPT = (
     "Most times the user communicates with you via the camera stream, so you don't have to mention it everytime."
     "Try to always give your response in a nice structure (markdown is encouraged please)"
 )
-
-
-class ChatMemory:
-    """
-    Per-session chat history manager.
-
-    Stores conversation history in memory. Clears when session ends
-    or server restarts. No persistence.
-    """
-
-    def __init__(self):
-        self._sessions: Dict[str, List[Dict[str, str]]] = {}
-        self._lock = threading.Lock()
-
-    def get_history(self, session_id: str) -> List[Dict[str, str]]:
-        with self._lock:
-            return list(self._sessions.get(session_id, []))
-
-    def add_message(self, session_id: str, role: str, content: str) -> None:
-        with self._lock:
-            if session_id not in self._sessions:
-                self._sessions[session_id] = []
-            self._sessions[session_id].append({"role": role, "content": content})
-
-    def clear_session(self, session_id: str) -> None:
-        with self._lock:
-            self._sessions.pop(session_id, None)
-            logger.info(f"Chat memory cleared for session: {session_id}")
-
-    def has_session(self, session_id: str) -> bool:
-        with self._lock:
-            return session_id in self._sessions
-
-    def get_session_count(self) -> int:
-        with self._lock:
-            return len(self._sessions)
-
-    def get_message_count(self, session_id: str) -> int:
-        with self._lock:
-            return len(self._sessions.get(session_id, []))
 
 
 class CloudSentenceService:

@@ -9,11 +9,20 @@ import `transformers` when running in cloud mode).
 import logging
 
 from src.api.config import config
+from src.api.sentence_generation.chat_memory import ChatMemory
 
 logger = logging.getLogger(__name__)
 
 _LOCAL_ALIASES = {"local", "hf", "huggingface", "transformers"}
 _CLOUD_ALIASES = {"cloud", "openrouter", "remote", "api"}
+
+
+def _with_bounded_chat_memory(service):
+    # Keep both backends on one memory implementation even while the local
+    # service module retains its backward-compatible ChatMemory definition.
+    if not isinstance(service.chat_memory, ChatMemory):
+        service.chat_memory = ChatMemory()
+    return service
 
 
 def create_sentence_service():
@@ -28,14 +37,14 @@ def create_sentence_service():
             f"🧠 LLM backend: LOCAL — loading '{config.LLM_MODEL_NAME}' onto the GPU/CPU"
         )
         from src.api.sentence_generation.sentence_service_local import LocalSentenceService
-        return LocalSentenceService()
+        return _with_bounded_chat_memory(LocalSentenceService())
 
     if backend in _CLOUD_ALIASES:
         logger.info(
             f"☁️  LLM backend: CLOUD ({config.LLM_PROVIDER}) — remote API, no local weights"
         )
         from src.api.sentence_generation.sentence_service import CloudSentenceService
-        return CloudSentenceService()
+        return _with_bounded_chat_memory(CloudSentenceService())
 
     raise ValueError(
         f"Unknown LLM_BACKEND '{backend}'. "

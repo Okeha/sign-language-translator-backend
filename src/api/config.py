@@ -46,6 +46,10 @@ class Config:
     # Gloss buffer settings
     MAX_GLOSSES_PER_SESSION = int(os.getenv("MAX_GLOSSES_PER_SESSION", 50))
     DEDUPLICATE_CONSECUTIVE = os.getenv("DEDUPLICATE_CONSECUTIVE", "true").lower() == "true"
+
+    # Chat memory settings
+    CHAT_MEMORY_MAX_MESSAGES = int(os.getenv("CHAT_MEMORY_MAX_MESSAGES", 40))
+    CHAT_MEMORY_TTL_SECONDS = int(os.getenv("CHAT_MEMORY_TTL_SECONDS", 7200))
     
     # Logging
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")

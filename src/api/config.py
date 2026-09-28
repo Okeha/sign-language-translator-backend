@@ -14,6 +14,14 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 load_dotenv(PROJECT_ROOT / ".env")
 
 
+def _positive_int_env(name: str, default: int) -> int:
+    """Read a strictly-positive integer environment setting."""
+    value = int(os.getenv(name, default))
+    if value <= 0:
+        raise ValueError(f"{name} must be greater than 0")
+    return value
+
+
 class Config:
     """Application configuration with environment variable overrides"""
 
@@ -69,7 +77,7 @@ class Config:
     OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
     LLM_DEVICE = os.getenv("LLM_DEVICE", "auto")  # auto, cuda, cpu
-    LLM_MAX_LENGTH = int(os.getenv("LLM_MAX_LENGTH", 100))
+    LLM_MAX_LENGTH = _positive_int_env("LLM_MAX_LENGTH", 100)
     LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", 0.5))
     LLM_USE_QUANTIZATION = os.getenv("LLM_USE_QUANTIZATION", "true").lower() == "true"
     

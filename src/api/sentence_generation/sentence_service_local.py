@@ -215,7 +215,7 @@ class LocalSentenceService:
 
             outputs = self.model.generate(
                 **inputs,
-                max_new_tokens=30000,
+                max_new_tokens=config.LLM_MAX_LENGTH,
                 temperature=config.LLM_TEMPERATURE,
                 do_sample=True if config.LLM_TEMPERATURE > 0 else False,
                 top_p=0.9,
@@ -506,4 +506,3 @@ class LocalSentenceService:
 
 # Backward-compat alias.
 QwenSentenceService = LocalSentenceService
-

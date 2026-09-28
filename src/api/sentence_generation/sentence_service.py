@@ -183,8 +183,17 @@ class CloudSentenceService:
                 model=self.MODEL_NAME,
                 messages=messages,
             )
+            assistant_response = response.choices[0].message.content
 
-            return response.choices[0].message.content
+            if session_id:
+                self.chat_memory.add_message(session_id, "user", user_message)
+                self.chat_memory.add_message(
+                    session_id,
+                    "assistant",
+                    assistant_response,
+                )
+
+            return assistant_response
 
         except Exception as e:
             logger.error(f"Error in chat generation: {str(e)}")

@@ -12,6 +12,10 @@ from transformers import VideoMAEForVideoClassification, VideoMAEImageProcessor
 
 from src.api.config import config
 from src.api.schemas import GlossPrediction
+from src.api.videomae.sampling import (
+    decode_uniformly_sampled_frames,
+    uniform_sample_indices,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -108,35 +112,35 @@ class VideoMAEService:
         
         return decoded_frames
     
+    def _preprocess_sampled_frames(
+        self,
+        sampled_frames: List[np.ndarray],
+    ) -> Dict[str, torch.Tensor]:
+        """Apply VideoMAE preprocessing to an already sampled frame sequence."""
+        sampled_frames = [
+            np.clip(frame, 0, 255).astype(np.uint8)
+            for frame in sampled_frames
+        ]
+
+        return self.processor(sampled_frames, return_tensors="pt")
+
     def preprocess_frames(self, frames: List[np.ndarray]) -> Dict[str, torch.Tensor]:
         """
-        Sample 16 frames uniformly and apply VideoMAE preprocessing
+        Sample frames uniformly and apply VideoMAE preprocessing.
         
         Args:
             frames: List of numpy arrays (can be any length >= 1)
             
         Returns:
-            Dictionary with 'pixel_values' tensor of shape (1, 16, 3, 224, 224)
+            Dictionary with 'pixel_values' tensor of shape
+            (1, NUM_FRAMES_TO_SAMPLE, 3, 224, 224)
         """
-        total_frames = len(frames)
-        num_frames = config.NUM_FRAMES_TO_SAMPLE  # 16
-        
-        # Uniformly sample indices
-        if total_frames >= num_frames:
-            indices = np.linspace(0, total_frames - 1, num_frames).astype(int)
-        else:
-            # If fewer frames than needed, repeat frames
-            indices = np.linspace(0, total_frames - 1, num_frames).astype(int)
-        
-        sampled_frames = [frames[i] for i in indices]
-        
-        # Ensure uint8 range [0, 255]
-        sampled_frames = [np.clip(frame, 0, 255).astype(np.uint8) for frame in sampled_frames]
-        
-        # VideoMAEImageProcessor handles resize to 224x224 and normalization
-        inputs = self.processor(sampled_frames, return_tensors="pt")
-        
-        return inputs
+        indices = uniform_sample_indices(
+            len(frames),
+            config.NUM_FRAMES_TO_SAMPLE,
+        )
+        sampled_frames = [frames[index] for index in indices]
+        return self._preprocess_sampled_frames(sampled_frames)
     
     def predict(self, frames_b64: List[str]) -> GlossPrediction:
         """
@@ -151,12 +155,21 @@ class VideoMAEService:
         start_time = time.time()
         
         try:
-            # Step 1: Decode base64 to numpy arrays
-            frames = self.decode_base64_frames(frames_b64)
-            logger.debug(f"Decoded {len(frames)} frames")
+            # Step 1: Select the legacy uniform temporal positions first, then
+            # decode only the unique JPEGs referenced by that sample sequence.
+            sampled_frames = decode_uniformly_sampled_frames(
+                frames_b64,
+                config.NUM_FRAMES_TO_SAMPLE,
+                self.decode_base64_frames,
+            )
+            logger.debug(
+                "Decoded %s sampled frames from %s source frames",
+                len({id(frame) for frame in sampled_frames}),
+                len(frames_b64),
+            )
             
-            # Step 2: Preprocess (sample 16 frames)
-            inputs = self.preprocess_frames(frames)
+            # Step 2: Preprocess the already sampled frame sequence.
+            inputs = self._preprocess_sampled_frames(sampled_frames)
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
             logger.debug(f"Preprocessed tensor shape: {inputs['pixel_values'].shape}")
             

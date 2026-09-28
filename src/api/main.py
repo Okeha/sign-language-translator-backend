@@ -30,6 +30,7 @@ from src.api.videomae.model_service import VideoMAEService
 from src.api.websocket_manager import ConnectionManager
 from src.api.session_store import SessionStore
 from src.api.sentence_generation.factory import create_sentence_service
+from src.api.video_upload import copy_upload_in_chunks, extract_uniform_frames
 
 # Configure colored logging
 setup_colored_logging(level=config.LOG_LEVEL)
@@ -510,45 +511,40 @@ async def predict_video(file: UploadFile = File(...)):
     
     Response: GlossPrediction with gloss and confidence
     """
-    import cv2
     import tempfile
     import os
     
     # Validate file type
     allowed_extensions = ['.mp4', '.avi', '.mov', '.mkv', '.webm']
-    file_ext = os.path.splitext(file.filename)[1].lower()
+    file_ext = os.path.splitext(file.filename or "")[1].lower()
     
     if file_ext not in allowed_extensions:
         raise HTTPException(
             status_code=400,
             detail=f"Invalid file type. Allowed: {', '.join(allowed_extensions)}"
         )
-    
-    # Save uploaded file temporarily
-    with tempfile.NamedTemporaryFile(delete=False, suffix=file_ext) as temp_file:
-        content = await file.read()
-        temp_file.write(content)
-        temp_path = temp_file.name
-    
+
+    temp_path = None
     try:
-        # Extract frames from video
-        cap = cv2.VideoCapture(temp_path)
-        frames = []
-        
-        while cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
-            # Convert BGR to RGB
-            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            frames.append(frame_rgb)
-        
-        cap.release()
-        
+        # Copy the compressed upload to disk in bounded chunks rather than holding
+        # the entire request body in memory at once.
+        with tempfile.NamedTemporaryFile(delete=False, suffix=file_ext) as temp_file:
+            temp_path = temp_file.name
+            await copy_upload_in_chunks(file, temp_file)
+
+        # Count without retaining decoded arrays, then retain only the exact legacy
+        # uniform sample positions required by VideoMAE.
+        frames = extract_uniform_frames(
+            temp_path,
+            config.NUM_FRAMES_TO_SAMPLE,
+        )
+
         if len(frames) == 0:
             raise HTTPException(status_code=400, detail="No frames extracted from video")
         
-        logger.info(f"Extracted {len(frames)} frames from uploaded video")
+        logger.info(
+            f"Sampled {len(frames)} frames from uploaded video for inference"
+        )
         
         # Preprocess and predict (model_service.predict expects base64, so we'll call preprocess directly)
         inputs = model_service.preprocess_frames(frames)
@@ -585,14 +581,17 @@ async def predict_video(file: UploadFile = File(...)):
             timestamp=int(time.time() * 1000),
             latency_ms=latency_ms
         )
+
+    except HTTPException:
+        raise
         
     except Exception as e:
         logger.error(f"Video prediction failed: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Prediction failed: {str(e)}")
     
     finally:
-        # Cleanup temp file
-        if os.path.exists(temp_path):
+        # Cleanup temp file after upload, decoding, preprocessing, or inference failure.
+        if temp_path and os.path.exists(temp_path):
             os.unlink(temp_path)
 
 
